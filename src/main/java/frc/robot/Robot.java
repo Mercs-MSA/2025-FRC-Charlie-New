@@ -76,11 +76,11 @@ public class Robot extends TimedRobot {
 
     boolean doRejectUpdate = false;
     SmartDashboard.putNumber("PigeonRotation", m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees());
-    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightFrontName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
-    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightBackName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightLeftName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightRightName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
     
-    LimelightHelpers.PoseEstimate mt_front = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightFrontName);
-    LimelightHelpers.PoseEstimate mt_back = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightBackName);
+    LimelightHelpers.PoseEstimate mt_left = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightLeftName);
+    LimelightHelpers.PoseEstimate mt_right = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightRightName);
 
     //Update Valid IDs
 
@@ -92,26 +92,30 @@ public class Robot extends TimedRobot {
 
 
 
-    SmartDashboard.putBoolean("FrontLimelightOnlineStatus", mt_front != null);
-    SmartDashboard.putBoolean("BackLimelightOnlineStatus", mt_back != null);
+    SmartDashboard.putBoolean("FrontLimelightOnlineStatus", mt_left != null);
+    SmartDashboard.putBoolean("BackLimelightOnlineStatus", mt_right != null);
 
     m_robotContainer.drivetrain.setVisionMeasurementStdDevs(Constants.VisionConstants.visionStdDevs);
+
+
     LimelightHelpers.PoseEstimate mt_inUse = null;
-    if (mt_front != null && mt_back != null) {
-      if (mt_front.avgTagArea > mt_back.avgTagArea) {
-        mt_inUse = mt_front;
+
+    
+    if (mt_left != null && mt_right != null) {
+      if (mt_left.avgTagArea > mt_right.avgTagArea) {
+        mt_inUse = mt_left;
         SmartDashboard.putString("LimelightInUse", "Front");
       } else {
-        mt_inUse = mt_back;
+        mt_inUse = mt_right;
         SmartDashboard.putString("LimelightInUse", "Back");
       }
     } 
     
-    else if (mt_front == null) {
-      mt_inUse = mt_back;
+    else if (mt_left == null) {
+      mt_inUse = mt_right;
       SmartDashboard.putString("LimelightInUse", "Back");
-    } else if (mt_back == null) {
-      mt_inUse = mt_front;
+    } else if (mt_right == null) {
+      mt_inUse = mt_left;
       SmartDashboard.putString("LimelightInUse", "Front");
     } else {
       SmartDashboard.putString("LimelightInUse", "None");
@@ -169,8 +173,8 @@ public class Robot extends TimedRobot {
     
 
     RawFiducial closestTag = null;
-    if (mt_front != null) {
-      for (RawFiducial tag : mt_front.rawFiducials) {
+    if (mt_left != null) {
+      for (RawFiducial tag : mt_left.rawFiducials) {
         if (closestTag == null) {
           closestTag = tag;
         } else if (tag.distToRobot < closestTag.distToRobot) {
