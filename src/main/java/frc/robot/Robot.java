@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.LimelightHelpers.RawFiducial;
-import frc.robot.commands.ClimberCommands.CommandClimbToPos;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -72,53 +71,6 @@ public class Robot extends TimedRobot {
     // System.out.println(Constants.ScoringConstants.ScoringStage + " " + Constants.ScoringConstants.ScoringStage.getElevatorRotations());
 
     SmartDashboard.putString("Scoring Stage", Constants.ScoringConstants.ScoringStage.toString());
-
-    System.out.println(validIDs);
-
-    moveClimberDown = false;
-    spinIntake = false;
-    moveClimberUp = false;
-    if (testJoystick.getAButton()) {
-      if (controlChoiceClimberDown.getSelected() == XboxController.Button.kA) {
-        moveClimberDown = true;
-        new CommandClimbToPos(Constants.ClimberConstants.positionDown);
-      }
-      else if (controlChoiceClimberUp.getSelected() == XboxController.Button.kA) {
-        moveClimberUp = true;
-        new CommandClimbToPos(Constants.ClimberConstants.positionUp);
-      }
-      else if (controlChoiceIntake.getSelected() == XboxController.Button.kA) {
-        spinIntake = true;
-      }
-    }
-
-    if (testJoystick.getBButton()) {
-      if (controlChoiceClimberDown.getSelected() == XboxController.Button.kB) {
-        moveClimberDown = true;
-        new CommandClimbToPos(Constants.ClimberConstants.positionDown);
-      }
-      else if (controlChoiceClimberUp.getSelected() == XboxController.Button.kB) {
-        moveClimberUp = true;
-        new CommandClimbToPos(Constants.ClimberConstants.positionUp);
-      }
-      else if (controlChoiceIntake.getSelected() == XboxController.Button.kB) {
-        spinIntake = true;
-      }
-    }
-    
-    if (testJoystick.getXButton()) {
-      if (controlChoiceClimberDown.getSelected() == XboxController.Button.kX) {
-        moveClimberDown = true;
-        new CommandClimbToPos(Constants.ClimberConstants.positionDown);
-      }
-      else if (controlChoiceClimberUp.getSelected() == XboxController.Button.kX) {
-        moveClimberUp = true;
-        new CommandClimbToPos(Constants.ClimberConstants.positionUp);
-      }
-      else if (controlChoiceIntake.getSelected() == XboxController.Button.kX) {
-        spinIntake = true;
-      }
-    }
     
     CommandScheduler.getInstance().run(); 
 
