@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 // import frc.robot.commands.*;
-import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
+// import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.ClimberCommands.CommandClimbToggle;
 import frc.robot.commands.DriveToPosCommands.CommandLoadDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandSetDriveToPos;
@@ -44,7 +44,7 @@ import frc.robot.subsystems.Mechanisms.Elevator.Elevator1;
 import frc.robot.subsystems.Mechanisms.Elevator.Elevator2;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
-import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
+// import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
@@ -80,7 +80,7 @@ public class RobotContainer {
 
     public final FunnelPivot m_FunnelPivot = new FunnelPivot(true);
 
-    public final CANdle_LED m_leds = new CANdle_LED();
+    // public final CANdle_LED m_leds = new CANdle_LED();
 
     private final SendableChooser<Command> autoChooser;
 
@@ -218,7 +218,7 @@ public class RobotContainer {
 
             driver.leftTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator1, m_Elevator2),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator1, m_Elevator2)
                 // new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Strobe)
                 )));
             driver.rightTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
