@@ -104,19 +104,19 @@ public class Robot extends TimedRobot {
     if (mt_left != null && mt_right != null) {
       if (mt_left.avgTagArea > mt_right.avgTagArea) {
         mt_inUse = mt_left;
-        SmartDashboard.putString("LimelightInUse", "Front");
+        SmartDashboard.putString("LimelightInUse", "Left");
       } else {
         mt_inUse = mt_right;
-        SmartDashboard.putString("LimelightInUse", "Back");
+        SmartDashboard.putString("LimelightInUse", "Right");
       }
     } 
     
     else if (mt_left == null) {
       mt_inUse = mt_right;
-      SmartDashboard.putString("LimelightInUse", "Back");
+      SmartDashboard.putString("LimelightInUse", "Right");
     } else if (mt_right == null) {
       mt_inUse = mt_left;
-      SmartDashboard.putString("LimelightInUse", "Front");
+      SmartDashboard.putString("LimelightInUse", "Left");
     } else {
       SmartDashboard.putString("LimelightInUse", "None");
     }
