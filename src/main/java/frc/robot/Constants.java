@@ -164,8 +164,8 @@ public class Constants {
     }
 
     public static final class VisionConstants {
-        public static final String limelightFrontName = "limelight-front";
-        public static final String limelightBackName = "limelight-back";
+        public static final String limelightLeftName = "limelight-left";
+        public static final String limelightRightName = "limelight-right";
         public static final Vector<N3> visionStdDevs = VecBuilder.fill(.7,.7,9999999);
     }
 
