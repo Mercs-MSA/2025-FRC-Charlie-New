@@ -1,0 +1,91 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.085,
+        "y": 5.98
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 5.491006033761161,
+        "y": 6.150399344308036
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.009,
+        "y": 5.259
+      },
+      "prevControl": {
+        "x": 5.317649117606027,
+        "y": 5.857425292968751
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.5751473477406766,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 1.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "Funnel up",
+      "waypointRelativePos": 0.15471512770137147,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "MoveFunnel"
+        }
+      }
+    },
+    {
+      "name": "L4",
+      "waypointRelativePos": 0.6105108055009898,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.0,
+    "maxAcceleration": 2.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 0.0,
+    "rotation": -120.99912491649376
+  },
+  "reversed": false,
+  "folder": "BQP",
+  "idealStartingState": {
+    "velocity": 0.25,
+    "rotation": 180.0
+  },
+  "useDefaultConstraints": true
+}
