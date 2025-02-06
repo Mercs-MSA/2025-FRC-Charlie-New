@@ -18,6 +18,7 @@ public class CANdle_LED extends SubsystemBase {
     // private XboxController joystick;
 
     private Animation m_toAnimate = new ColorFlowAnimation(128, 20, 70, 0, 0.2, LedCount, Direction.Backward);
+    private boolean isRunningCustom = false;
 
     public enum AnimationTypes {
         ColorFlow,
@@ -90,6 +91,7 @@ public class CANdle_LED extends SubsystemBase {
     public void configStatusLedBehavior(boolean offWhenActive) { m_candle.configStatusLedState(offWhenActive, 0); }
 
     public void changeAnimation(AnimationTypes toChange) {
+        isRunningCustom = false;
         m_currentAnimation = toChange;
         
         switch(toChange)
@@ -128,6 +130,17 @@ public class CANdle_LED extends SubsystemBase {
         System.out.println("Changed to " + m_currentAnimation.toString());
     }
 
+    public void setCustomAnim(Animation animation)
+    {
+        isRunningCustom = true;
+        m_candle.animate(animation);
+    }
+
+    public void stopAnim()
+    {
+        m_candle.clearAnimation(0);
+    }
+
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
@@ -139,8 +152,13 @@ public class CANdle_LED extends SubsystemBase {
         //     m_candle.animate(m_toAnimate);
         // }
         // m_candle.modulateVBatOutput(joystick.getRightY());
-        m_candle.animate(m_toAnimate);
-    }
+        if (!isRunningCustom)
+        {
+            m_candle.animate(m_toAnimate);
+        }
+    }  
+    
+    
 
     @Override
     public void simulationPeriodic() {

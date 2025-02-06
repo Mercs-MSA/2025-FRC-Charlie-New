@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.CANdleCommands.CommandCandleSetCustomAnim;
 // import frc.robot.commands.*;
 // import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.ClimberCommands.CommandClimbToggle;
@@ -45,7 +46,9 @@ import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
 // import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
+import frc.robot.subsystems.SensorSubsystems.CustomAnim.CustomAnimation;
 import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
+import frc.robot.subsystems.SensorSubsystems.CustomAnim;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
 
@@ -202,7 +205,7 @@ public class RobotContainer {
 
 
 
-            // driver.back().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire));
+            driver.back().onTrue(new CommandCandleSetCustomAnim(m_leds, new CustomAnim(CustomAnimation.MercsPattern, 5, 0)));
             // driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Rainbow));
 
             driver.a().whileTrue(
