@@ -21,6 +21,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.LimelightHelpers.RawFiducial;
+import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
+import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -202,6 +204,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+    new CommandCandleSetAnimation(m_robotContainer.m_leds, AnimationTypes.Twinkle);
   }
 
   @Override
@@ -215,6 +218,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    new CommandCandleSetAnimation(m_robotContainer.m_leds, AnimationTypes.Twinkle);
   }
 
   @Override

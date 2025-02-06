@@ -46,6 +46,7 @@ import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
 // import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
+import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
 
@@ -80,7 +81,7 @@ public class RobotContainer {
 
     public final FunnelPivot m_FunnelPivot = new FunnelPivot(true);
 
-    // public final CANdle_LED m_leds = new CANdle_LED();
+    public final CANdle_LED m_leds = new CANdle_LED();
 
     private final SendableChooser<Command> autoChooser;
 
