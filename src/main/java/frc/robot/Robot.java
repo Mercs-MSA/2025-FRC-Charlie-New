@@ -84,7 +84,8 @@ public class Robot extends TimedRobot {
 
     //Update Valid IDs
 
-    LimelightHelpers.SetFiducialIDFiltersOverride("limelight", validIDs.stream().mapToInt(Integer::intValue).toArray());
+    LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightLeftName, validIDs.stream().mapToInt(Integer::intValue).toArray());
+    LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightRightName, validIDs.stream().mapToInt(Integer::intValue).toArray());
     if(Constants.DriveToPosRuntime.target != null){
     SmartDashboard.putString("reefTarget", Constants.DriveToPosRuntime.target);
     }
@@ -92,8 +93,8 @@ public class Robot extends TimedRobot {
 
 
 
-    SmartDashboard.putBoolean("FrontLimelightOnlineStatus", mt_left != null);
-    SmartDashboard.putBoolean("BackLimelightOnlineStatus", mt_right != null);
+    SmartDashboard.putBoolean("LeftLimelightOnlineStatus", mt_left != null);
+    SmartDashboard.putBoolean("RightLimelightOnlineStatus", mt_right != null);
 
     m_robotContainer.drivetrain.setVisionMeasurementStdDevs(Constants.VisionConstants.visionStdDevs);
 
