@@ -17,10 +17,10 @@ public class Constants {
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, false, false),
-        L1(21, true, false, false),
-        L2(34, true, false, false),
-        L3(63, true, false, false),
-        L4(101, true, false, false),
+        L1(2, true, false, false),
+        L2(5, true, false, false),
+        L3(10, true, false, false),
+        L4(12, true, false, false),
         CLIMBING(0, false, true, false);
 
 
@@ -60,7 +60,7 @@ public class Constants {
     }
 
     public static final class Elevator1Constants{
-        public static final int id = 20;
+        public static final int id = 14;
 
         public static final boolean attached = true;
 
@@ -78,7 +78,7 @@ public class Constants {
     }
 
     public static final class Elevator2Constants{
-        public static final int id = 36;
+        public static final int id = 19;
 
         public static final boolean attached = true;
 
@@ -129,8 +129,8 @@ public class Constants {
     }
 
     public static final class FunnelPivotConstants {
-        public static final int id = 33;
-        public static final boolean attached = true;
+        public static final int id = 15;
+        public static final boolean attached = false;
 
 
         public static final double kP = 1.9; 
@@ -143,9 +143,9 @@ public class Constants {
     }
     
     public static final class IntakeFlywheelsConstants{
-        public static final int id = 32;
+        public static final int id = 13;
 
-        public static final boolean attached = true;
+        public static final boolean attached = false;
 
         public static final double kP = 5; 
         public static final double kS = 0; 
@@ -158,9 +158,9 @@ public class Constants {
 
 
     public static final class IntakeBeambreakConstants {
-        public static final boolean breakAttached = true;
+        public static final boolean breakAttached = false;
         public static final String beamBreakName = "intake_beambreak";
-        public static final int beamBreakChannel = 0;
+        public static final int beamBreakChannel = 2; //good
 
     }
 

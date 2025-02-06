@@ -1,15 +1,19 @@
 package frc.robot.subsystems.Mechanisms.Elevator;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Elevator1Constants;
+import frc.robot.Constants.Elevator2Constants;
 import frc.robot.Constants.elevatorMMConstants;
-import frc.robot.subsystems.SensorSubsystems.ElevatorBeambreak;
+import frc.robot.subsystems.SubsystemUtils.CanDeviceId;
+// import frc.robot.subsystems.SensorSubsystems.ElevatorBeambreak;
 import frc.robot.subsystems.SubsystemUtils.SubsystemLib;
 import frc.robot.subsystems.SubsystemUtils.TalonFXFactory;
 import frc.robot.Constants;
 
 
-public class Elevator1 extends SubsystemLib {
+public class Elevator extends SubsystemLib {
     public class TestSubsystemConfig extends Config {
 
         /* MAKE SURE TO CHANGE THESE VALUES! THE PID IS NOT CONFIGURED */
@@ -42,13 +46,18 @@ public class Elevator1 extends SubsystemLib {
 
     private boolean hasTared = false;
 
+    public TalonFX followerMotor; // Declare the follower motor
+
+
 
     // public boolean isPressed;
 
-    public Elevator1(boolean attached){
+    public Elevator(boolean attached){
         super(attached);
         if(attached){
-            motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig); 
+            motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
+            
+            followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(Elevator2Constants.id, "rio"), motor, true);
         }
     }
 
@@ -73,13 +82,13 @@ public class Elevator1 extends SubsystemLib {
     @Override 
     public void periodic(){
 
-        if (Constants.elevatorBeambreakConstants.breakAttached = true && ElevatorBeambreak.checkBreak() && motor != null && !hasTared && Constants.isWithinTol(0, elev1MotorGetPosition(), 0.3)) {
+        if (Constants.elevatorBeambreakConstants.breakAttached = true && motor != null && !hasTared && Constants.isWithinTol(0, elev1MotorGetPosition(), 0.3)) {
             tareMotor(); 
             hasTared = true; 
         }
 
         // If the limit switch is released, reset the taring flag
-        if (Constants.elevatorBeambreakConstants.breakAttached = true && !ElevatorBeambreak.checkBreak()) {
+        if (Constants.elevatorBeambreakConstants.breakAttached = true) {
             hasTared = false; 
         }
 
