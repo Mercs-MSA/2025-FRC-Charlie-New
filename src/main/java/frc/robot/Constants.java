@@ -10,6 +10,7 @@ import frc.robot.commands.DriveToPosCommands.CommandToPos;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeMap;
 
 public class Constants {
 
@@ -203,6 +204,24 @@ public class Constants {
             put("20", List.of("reefI", "reefJ"));
             put("22", List.of("reefF", "reefE"));
         }};
+
+        public static final TreeMap<String, Integer> leftTagNames = new TreeMap<>() {{
+            put("reefC", 17);
+            put("reefA", 18);
+            put("reefK", 19);
+            put("reefI", 20);
+            put("reefG", 21);
+            put("reefE", 22);
+        }};
+        public static final TreeMap<String, Integer> rightTagNames = new TreeMap<>() {{ 
+            put("reefD", 17);
+            put("reefB", 18);
+            put("reefL", 19);
+            put("reefJ", 20);
+            put("reefH", 21);
+            put("reefF", 22);
+        }};
+        
     }
 
     public static boolean isWithinTol(double targetPose, double currentPose, double tolerance) {

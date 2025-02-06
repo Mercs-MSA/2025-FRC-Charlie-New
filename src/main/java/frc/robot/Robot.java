@@ -36,7 +36,7 @@ public class Robot extends TimedRobot {
 
   public final XboxController testJoystick = new XboxController(2);
 
-  private List<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
+  private static List<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
 
 
 
@@ -139,35 +139,28 @@ public class Robot extends TimedRobot {
         }
     }
     if (Constants.DriveToPosRuntime.target == "Source") {
-      if (validIDs.contains(18)) {
-        validIDs.remove(Integer.valueOf(18));
+      tagFilter(18, false);
+      tagFilter(7, false);
+    } else if (Constants.DriveToPoseConstants.leftTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
+      if(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target) != null) {
+        tagFilter(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target).getValue(), false);
+      } else {
+        tagFilter(Constants.DriveToPoseConstants.leftTagNames.firstEntry().getValue(), false);
       }
-      
-      if (validIDs.contains(7)) {
-        validIDs.remove(Integer.valueOf(7));
-      }
-    } else {
-      if (!validIDs.contains(18)) {
-        validIDs.add(18);
-      }
-      if (!validIDs.contains(7)) {
-        validIDs.add(7);
+    } else if (Constants.DriveToPoseConstants.rightTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
+      if(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target) != null) {
+        tagFilter(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target).getValue(), false);
+      } else {
+        tagFilter(Constants.DriveToPoseConstants.leftTagNames.lastEntry().getValue(), false);
       }
     }
+    
 
     if (Constants.DriveToPosRuntime.target == "reefA") {
-      if (validIDs.contains(19)) {
-        validIDs.remove(Integer.valueOf(19));
-      }
-
+      tagFilter(19, false);
     }
     else {
-      
-      if (!validIDs.contains(19)) {
-          validIDs.add(19);
-      }
-
-  
+      tagFilter(19, true);
     }
 
     
@@ -220,5 +213,20 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     CommandScheduler.getInstance().cancelAll();
+  }
+
+  private void tagFilter(int id, boolean add) {
+    if (!add) {
+      if (validIDs.contains(id)) {
+        validIDs.remove(Integer.valueOf(id));
+      }
+    } else {
+      if (!validIDs.contains(id)) {
+        validIDs.add(id);
+      }
+    }
+  }
+  public static void tagReset() {
+    validIDs = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22);
   }
 }
