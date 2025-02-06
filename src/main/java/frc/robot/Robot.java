@@ -86,7 +86,8 @@ public class Robot extends TimedRobot {
 
     //Update Valid IDs
 
-    LimelightHelpers.SetFiducialIDFiltersOverride("limelight", validIDs.stream().mapToInt(Integer::intValue).toArray());
+    LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightLeftName, validIDs.stream().mapToInt(Integer::intValue).toArray());
+    LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightRightName, validIDs.stream().mapToInt(Integer::intValue).toArray());
     if(Constants.DriveToPosRuntime.target != null){
     SmartDashboard.putString("reefTarget", Constants.DriveToPosRuntime.target);
     }
@@ -94,8 +95,8 @@ public class Robot extends TimedRobot {
 
 
 
-    SmartDashboard.putBoolean("FrontLimelightOnlineStatus", mt_left != null);
-    SmartDashboard.putBoolean("BackLimelightOnlineStatus", mt_right != null);
+    SmartDashboard.putBoolean("LeftLimelightOnlineStatus", mt_left != null);
+    SmartDashboard.putBoolean("RightLimelightOnlineStatus", mt_right != null);
 
     m_robotContainer.drivetrain.setVisionMeasurementStdDevs(Constants.VisionConstants.visionStdDevs);
 
@@ -106,19 +107,19 @@ public class Robot extends TimedRobot {
     if (mt_left != null && mt_right != null) {
       if (mt_left.avgTagArea > mt_right.avgTagArea) {
         mt_inUse = mt_left;
-        SmartDashboard.putString("LimelightInUse", "Front");
+        SmartDashboard.putString("LimelightInUse", "Left");
       } else {
         mt_inUse = mt_right;
-        SmartDashboard.putString("LimelightInUse", "Back");
+        SmartDashboard.putString("LimelightInUse", "Right");
       }
     } 
     
     else if (mt_left == null) {
       mt_inUse = mt_right;
-      SmartDashboard.putString("LimelightInUse", "Back");
+      SmartDashboard.putString("LimelightInUse", "Right");
     } else if (mt_right == null) {
       mt_inUse = mt_left;
-      SmartDashboard.putString("LimelightInUse", "Front");
+      SmartDashboard.putString("LimelightInUse", "Left");
     } else {
       SmartDashboard.putString("LimelightInUse", "None");
     }
