@@ -1,11 +1,15 @@
 package frc.robot.subsystems.Mechanisms.Elevator;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
+import com.ctre.phoenix6.signals.SensorDirectionValue;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.Elevator1Constants;
 import frc.robot.Constants.Elevator2Constants;
 import frc.robot.Constants.elevatorMMConstants;
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
+import com.ctre.phoenix6.hardware.CANcoder;
 import frc.robot.subsystems.SubsystemUtils.CanDeviceId;
 // import frc.robot.subsystems.SensorSubsystems.ElevatorBeambreak;
 import frc.robot.subsystems.SubsystemUtils.SubsystemLib;
@@ -14,12 +18,13 @@ import frc.robot.Constants;
 
 
 public class Elevator extends SubsystemLib {
+    private CANcoder m_CANcoder; // Declare CANcoder object
     public class TestSubsystemConfig extends Config {
-
         /* MAKE SURE TO CHANGE THESE VALUES! THE PID IS NOT CONFIGURED */
 
         /* These values will later be added into a constants file that has not yet been created. 
          */
+        public final int CANcoderID = 99;
 
         public final double velocityKp = Elevator1Constants.kP;
         public final double velocityKs = 0;
@@ -31,6 +36,8 @@ public class Elevator extends SubsystemLib {
             configForwardGains(velocityKs, velocityKv, 0, 0);
             configGearRatio(1);
             configNeutralBrakeMode(true);
+            configFeedbackSensorSource(FeedbackSensorSourceValue.FusedCANcoder);
+            configFeedbackSensorID(CANcoderID);
             isClockwise(false); //true if you want it to spin clockwise
             configMotionMagic(elevatorMMConstants.speed, elevatorMMConstants.acceleration, elevatorMMConstants.jerk);
      
@@ -51,15 +58,52 @@ public class Elevator extends SubsystemLib {
 
     // public boolean isPressed;
 
+    // public Elevator(boolean attached){
+    //     super(attached);
+    //     if(attached){
+    //         motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
+            
+    //         followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(Elevator2Constants.id, "rio"), motor, true);
+    //     }
+    // }
     public Elevator(boolean attached){
         super(attached);
         if(attached){
-            motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
+            int CANcoderID = 17; // Replace with actual ID
             
+            
+            m_CANcoder = new CANcoder(CANcoderID, "rio"); 
+    
+ 
+            motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
             followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(Elevator2Constants.id, "rio"), motor, true);
+    
+        
+            configureCANcoder(CANcoderID);
+            modifyMotorConfig(CANcoderID);
+    
+            tareElevatorUsingCANcoder();
         }
     }
+    private void configureCANcoder(int CANcoderID) {
+        CANcoderConfiguration cancoderConfigs = new CANcoderConfiguration();
+        cancoderConfigs.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive; 
+        m_CANcoder.getConfigurator().apply(cancoderConfigs);
+    }
 
+    private void modifyMotorConfig(int CANcoderID) {
+        config.talonConfig.Feedback.FeedbackRemoteSensorID = CANcoderID; // Use direct ID
+        config.talonConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RemoteCANcoder;
+    }
+
+    private void tareElevatorUsingCANcoder() {
+        double absolutePosition = m_CANcoder.getAbsolutePosition().getValueAsDouble();
+        motor.setPosition(absolutePosition);
+        if (followerMotor != null) {
+            followerMotor.setPosition(absolutePosition);
+        }
+    }
+    
     public void motorToPosMM(double pos) {
         isPositioning = true;
         positionTo = pos;
