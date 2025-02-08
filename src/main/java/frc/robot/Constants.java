@@ -17,7 +17,7 @@ public class Constants {
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, false, false),
-        L1(0, true, false, false),
+        L1(1, true, false, false),
         L2(32.77, true, false, false),
         L3(62.56, true, false, false),
         L4(90, true, false, false),
@@ -136,7 +136,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = 0.3896; //needs to be tested
+        public static final double posUp = 0.42; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }

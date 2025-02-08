@@ -247,13 +247,13 @@ public class RobotContainer {
         public void operatorControls(){
 
 
-            operator.povDown().onTrue(new CommandChangeScoreStage(ScoringStageVal.L1));
+            operator.pov(180).onTrue(new CommandChangeScoreStage(ScoringStageVal.L1));
 
-            operator.povLeft().onTrue(new CommandChangeScoreStage(ScoringStageVal.L2));
+            operator.pov(270).onTrue(new CommandChangeScoreStage(ScoringStageVal.L2));
 
-            operator.povUp().onTrue(new CommandChangeScoreStage(ScoringStageVal.L3));
+            operator.pov(0).onTrue(new CommandChangeScoreStage(ScoringStageVal.L3));
 
-            operator.povRight().onTrue(new CommandChangeScoreStage(ScoringStageVal.L4));
+            operator.pov(90).onTrue(new CommandChangeScoreStage(ScoringStageVal.L4));
 
 
             operator.a().onTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING));
@@ -276,8 +276,6 @@ public class RobotContainer {
             // SmartDashboard.putData("SeedToMegaTag1_Back", new SeedToMegaTag(drivetrain, Constants.VisionConstants.limelightBackName));
 
         
-
-
 
         }
 
