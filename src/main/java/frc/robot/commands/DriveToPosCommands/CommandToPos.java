@@ -20,12 +20,12 @@ public class CommandToPos extends Command {
   SwerveRequest.FieldCentric driveRequest = new SwerveRequest.FieldCentric();
 
   private final ProfiledPIDController thetaController =
-    new ProfiledPIDController(5, 0, 0, new TrapezoidProfile.Constraints(Math.PI, Math.PI));
+    new ProfiledPIDController(6, 1.0, 0, new TrapezoidProfile.Constraints(Math.PI, Math.PI));
   private final PIDController xVelController =
     // new ProfiledPIDController(2, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
-    new PIDController(1.6, 0, 0);
+    new PIDController(2.8, 0, 0);
   private final PIDController yVelController =
-    new PIDController(1.6, 0, 0);
+    new PIDController(2.8, 0, 0);
     // new ProfiledPIDController(2, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
 
   public static class Destination {

@@ -155,7 +155,7 @@ public class Constants {
     public static final class IntakeBeambreakConstants {
         public static final boolean breakAttached = false;
         public static final String beamBreakName = "intake_beambreak";
-        public static final int beamBreakChannel = 2; //good
+        public static final int beamBreakChannel = 3; //good
 
     }
 
@@ -168,10 +168,11 @@ public class Constants {
     public static final class FieldConstants {
         public static final double fieldLengthMeters = 16.54;
         public static final double fieldWidthMeters = 8.02;
+        
     }
 
     public static final class DriveToPoseConstants {
-        public static final double angularDegreesTolerance = 0.3;
+        public static final double angularDegreesTolerance = 0.2;
         public static final double linearMetersTolerance = 0.05;
         public static final double linearMetersMaxVel = 2.0;
         public static final double linearMetersMaxAccel = 5.0;
@@ -189,6 +190,7 @@ public class Constants {
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.981, 5.253, new Rotation2d(-1.047))));
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.686, 5.059, new Rotation2d(-1.047))));
             put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
+            put("Test", new CommandToPos.Destination("Test", new Pose2d(1.956, 5.4, new Rotation2d(0))));
         }};
 
         public static final HashMap<String, List<String>> tagDestinationMap = new HashMap<String, List<String>>() {{

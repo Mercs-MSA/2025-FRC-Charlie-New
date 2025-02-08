@@ -220,14 +220,16 @@ public class RobotContainer {
 
 
             driver.leftTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
-                new CommandToPos(drivetrain)
-                // new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+                new CommandToPos(drivetrain),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 // new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Strobe)
                 )));
             driver.rightTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
-                new CommandToPos(drivetrain)
-                // new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+                new CommandToPos(drivetrain),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 )));//keep
+
+            driver.back().whileTrue((new CommandSetDriveToPos("Test").andThen(new CommandToPos(drivetrain))));//keep
 
             // driver.leftTrigger(0.8).onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
 
