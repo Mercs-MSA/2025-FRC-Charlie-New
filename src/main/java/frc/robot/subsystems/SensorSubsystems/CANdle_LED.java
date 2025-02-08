@@ -17,7 +17,7 @@ public class CANdle_LED extends SubsystemBase {
     private final int LedCount = 100; //lower number decreases cycle time interval
     // private XboxController joystick;
 
-    private Animation m_toAnimate = new ColorFlowAnimation(128, 20, 70, 0, 0.2, LedCount, Direction.Backward);
+    private Animation m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.7, 0.5);
     private boolean isRunningCustom = false;
 
     public enum AnimationTypes {
@@ -133,7 +133,6 @@ public class CANdle_LED extends SubsystemBase {
     public void setCustomAnim(Animation animation)
     {
         isRunningCustom = true;
-        m_candle.animate(animation);
     }
 
     public void stopAnim()
@@ -152,10 +151,7 @@ public class CANdle_LED extends SubsystemBase {
         //     m_candle.animate(m_toAnimate);
         // }
         // m_candle.modulateVBatOutput(joystick.getRightY());
-        if (!isRunningCustom)
-        {
-            m_candle.animate(m_toAnimate);
-        }
+        m_candle.animate(m_toAnimate);
     }  
     
     

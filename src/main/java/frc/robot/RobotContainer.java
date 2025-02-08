@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.CANdleCommands.CommandCandleSetCustomAnim;
 // import frc.robot.commands.*;
 // import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
@@ -205,8 +206,8 @@ public class RobotContainer {
 
 
 
-            driver.back().onTrue(new CommandCandleSetCustomAnim(m_leds, new CustomAnim(CustomAnimation.MercsPattern, 5, 0)));
-            // driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Rainbow));
+            // driver.back().onTrue(new CommandCandleSetCustomAnim(m_leds, new CustomAnim(CustomAnimation.MercsPattern, 5, 0)));
+            driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
 
             driver.a().whileTrue(
                 new CommandSetDriveToPos("Source").andThen(
@@ -219,13 +220,13 @@ public class RobotContainer {
 
 
             driver.leftTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
-                new CommandToPos(drivetrain),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+                new CommandToPos(drivetrain)
+                // new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 // new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Strobe)
                 )));
             driver.rightTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
-                new CommandToPos(drivetrain),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+                new CommandToPos(drivetrain)
+                // new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 )));//keep
 
             // driver.leftTrigger(0.8).onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
@@ -246,13 +247,13 @@ public class RobotContainer {
         public void operatorControls(){
 
 
-            operator.pov(180).onTrue(new CommandChangeScoreStage(ScoringStageVal.L1));
+            operator.povDown().onTrue(new CommandChangeScoreStage(ScoringStageVal.L1));
 
-            operator.pov(270).onTrue(new CommandChangeScoreStage(ScoringStageVal.L2));
+            operator.povLeft().onTrue(new CommandChangeScoreStage(ScoringStageVal.L2));
 
-            operator.pov(0).onTrue(new CommandChangeScoreStage(ScoringStageVal.L3));
+            operator.povUp().onTrue(new CommandChangeScoreStage(ScoringStageVal.L3));
 
-            operator.pov(90).onTrue(new CommandChangeScoreStage(ScoringStageVal.L4));
+            operator.povRight().onTrue(new CommandChangeScoreStage(ScoringStageVal.L4));
 
 
             operator.a().onTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING));

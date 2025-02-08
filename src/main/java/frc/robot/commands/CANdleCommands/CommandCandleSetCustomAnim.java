@@ -37,8 +37,8 @@ public class CommandCandleSetCustomAnim extends Command {
                 double currTime = lastInterval.getDuration();
                 if (currTime > anim.getInterval())
                 {
-                    m_leds.setCustomAnim(new LarsonAnimation(255, 0, 0, 0, 0.5, 1, LarsonAnimation.BounceMode.Back, 50, 2));
-                    m_leds.setCustomAnim(new LarsonAnimation(0, 0, 0, 255, 0.5, 1, LarsonAnimation.BounceMode.Back, 50, 1));
+                    m_leds.setCustomAnim(new LarsonAnimation(255, 0, 0, 0, 2.0, 3, LarsonAnimation.BounceMode.Center, 50, 2));
+                    m_leds.setCustomAnim(new LarsonAnimation(255, 255, 255, 0, 2.0, 3, LarsonAnimation.BounceMode.Center, 50, 1));
                     lastInterval.start();
                 }
                 break;

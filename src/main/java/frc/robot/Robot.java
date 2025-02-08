@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Constants.DriveToPosRuntime;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.LimelightHelpers.RawFiducial;
 import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
@@ -38,7 +39,7 @@ public class Robot extends TimedRobot {
 
   public final XboxController testJoystick = new XboxController(2);
 
-  private static List<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
+  private static ArrayList<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
 
 
 
@@ -141,30 +142,32 @@ public class Robot extends TimedRobot {
               Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
         }
     }
-    if (Constants.DriveToPosRuntime.target == "Source") {
-      tagFilter(18, false);
-      tagFilter(7, false);
-    } else if (Constants.DriveToPoseConstants.leftTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
-      if(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target) != null) {
-        tagFilter(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target).getValue(), false);
-      } else {
-        tagFilter(Constants.DriveToPoseConstants.leftTagNames.firstEntry().getValue(), false);
-      }
-    } else if (Constants.DriveToPoseConstants.rightTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
-      if(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target) != null) {
-        tagFilter(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target).getValue(), false);
-      } else {
-        tagFilter(Constants.DriveToPoseConstants.leftTagNames.lastEntry().getValue(), false);
+    if (Constants.DriveToPosRuntime.target != null) {
+      if (Constants.DriveToPosRuntime.target == "Source") {
+        tagFilter(18, false);
+        tagFilter(7, false);
+      } else if (Constants.DriveToPoseConstants.leftTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
+        if(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target) != null) {
+          tagFilter(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target).getValue(), false);
+        } else {
+          tagFilter(Constants.DriveToPoseConstants.leftTagNames.firstEntry().getValue(), false);
+        }
+      } else if (Constants.DriveToPoseConstants.rightTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
+        if(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target) != null) {
+          tagFilter(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target).getValue(), false);
+        } else {
+          tagFilter(Constants.DriveToPoseConstants.leftTagNames.lastEntry().getValue(), false);
+        }
       }
     }
     
 
-    if (Constants.DriveToPosRuntime.target == "reefA") {
-      tagFilter(19, false);
-    }
-    else {
-      tagFilter(19, true);
-    }
+    // if (Constants.DriveToPosRuntime.target == "reefA") {
+    //   tagFilter(19, false);
+    // }
+    // else {
+    //   tagFilter(19, true);
+    // }
 
     
 
@@ -222,7 +225,7 @@ public class Robot extends TimedRobot {
 
   private void tagFilter(int id, boolean add) {
     if (!add) {
-      if (validIDs.contains(id)) {
+      if (validIDs.contains(Integer.valueOf(id))) {
         validIDs.remove(Integer.valueOf(id));
       }
     } else {
@@ -232,6 +235,6 @@ public class Robot extends TimedRobot {
     }
   }
   public static void tagReset() {
-    validIDs = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22);
+    validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
   }
 }

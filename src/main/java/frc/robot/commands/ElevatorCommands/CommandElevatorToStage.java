@@ -34,7 +34,7 @@ public class CommandElevatorToStage extends Command {
             this.pos = Constants.ScoringConstants.ScoringStage.getElevatorRotations();
 
             System.out.println(pos);
-            m_Elevator.motorToPosMM(pos);
+            m_Elevator.elevatorToPos(pos);
 
             }
         }

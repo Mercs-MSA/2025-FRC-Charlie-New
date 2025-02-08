@@ -17,10 +17,10 @@ public class Constants {
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, false, false),
-        L1(2, true, false, false),
-        L2(5, true, false, false),
-        L3(10, true, false, false),
-        L4(12, true, false, false),
+        L1(0, true, false, false),
+        L2(32.77, true, false, false),
+        L3(62.56, true, false, false),
+        L4(90, true, false, false),
         CLIMBING(0, false, true, false);
 
 
@@ -64,15 +64,14 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = 3; 
+        public static final double kP = .7; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
 
 
         public static final double voltageOut = 0;
-        public static final double positionUp = 90; //change this
-        public static final double positionDown = 7;
+      
 
         public static final double tol = 0.4;
     }
@@ -130,14 +129,14 @@ public class Constants {
 
     public static final class FunnelPivotConstants {
         public static final int id = 15;
-        public static final boolean attached = false;
+        public static final boolean attached = true;
 
 
-        public static final double kP = 1.9; 
+        public static final double kP = 100; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = 55; //needs to be tested
+        public static final double posUp = 0.3896; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }

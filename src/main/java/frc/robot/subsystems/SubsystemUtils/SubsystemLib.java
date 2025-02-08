@@ -12,11 +12,11 @@ import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.controls.PositionVoltage;
 // import com.ctre.phoenix6.controls.PositionVoltage;
-
-
+import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -233,6 +233,19 @@ public abstract class SubsystemLib extends SubsystemBase{
         public void configStatorCurrentLimit(double statorLimit, boolean enabled) {
             talonConfig.CurrentLimits.StatorCurrentLimit = statorLimit;
             talonConfig.CurrentLimits.StatorCurrentLimitEnable = enabled;
+        }
+
+        public void configFeedbackSensorSource(FeedbackSensorSourceValue source) {
+            configFeedbackSensorSource(source, 0);
+        }
+
+        public void configFeedbackSensorID(int id){
+            talonConfig.Feedback.FeedbackRemoteSensorID = id;
+        }
+
+        public void configFeedbackSensorSource(FeedbackSensorSourceValue source, double offset) {
+            talonConfig.Feedback.FeedbackSensorSource = source;
+            talonConfig.Feedback.FeedbackRotorOffset = offset;
         }
 
 

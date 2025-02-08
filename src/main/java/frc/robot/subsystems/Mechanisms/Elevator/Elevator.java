@@ -24,7 +24,6 @@ public class Elevator extends SubsystemLib {
         public final double velocityKp = Elevator1Constants.kP;
         public final double velocityKs = 0;
         public final double velocityKv = 0;
-        public final double rotations = Elevator1Constants.positionUp;
 
         public TestSubsystemConfig() {
             super("ELevatorMotor1", Elevator1Constants.id, "rio");  //It is on rio, but make sure that you change the id
@@ -65,6 +64,10 @@ public class Elevator extends SubsystemLib {
         isPositioning = true;
         positionTo = pos;
         setMMPosition(pos);
+    }
+
+    public void elevatorToPos(double pos){
+        SetPositionVoltage(pos);
     }
 
     public double elev1MotorGetPosition() {

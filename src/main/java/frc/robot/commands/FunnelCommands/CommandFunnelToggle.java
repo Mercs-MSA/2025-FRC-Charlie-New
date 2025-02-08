@@ -18,7 +18,7 @@ public class CommandFunnelToggle extends Command {
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
         if(Constants.ScoringConstants.ScoringStage.canPivot()){
-            if (Constants.isWithinTol(Constants.FunnelPivotConstants.posDown, m_FunnelPivot.getPivotMotorPosition(), 1))
+            if (Constants.isWithinTol(Constants.FunnelPivotConstants.posDown, m_FunnelPivot.getPivotMotorPosition(), 0.09))
             {
                 m_FunnelPivot.motorToPosMM(Constants.FunnelPivotConstants.posUp);
 
