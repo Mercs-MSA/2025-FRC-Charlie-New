@@ -18,7 +18,6 @@ import frc.robot.Constants;
 
 
 public class Elevator extends SubsystemLib {
-    private CANcoder m_CANcoder; // Declare CANcoder object
     public class TestSubsystemConfig extends Config {
         /* MAKE SURE TO CHANGE THESE VALUES! THE PID IS NOT CONFIGURED */
 
@@ -48,6 +47,7 @@ public class Elevator extends SubsystemLib {
     public static boolean isPositioning = false;
     public static double positionTo = 0;
 
+
     public TestSubsystemConfig config;
 
     private boolean hasTared = false;
@@ -72,38 +72,24 @@ public class Elevator extends SubsystemLib {
             int CANcoderID = 17; // Replace with actual ID
             
             
-            m_CANcoder = new CANcoder(CANcoderID, "rio"); 
-    
  
             motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
             followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(Elevator2Constants.id, "rio"), motor, true);
     
-        
-            configureCANcoder(CANcoderID);
-            modifyMotorConfig(CANcoderID);
     
-            tareElevatorUsingCANcoder();
         }
     }
-    private void configureCANcoder(int CANcoderID) {
-        CANcoderConfiguration cancoderConfigs = new CANcoderConfiguration();
-        cancoderConfigs.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive; 
-        m_CANcoder.getConfigurator().apply(cancoderConfigs);
-    }
+    // private void configureCANcoder(int CANcoderID) {
+    //     CANcoderConfiguration cancoderConfigs = new CANcoderConfiguration();
+    //     cancoderConfigs.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive; 
+    //     m_CANcoder.getConfigurator().apply(cancoderConfigs);
+    // }
 
-    private void modifyMotorConfig(int CANcoderID) {
-        config.talonConfig.Feedback.FeedbackRemoteSensorID = CANcoderID; // Use direct ID
-        config.talonConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RemoteCANcoder;
-    }
+    // private void modifyMotorConfig(int CANcoderID) {
+    //     config.talonConfig.Feedback.FeedbackRemoteSensorID = CANcoderID; // Use direct ID
+    //     config.talonConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RemoteCANcoder;
+    // }
 
-    private void tareElevatorUsingCANcoder() {
-        double absolutePosition = m_CANcoder.getAbsolutePosition().getValueAsDouble();
-        motor.setPosition(absolutePosition);
-        if (followerMotor != null) {
-            followerMotor.setPosition(absolutePosition);
-        }
-    }
-    
     public void motorToPosMM(double pos) {
         isPositioning = true;
         positionTo = pos;
