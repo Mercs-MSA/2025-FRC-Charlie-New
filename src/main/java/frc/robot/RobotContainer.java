@@ -75,7 +75,7 @@ public class RobotContainer {
     public final Elevator m_Elevator = new Elevator(true);
 
 
-    public final Climber m_Climber = new Climber(false);
+    public final Climber m_Climber = new Climber(true);
 
     public final IntakeFlywheels m_IntakeFlywheels = new IntakeFlywheels(true);
 
@@ -199,7 +199,7 @@ public class RobotContainer {
 
 
 
-            driver.leftBumper().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 16));
+            driver.leftBumper().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
 
 
             driver.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
@@ -263,11 +263,11 @@ public class RobotContainer {
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)));
 
 
-            operator.leftStick().onTrue(new CommandClimbToggle(m_Climber));
+            operator.leftStick().onTrue(new CommandClimbToggle(m_Climber, m_FunnelPivot));
 
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
 
-            operator.leftBumper().onTrue(new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 8));
+            operator.leftBumper().onTrue(new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 4));
 
 
             driver.y().onTrue(new SeedToMegaTag(drivetrain, Constants.VisionConstants.limelightRightName));

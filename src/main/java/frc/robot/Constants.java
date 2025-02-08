@@ -17,10 +17,10 @@ public class Constants {
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, false, false),
-        L1(1, true, false, false),
-        L2(32.77, true, false, false),
-        L3(62.56, true, false, false),
-        L4(90, true, false, false),
+        L1(0.005, true, false, false),
+        L2(1.90, true, false, false),
+        L3(3.22, true, false, false),
+        L4(5.28, true, false, false),
         CLIMBING(0, false, true, false);
 
 
@@ -64,7 +64,7 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = .7; 
+        public static final double kP = 30; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
@@ -79,11 +79,7 @@ public class Constants {
     public static final class Elevator2Constants{
         public static final int id = 19;
 
-        public static final boolean attached = true;
 
-        public static final double kP = 3; 
-        public static final double kS = 0; 
-        public static final double kV = 0; 
 
 
     }
@@ -102,7 +98,7 @@ public class Constants {
 
 
         public static final double voltageOut = 0;
-        public static final double positionUp = 330; //-240
+        public static final double positionUp = 333; //-240
 
         public static final double positionDown = 0;
 

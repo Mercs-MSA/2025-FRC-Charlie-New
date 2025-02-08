@@ -26,7 +26,7 @@ public class Elevator extends SubsystemLib {
         public final int CANcoderID = 62;
 
         public final double velocityKp = Elevator1Constants.kP;
-        public final double velocityKs = 0;
+        public final double velocityKs = Elevator1Constants.kS;
         public final double velocityKv = 0;
 
         public TestSubsystemConfig() {
@@ -72,6 +72,7 @@ public class Elevator extends SubsystemLib {
             motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
             followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(Elevator2Constants.id, "rio"), motor, true);
         }
+
     }
 
     public void motorToPosMM(double pos) {
@@ -87,6 +88,8 @@ public class Elevator extends SubsystemLib {
     public double elev1MotorGetPosition() {
         return GetPosition();
     }
+
+    
    
 
     @Override
