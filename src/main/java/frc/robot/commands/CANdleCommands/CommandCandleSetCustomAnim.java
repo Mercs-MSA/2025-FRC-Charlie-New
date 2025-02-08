@@ -3,6 +3,7 @@ package frc.robot.commands.CANdleCommands;
 import com.ctre.phoenix.led.LarsonAnimation;
 import com.ctre.phoenix.time.StopWatch;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.CustomAnim;
@@ -13,6 +14,7 @@ public class CommandCandleSetCustomAnim extends Command {
     private CustomAnim anim;
     private StopWatch startTime;
     private StopWatch lastInterval;
+    private int lastStartPos = 0;
 
     public CommandCandleSetCustomAnim(CANdle_LED leds, CustomAnim anim) {
         addRequirements(leds);
@@ -37,8 +39,11 @@ public class CommandCandleSetCustomAnim extends Command {
                 double currTime = lastInterval.getDuration();
                 if (currTime > anim.getInterval())
                 {
-                    m_leds.setCustomAnim(new LarsonAnimation(255, 0, 0, 0, 2.0, 3, LarsonAnimation.BounceMode.Center, 50, 2));
-                    m_leds.setCustomAnim(new LarsonAnimation(255, 255, 255, 0, 2.0, 3, LarsonAnimation.BounceMode.Center, 50, 1));
+                    SmartDashboard.putNumber(getName(), currTime);
+                    m_leds.setLEDs(lastStartPos + 2, 3, new int[]{255, 0, 0});
+                    m_leds.setLEDs(lastStartPos + 1, 3, new int[]{255, 255, 255});
+                    m_leds.setLEDs(lastStartPos, 3, new int[]{0, 0, 0});
+                    lastStartPos += 1;
                     lastInterval.start();
                 }
                 break;

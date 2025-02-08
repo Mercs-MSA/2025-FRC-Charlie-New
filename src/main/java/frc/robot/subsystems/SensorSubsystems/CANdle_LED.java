@@ -1,6 +1,7 @@
 package frc.robot.subsystems.SensorSubsystems;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -152,9 +153,18 @@ public class CANdle_LED extends SubsystemBase {
         // }
         // m_candle.modulateVBatOutput(joystick.getRightY());
         m_candle.animate(m_toAnimate);
+        SmartDashboard.putNumber("MAX ANIMATION SLOTS", m_candle.getMaxSimultaneousAnimationCount());
     }  
     
     
+    public void setLEDs(int startIndex, int interval, int[] color)
+    {
+        for (int i = startIndex; i < LedCount; i += interval)
+        {
+            m_candle.setLEDs(color[0], color[1], color[2], 0, i, 1);
+        }
+    }
+
 
     @Override
     public void simulationPeriodic() {

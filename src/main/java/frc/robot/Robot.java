@@ -201,7 +201,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    new CommandCandleSetAnimation(m_robotContainer.m_leds, AnimationTypes.Twinkle);
   }
 
   @Override
@@ -215,7 +214,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    new CommandCandleSetAnimation(m_robotContainer.m_leds, AnimationTypes.Twinkle);
   }
 
   @Override
