@@ -24,7 +24,7 @@ public class Elevator extends SubsystemLib {
 
         /* These values will later be added into a constants file that has not yet been created. 
          */
-        public final int CANcoderID = 99;
+        public final int CANcoderID = 62;
 
         public final double velocityKp = Elevator1Constants.kP;
         public final double velocityKs = 0;
@@ -69,41 +69,11 @@ public class Elevator extends SubsystemLib {
     public Elevator(boolean attached){
         super(attached);
         if(attached){
-            int CANcoderID = 17; // Replace with actual ID
-            
-            
-            m_CANcoder = new CANcoder(CANcoderID, "rio"); 
-    
- 
             motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
             followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(Elevator2Constants.id, "rio"), motor, true);
-    
-        
-            configureCANcoder(CANcoderID);
-            modifyMotorConfig(CANcoderID);
-    
-            tareElevatorUsingCANcoder();
         }
     }
-    private void configureCANcoder(int CANcoderID) {
-        CANcoderConfiguration cancoderConfigs = new CANcoderConfiguration();
-        cancoderConfigs.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive; 
-        m_CANcoder.getConfigurator().apply(cancoderConfigs);
-    }
 
-    private void modifyMotorConfig(int CANcoderID) {
-        config.talonConfig.Feedback.FeedbackRemoteSensorID = CANcoderID; // Use direct ID
-        config.talonConfig.Feedback.FeedbackSensorSource = FeedbackSensorSourceValue.RemoteCANcoder;
-    }
-
-    private void tareElevatorUsingCANcoder() {
-        double absolutePosition = m_CANcoder.getAbsolutePosition().getValueAsDouble();
-        motor.setPosition(absolutePosition);
-        if (followerMotor != null) {
-            followerMotor.setPosition(absolutePosition);
-        }
-    }
-    
     public void motorToPosMM(double pos) {
         isPositioning = true;
         positionTo = pos;
