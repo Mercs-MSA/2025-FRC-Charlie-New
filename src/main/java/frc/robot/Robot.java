@@ -162,12 +162,7 @@ public class Robot extends TimedRobot {
     }
     
 
-    // if (Constants.DriveToPosRuntime.target == "reefA") {
-    //   tagFilter(19, false);
-    // }
-    // else {
-    //   tagFilter(19, true);
-    // }
+    
 
     
 
