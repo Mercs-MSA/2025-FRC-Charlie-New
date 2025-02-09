@@ -23,9 +23,9 @@ public class CommandToPos extends Command {
     new ProfiledPIDController(6, 1.0, 0, new TrapezoidProfile.Constraints(Math.PI, Math.PI));
   private final PIDController xVelController =
     // new ProfiledPIDController(2, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
-    new PIDController(2.8, 0, 0);
+    new PIDController(2.5, 0, 0);
   private final PIDController yVelController =
-    new PIDController(2.8, 0, 0);
+    new PIDController(2.5, 0, 0);
     // new ProfiledPIDController(2, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
 
   public static class Destination {
