@@ -172,18 +172,17 @@ public class RobotContainer {
             )
         );
 
-        driver.a().whileTrue(drivetrain.applyRequest(() -> brake));
-        driver.b().whileTrue(drivetrain.applyRequest(() ->
-            point.withModuleDirection(new Rotation2d(-driver.getLeftY(), -driver.getLeftX()))
-        ));
+        // driver.b().whileTrue(drivetrain.applyRequest(() ->
+        //     point.withModuleDirection(new Rotation2d(-driver.getLeftY(), -driver.getLeftX()))
+        // ));
 
         // Run SysId routines when holding back/start and X/Y.
-        // Note that each routine should be run exactly once in a single log.
-        driver.back().and(driver.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-        driver.back().and(driver.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));   
+        // // Note that each routine should be run exactly once in a single log.
+        // driver.back().and(driver.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
+        // driver.back().and(driver.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));   
 
-        driver.start().and(driver.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-        driver.start().and(driver.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
+        // driver.start().and(driver.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
+        // driver.start().and(driver.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
@@ -204,18 +203,17 @@ public class RobotContainer {
             driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
 
 
-            driver.leftTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
+            driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 // new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Strobe)
                 )));
-            driver.rightTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
+            driver.rightBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 )));
 
 
-            driver.b().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 
           
         }
@@ -235,16 +233,21 @@ public class RobotContainer {
             operator.a().onTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING));
 
             operator.b().onTrue(new SequentialCommandGroup(
-                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate),
+
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)));
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)));
 
 
-            operator.leftStick().onTrue(new CommandClimbToggle(m_Climber, m_FunnelPivot));
+            operator.leftStick().onTrue(new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
+                new CommandClimbToggle(m_Climber, m_FunnelPivot)));
 
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
 
             operator.leftBumper().onTrue(new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 4));
+
+            operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 
 
 
