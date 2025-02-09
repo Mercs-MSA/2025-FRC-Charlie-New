@@ -172,76 +172,48 @@ public class RobotContainer {
             )
         );
 
-        driver.a().whileTrue(drivetrain.applyRequest(() -> brake));
-        driver.b().whileTrue(drivetrain.applyRequest(() ->
-            point.withModuleDirection(new Rotation2d(-driver.getLeftY(), -driver.getLeftX()))
-        ));
+        // driver.b().whileTrue(drivetrain.applyRequest(() ->
+        //     point.withModuleDirection(new Rotation2d(-driver.getLeftY(), -driver.getLeftX()))
+        // ));
 
         // Run SysId routines when holding back/start and X/Y.
-        // Note that each routine should be run exactly once in a single log.
-        driver.back().and(driver.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-        driver.back().and(driver.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));   
+        // // Note that each routine should be run exactly once in a single log.
+        // driver.back().and(driver.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
+        // driver.back().and(driver.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));   
 
-        driver.start().and(driver.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-        driver.start().and(driver.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
+        // driver.start().and(driver.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
+        // driver.start().and(driver.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
 
         drivetrain.registerTelemetry(logger::telemeterize);
 
-        // reset the field-centric heading on left bumper press
-        // driver.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+        
 
     }
 
         public void driverControls() {
 
-            // driver.x().onTrue(new CommandElevatorToPos(Constants.Elevator1Constants.positionUp));
-            // driver.y().onTrue(new CommandElevatorToPos(Constants.Elevator1Constants.positionDown));
+            
+
+            driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 4));
 
 
-
-            driver.leftBumper().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
-
-
-            driver.x().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric()));
+            driver.y().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric())); //Seed
 
 
-
-            // driver.back().onTrue(new CommandCandleSetCustomAnim(m_leds, new CustomAnim(CustomAnimation.MercsPattern, 5, 0)));
             driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
 
-            driver.a().whileTrue(
-                new CommandSetDriveToPos("Source").andThen(
-                new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY)).andThen(
-                new ParallelCommandGroup(
-                    new CommandToPos(drivetrain), 
-                    new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                    new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 1)
-            )));
 
-
-            driver.leftTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
+            driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 // new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Strobe)
                 )));
-            driver.rightTrigger(0.8).whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
+            driver.rightBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
-                )));//keep
-
-            driver.back().whileTrue((new CommandSetDriveToPos("Test").andThen(new CommandToPos(drivetrain))));//keep
-
-            // driver.leftTrigger(0.8).onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
-
-            // driver.rightTrigger(0.8).onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
-
-            driver.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
+                )));
 
 
-            // driver.leftTrigger().whileTrue(new CommandSetDriveToPos("ReefTest").andThen(new ParallelCommandGroup (
-            //     new CommandToPos(drivetrain),
-            //     new CommandElevatorToStage()
-            //     )));//keep
 
           
         }
@@ -261,21 +233,24 @@ public class RobotContainer {
             operator.a().onTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING));
 
             operator.b().onTrue(new SequentialCommandGroup(
+
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)));
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)));
 
 
-            operator.leftStick().onTrue(new CommandClimbToggle(m_Climber, m_FunnelPivot));
+            operator.leftStick().onTrue(new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
+                new CommandClimbToggle(m_Climber, m_FunnelPivot)));
 
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
 
             operator.leftBumper().onTrue(new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 4));
 
+            operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 
-            driver.y().onTrue(new SeedToMegaTag(drivetrain, Constants.VisionConstants.limelightRightName));
 
-            // SmartDashboard.putData("SeedToMegaTag1_Front", new SeedToMegaTag(drivetrain, Constants.VisionConstants.limelightFrontName));
-            // SmartDashboard.putData("SeedToMegaTag1_Back", new SeedToMegaTag(drivetrain, Constants.VisionConstants.limelightBackName));
+
 
         
 
@@ -285,7 +260,6 @@ public class RobotContainer {
 
 
     public Command getAutonomousCommand() {
-        // return Commands.print("No autonomous command configured");
         return autoChooser.getSelected(); 
     }
 
