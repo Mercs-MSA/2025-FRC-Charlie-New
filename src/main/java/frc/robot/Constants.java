@@ -177,7 +177,7 @@ public class Constants {
         public static final double linearMetersMaxVel = 2.0;
         public static final double linearMetersMaxAccel = 5.0;
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
-            put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.2, 4.1, new Rotation2d(0))));
+            put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.186, 4.115, new Rotation2d(0))));
             put("reefB", new CommandToPos.Destination("reefB", new Pose2d(3.2, 3.8139, new Rotation2d(0))));//
             put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.679, 2.958, new Rotation2d(1.047))));
             put("reefD", new CommandToPos.Destination("reefD", new Pose2d(3.961, 2.801, new Rotation2d(1.047))));
