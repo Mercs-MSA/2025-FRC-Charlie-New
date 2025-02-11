@@ -39,7 +39,7 @@ public class Robot extends TimedRobot {
 
   public final XboxController testJoystick = new XboxController(2);
 
-  private static ArrayList<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
+  // private static ArrayList<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
 
 
 
@@ -87,8 +87,8 @@ public class Robot extends TimedRobot {
 
     //Update Valid IDs
 
-    LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightLeftName, validIDs.stream().mapToInt(Integer::intValue).toArray());
-    LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightRightName, validIDs.stream().mapToInt(Integer::intValue).toArray());
+    // LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightLeftName, validIDs.stream().mapToInt(Integer::intValue).toArray());
+    // LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightRightName, validIDs.stream().mapToInt(Integer::intValue).toArray());
     if(Constants.DriveToPosRuntime.target != null){
     SmartDashboard.putString("reefTarget", Constants.DriveToPosRuntime.target);
     }
@@ -142,24 +142,24 @@ public class Robot extends TimedRobot {
               Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
         }
     }
-    if (Constants.DriveToPosRuntime.target != null) {
-      if (Constants.DriveToPosRuntime.target == "Source") {
-        tagFilter(18, false);
-        tagFilter(7, false);
-      } else if (Constants.DriveToPoseConstants.leftTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
-        if(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target) != null) {
-          tagFilter(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target).getValue(), false);
-        } else {
-          tagFilter(Constants.DriveToPoseConstants.leftTagNames.firstEntry().getValue(), false);
-        }
-      } else if (Constants.DriveToPoseConstants.rightTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
-        if(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target) != null) {
-          tagFilter(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target).getValue(), false);
-        } else {
-          tagFilter(Constants.DriveToPoseConstants.leftTagNames.lastEntry().getValue(), false);
-        }
-      }
-    }
+    // if (Constants.DriveToPosRuntime.target != null) {
+    //   if (Constants.DriveToPosRuntime.target == "Source") {
+    //     tagFilter(18, false);
+    //     tagFilter(7, false);
+    //   } else if (Constants.DriveToPoseConstants.leftTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
+    //     if(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target) != null) {
+    //       tagFilter(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target).getValue(), false);
+    //     } else {
+    //       tagFilter(Constants.DriveToPoseConstants.leftTagNames.firstEntry().getValue(), false);
+    //     }
+    //   } else if (Constants.DriveToPoseConstants.rightTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
+    //     if(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target) != null) {
+    //       tagFilter(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target).getValue(), false);
+    //     } else {
+    //       tagFilter(Constants.DriveToPoseConstants.leftTagNames.lastEntry().getValue(), false);
+    //     }
+    //   }
+    // }
     
 
     
@@ -184,7 +184,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("frontClosestTag", (closestTag != null ? closestTag.id : 0));
     SmartDashboard.putString("possibleDestinationA", Constants.DriveToPosRuntime.autoTargets.get(0));
     SmartDashboard.putString("possibleDestinationB", Constants.DriveToPosRuntime.autoTargets.get(1));
-    SmartDashboard.putNumberArray("Valid IDs", validIDs.stream().mapToDouble(Integer::intValue).toArray());
+    // SmartDashboard.putNumberArray("Valid IDs", validIDs.stream().mapToDouble(Integer::intValue).toArray());
 
   }
 
@@ -216,18 +216,18 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().cancelAll();
   }
 
-  private void tagFilter(int id, boolean add) {
-    if (!add) {
-      if (validIDs.contains(Integer.valueOf(id))) {
-        validIDs.remove(Integer.valueOf(id));
-      }
-    } else {
-      if (!validIDs.contains(id)) {
-        validIDs.add(id);
-      }
-    }
-  }
-  public static void tagReset() {
-    validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
-  }
+  // private void tagFilter(int id, boolean add) {
+  //   if (!add) {
+  //     if (validIDs.contains(Integer.valueOf(id))) {
+  //       validIDs.remove(Integer.valueOf(id));
+  //     }
+  //   } else {
+  //     if (!validIDs.contains(id)) {
+  //       validIDs.add(id);
+  //     }
+  //   }
+  // }
+  // public static void tagReset() {
+  //   validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
+  // }
 }
