@@ -21,12 +21,13 @@ public class CommandToPos extends Command {
 
   private final ProfiledPIDController thetaController =
     new ProfiledPIDController(6, 1.0, 0, new TrapezoidProfile.Constraints(Math.PI, Math.PI));
+    // new PIDController(2, 0, 0);
   private final ProfiledPIDController xVelController =
-    new ProfiledPIDController(2, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
+    new ProfiledPIDController(3, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
     // new PIDController(2.5, 0, 0);
   private final ProfiledPIDController yVelController =
     // new PIDController(2.5, 0, 0);
-    new ProfiledPIDController(2, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
+    new ProfiledPIDController(3, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
 
   public static class Destination {
     public Pose2d destPose;
@@ -69,8 +70,8 @@ public class CommandToPos extends Command {
   public void initialize() {    
     var currPose = drivetrain.getState().Pose;
     thetaController.reset(currPose.getRotation().getRadians());
-    // xVelController.reset(currPose.getX());
-    // yVelController.reset(currPose.getY());
+    xVelController.reset(currPose.getX());
+    yVelController.reset(currPose.getY());
 
     if (Constants.DriveToPosRuntime.target == null) {
       return;
@@ -132,7 +133,8 @@ public class CommandToPos extends Command {
     );
 }
   public boolean atGoal() {
-    return thetaController.atGoal() && xVelController.atSetpoint() && yVelController.atSetpoint();
+    // return thetaController.atSetpoint() && xVelController.atSetpoint() && yVelController.atSetpoint();
+    return thetaController.atGoal() && xVelController.atGoal() && yVelController.atGoal();
   }
 
   @Override

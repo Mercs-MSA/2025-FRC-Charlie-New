@@ -67,6 +67,7 @@ public class Robot extends TimedRobot {
     controlChoiceClimberUp.addOption("B Button", XboxController.Button.kB);
     controlChoiceClimberUp.setDefaultOption("X Button", XboxController.Button.kX);
     SmartDashboard.putData("Climber Down Buttonmap", controlChoiceClimberUp);
+    SmartDashboard.putData("PDH", m_robotContainer.m_pdh);
   }
 
   @Override

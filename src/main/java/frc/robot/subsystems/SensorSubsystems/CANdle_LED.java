@@ -15,10 +15,10 @@ import com.ctre.phoenix.led.TwinkleOffAnimation.TwinkleOffPercent;
 
 public class CANdle_LED extends SubsystemBase {
     private final CANdle m_candle = new CANdle(29, "rio");
-    private final int LedCount = 100; //lower number decreases cycle time interval
+    private final int LedCount = 150; //lower number decreases cycle time interval
     // private XboxController joystick;
 
-    private Animation m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.7, 0.5);
+    private Animation m_toAnimate = new FireAnimation(1, 0.2, LedCount, 0.2, 0.5);
     private boolean isRunningCustom = false;
 
     public enum AnimationTypes {
