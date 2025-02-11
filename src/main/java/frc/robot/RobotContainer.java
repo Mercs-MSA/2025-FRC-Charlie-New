@@ -64,7 +64,6 @@ public class RobotContainer {
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
     private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
     private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
-    private final SwerveRequest.FieldCentric forwardStraight = new SwerveRequest.FieldCentric().withDriveRequestType(DriveRequestType.OpenLoopVoltage);
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
@@ -196,11 +195,14 @@ public class RobotContainer {
 
         public void driverControls() {
 
-            driver.pov(0).whileTrue(drivetrain.applyRequest(() -> forwardStraight.withVelocityX(0.5).withVelocityY(0)));
-            driver.pov(180).whileTrue(drivetrain.applyRequest(() -> forwardStraight.withVelocityX(-0.5).withVelocityY(0)));
-
-            driver.pov(90).whileTrue(drivetrain.applyRequest(() -> forwardStraight.withVelocityX(0).withVelocityY(-0.5)));
-            driver.pov(270).whileTrue(drivetrain.applyRequest(() -> forwardStraight.withVelocityX(0).withVelocityY(0.5)));
+            driver.pov(0).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0.5).withVelocityY(0)));
+            driver.pov(45).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0.5).withVelocityY(-0.5)));
+            driver.pov(90).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0).withVelocityY(-0.5)));
+            driver.pov(135).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(-0.5).withVelocityY(-0.5)));
+            driver.pov(180).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(-0.5).withVelocityY(0)));
+            driver.pov(225).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(-0.5).withVelocityY(0.5)));
+            driver.pov(270).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0).withVelocityY(0.5)));
+            driver.pov(315).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0.5).withVelocityY(0.5)));
 
             
 
