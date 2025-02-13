@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "Funnel up",
-      "waypointRelativePos": 0.15471512770137147,
+      "waypointRelativePos": 0.11443494776828118,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -82,7 +82,7 @@
     "rotation": -120.99912491649376
   },
   "reversed": false,
-  "folder": "BQP",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0.25,
     "rotation": 180.0

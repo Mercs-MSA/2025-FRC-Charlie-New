@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.05,
-        "y": 7.15
+        "x": 1.11,
+        "y": 7.23
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.928287728786001,
-        "y": 6.297979159537646
+        "x": 2.988287728786001,
+        "y": 6.377979159537646
       },
       "isLocked": false,
       "linkedName": null
@@ -71,7 +71,7 @@
     "rotation": -59.98
   },
   "reversed": false,
-  "folder": "BQP",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": -53.966

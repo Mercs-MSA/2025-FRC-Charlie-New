@@ -4,24 +4,24 @@
     {
       "anchor": {
         "x": 3.656,
-        "y": 5.11
+        "y": 5.074
       },
       "prevControl": null,
       "nextControl": {
         "x": 2.4865356445312496,
-        "y": 6.015789358956473
+        "y": 5.979789358956473
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.05,
-        "y": 7.15
+        "x": 1.11,
+        "y": 7.23
       },
       "prevControl": {
-        "x": 2.0407628860978657,
-        "y": 6.49230436534481
+        "x": 2.1007628860978658,
+        "y": 6.57230436534481
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,7 +59,7 @@
     "rotation": -53.966
   },
   "reversed": false,
-  "folder": "BQP",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": -59.51895686380263

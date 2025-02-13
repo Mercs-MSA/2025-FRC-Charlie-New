@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 1.05,
-        "y": 7.15
+        "x": 1.11,
+        "y": 7.23
       },
       "prevControl": {
-        "x": 3.1081695556640625,
-        "y": 6.175546264648437
+        "x": 3.1681695556640626,
+        "y": 6.255546264648437
       },
       "nextControl": null,
       "isLocked": false,
@@ -64,7 +64,7 @@
     "rotation": -53.966
   },
   "reversed": false,
-  "folder": "BQP",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0.25,
     "rotation": -120.27845295814578

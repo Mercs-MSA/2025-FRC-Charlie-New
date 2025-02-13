@@ -6,6 +6,9 @@ package frc.robot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import com.ctre.phoenix6.Utils;
@@ -38,6 +41,10 @@ public class Robot extends TimedRobot {
   private final RobotContainer m_robotContainer;
 
   public final XboxController testJoystick = new XboxController(2);
+
+  LimelightHelpers.PoseEstimate mt_inUse = null;
+
+  HashMap<Double, LimelightHelpers.PoseEstimate> mt_all = new HashMap<>();
 
   // private static ArrayList<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
 
@@ -82,9 +89,11 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("PigeonRotation", m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees());
     LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightLeftName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
     LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightRightName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightBackName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
     
     LimelightHelpers.PoseEstimate mt_left = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightLeftName);
     LimelightHelpers.PoseEstimate mt_right = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightRightName);
+    LimelightHelpers.PoseEstimate mt_back = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightBackName);
 
     //Update Valid IDs
 
@@ -99,73 +108,53 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putBoolean("LeftLimelightOnlineStatus", mt_left != null);
     SmartDashboard.putBoolean("RightLimelightOnlineStatus", mt_right != null);
+    SmartDashboard.putBoolean("BackLimelightOnlineStatus", mt_back != null);
 
     m_robotContainer.drivetrain.setVisionMeasurementStdDevs(Constants.VisionConstants.visionStdDevs);
 
+    if (mt_left != null) {
+      mt_all.put(mt_left.avgTagArea, mt_left);
+    }
 
-    LimelightHelpers.PoseEstimate mt_inUse = null;
+    if (mt_right != null) {
+      mt_all.put(mt_right.avgTagArea, mt_right);
+    }
 
+    if (mt_back != null) {
+      mt_all.put(mt_back.avgTagArea, mt_back);
+    }
     
-    if (mt_left != null && mt_right != null) {
-      if (mt_left.avgTagArea > mt_right.avgTagArea) {
-        mt_inUse = mt_left;
-        SmartDashboard.putString("LimelightInUse", "Left");
-      } else {
-        mt_inUse = mt_right;
-        SmartDashboard.putString("LimelightInUse", "Right");
-      }
-    } 
-    
-    else if (mt_left == null) {
-      mt_inUse = mt_right;
-      SmartDashboard.putString("LimelightInUse", "Right");
-    } else if (mt_right == null) {
-      mt_inUse = mt_left;
+    ArrayList<Double> megaTagAvgAreas = new ArrayList<>(mt_all.keySet());
+    megaTagAvgAreas.sort(null);
+
+    mt_inUse = mt_all.get(megaTagAvgAreas.get(megaTagAvgAreas.size()-1));
+
+    if (mt_inUse == mt_left) {
       SmartDashboard.putString("LimelightInUse", "Left");
+    } else if (mt_inUse == mt_right) {
+      SmartDashboard.putString("LimelightInUse", "Right");
+    } else if (mt_inUse == mt_back) {
+      SmartDashboard.putString("LimelightInUse", "Back");
     } else {
       SmartDashboard.putString("LimelightInUse", "None");
     }
-    SmartDashboard.putNumber("angularVel", m_robotContainer.drivetrain.getPigeon2().getAngularVelocityZWorld().getValueAsDouble());
 
-    if (mt_inUse != null) {
-      if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getAngularVelocityZWorld().getValueAsDouble()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
-        {
-          doRejectUpdate = true;
-        }
-        if(mt_inUse.tagCount == 0)
-        {
-          doRejectUpdate = true;
-        }
-        if(!doRejectUpdate)
-        {
-          m_robotContainer.drivetrain.addVisionMeasurement(
-              mt_inUse.pose,
-              Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
-        }
+    if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getAngularVelocityZWorld().getValueAsDouble()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
+    {
+      doRejectUpdate = true;
     }
-    // if (Constants.DriveToPosRuntime.target != null) {
-    //   if (Constants.DriveToPosRuntime.target == "Source") {
-    //     tagFilter(18, false);
-    //     tagFilter(7, false);
-    //   } else if (Constants.DriveToPoseConstants.leftTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
-    //     if(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target) != null) {
-    //       tagFilter(Constants.DriveToPoseConstants.leftTagNames.higherEntry(Constants.DriveToPosRuntime.target).getValue(), false);
-    //     } else {
-    //       tagFilter(Constants.DriveToPoseConstants.leftTagNames.firstEntry().getValue(), false);
-    //     }
-    //   } else if (Constants.DriveToPoseConstants.rightTagNames.keySet().contains(Constants.DriveToPosRuntime.target)) {
-    //     if(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target) != null) {
-    //       tagFilter(Constants.DriveToPoseConstants.rightTagNames.lowerEntry(Constants.DriveToPosRuntime.target).getValue(), false);
-    //     } else {
-    //       tagFilter(Constants.DriveToPoseConstants.leftTagNames.lastEntry().getValue(), false);
-    //     }
-    //   }
-    // }
-    
-
-    
-
-    
+    if(mt_inUse.tagCount == 0)
+    {
+      doRejectUpdate = true;
+    }
+    if(!doRejectUpdate)
+    {
+      m_robotContainer.drivetrain.addVisionMeasurement(
+          mt_inUse.pose,
+          Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
+    }
+    mt_all.clear();
+    megaTagAvgAreas.clear();
 
     RawFiducial closestTag = null;
     if (mt_left != null) {

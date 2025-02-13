@@ -162,6 +162,7 @@ public class Constants {
     public static final class VisionConstants {
         public static final String limelightLeftName = "limelight-left";
         public static final String limelightRightName = "limelight-right";
+        public static final String limelightBackName = "limelight-back";
         public static final Vector<N3> visionStdDevs = VecBuilder.fill(.7,.7,9999999);
     }
 
@@ -224,6 +225,12 @@ public class Constants {
     public static boolean isWithinTol(double targetPose, double currentPose, double tolerance) {
         return (Math.abs(targetPose - currentPose) <= tolerance);
     }
+
+    public static double slowDownWithElevator(double pos) {
+        System.out.println(pos * 0.8);
+        return pos * 0.8;
+    }
+
     public class ScoringConstants
     {
         public static ScoringStageVal ScoringStage = ScoringStageVal.INTAKEREADY;

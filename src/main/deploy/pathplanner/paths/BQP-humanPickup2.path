@@ -59,7 +59,7 @@
     "rotation": -53.966
   },
   "reversed": false,
-  "folder": "BQP",
+  "folder": null,
   "idealStartingState": {
     "velocity": 0.0,
     "rotation": -59.456

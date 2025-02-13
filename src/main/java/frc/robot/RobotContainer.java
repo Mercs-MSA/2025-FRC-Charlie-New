@@ -116,22 +116,22 @@ public class RobotContainer {
 
             ));
 
-            // put("L2", new SequentialCommandGroup(
-            //     new CommandChangeScoreStage(ScoringStageVal.L2),
-            //     new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator, m_Elevator2)
+            put("L2", new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.L2),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
 
-            // ));
+            ));
 
-            // put("L3", new SequentialCommandGroup(
-            //     new CommandChangeScoreStage(ScoringStageVal.L3),
-            //     new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator, m_Elevator2)
+            put("L3", new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.L3),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
 
-            // ));
+            ));
 
-            // put("L4", new SequentialCommandGroup(
-            //     new CommandChangeScoreStage(ScoringStageVal.L4),
-            //     new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator, m_Elevator2)
-            // ));
+            put("L4", new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.L4),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+            ));
 
             put("ELEVIntakePos", new SequentialCommandGroup(
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
@@ -169,8 +169,8 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
-                drive.withVelocityX(-driver.getLeftY() * MaxSpeed) // Drive forward with negative Y (forward)
-                    .withVelocityY(-driver.getLeftX() * MaxSpeed) // Drive left with negative X (left)
+                drive.withVelocityX(-driver.getLeftY() * (MaxSpeed - Constants.slowDownWithElevator(m_Elevator.GetPosition()))) // Drive forward with negative Y (forward)
+                    .withVelocityY(-driver.getLeftX() * (MaxSpeed - Constants.slowDownWithElevator(m_Elevator.GetPosition()))) // Drive left with negative X (left)
                     .withRotationalRate(-driver.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
             )
         );
