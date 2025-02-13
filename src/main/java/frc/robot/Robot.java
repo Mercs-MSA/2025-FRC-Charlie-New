@@ -135,7 +135,9 @@ public class Robot extends TimedRobot {
     megaTagAvgAreas.addAll(mt_all.keySet());
     megaTagAvgAreas.sort(null);
 
-    mt_inUse = mt_all.get(megaTagAvgAreas.get(megaTagAvgAreas.size()-1));
+    if (mt_all.size() > 0) {
+      mt_inUse = mt_all.get(megaTagAvgAreas.get(megaTagAvgAreas.size()-1));
+    }
 
     if (mt_inUse == mt_left) {
       SmartDashboard.putString("LimelightInUse", "Left");
