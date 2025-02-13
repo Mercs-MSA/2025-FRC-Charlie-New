@@ -59,7 +59,7 @@
     },
     {
       "name": "L4",
-      "waypointRelativePos": 0.6105108055009898,
+      "waypointRelativePos": 0.59,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -82,7 +82,7 @@
     "rotation": -119.99999999999999
   },
   "reversed": false,
-  "folder": null,
+  "folder": "BQP",
   "idealStartingState": {
     "velocity": 0.25,
     "rotation": 180.0
