@@ -62,6 +62,8 @@ public class RobotContainer {
     private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
             .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
             .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // Use open-loop control for drive motors
+    private final SwerveRequest.FieldCentric povDrive = new SwerveRequest.FieldCentric().withDriveRequestType(DriveRequestType.OpenLoopVoltage);
+
     private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
     private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
 
@@ -195,14 +197,14 @@ public class RobotContainer {
 
         public void driverControls() {
 
-            driver.pov(0).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0.5).withVelocityY(0)));
-            driver.pov(45).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0.5).withVelocityY(-0.5)));
-            driver.pov(90).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0).withVelocityY(-0.5)));
-            driver.pov(135).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(-0.5).withVelocityY(-0.5)));
-            driver.pov(180).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(-0.5).withVelocityY(0)));
-            driver.pov(225).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(-0.5).withVelocityY(0.5)));
-            driver.pov(270).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0).withVelocityY(0.5)));
-            driver.pov(315).whileTrue(drivetrain.applyRequest(() -> drive.withVelocityX(0.5).withVelocityY(0.5)));
+            driver.pov(0).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0.5).withVelocityY(0)));
+            driver.pov(45).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0.5).withVelocityY(-0.5)));
+            driver.pov(90).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0).withVelocityY(-0.5)));
+            driver.pov(135).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(-0.5).withVelocityY(-0.5)));
+            driver.pov(180).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(-0.5).withVelocityY(0)));
+            driver.pov(225).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(-0.5).withVelocityY(0.5)));
+            driver.pov(270).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0).withVelocityY(0.5)));
+            driver.pov(315).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0.5).withVelocityY(0.5)));
 
             
 
@@ -213,7 +215,7 @@ public class RobotContainer {
 
 
             driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
-            driver.back().whileTrue(new CommandSetDriveToPos("Test").andThen(new CommandToPos(drivetrain)));
+            // driver.back().whileTrue(new CommandSetDriveToPos("Test").andThen(new CommandToPos(drivetrain)));
 
 
             driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (

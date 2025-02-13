@@ -186,10 +186,10 @@ public class Constants {
             put("reefF", new CommandToPos.Destination("reefF", new Pose2d(5.30, 2.970, new Rotation2d(2.0944))));
             put("reefG", new CommandToPos.Destination("reefG", new Pose2d(5.806, 3.858, new Rotation2d(3.1459))));
             put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.806, 4.190, new Rotation2d(3.1459))));
-            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.283, 5.096, new Rotation2d(-2.094))));
-            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.011, 5.214, new Rotation2d(-2.094))));
-            put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.981, 5.253, new Rotation2d(-1.047))));
-            put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.686, 5.059, new Rotation2d(-1.047))));
+            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.350, 5.063, new Rotation2d(-2.094))));
+            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.012, 5.263, new Rotation2d(-2.094))));
+            put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
+            put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
             put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
             put("Test", new CommandToPos.Destination("Test", new Pose2d(1.956, 5.4, new Rotation2d(0))));
         }};
@@ -227,7 +227,6 @@ public class Constants {
     }
 
     public static double slowDownWithElevator(double pos) {
-        System.out.println(pos * 0.8);
         return pos * 0.8;
     }
 

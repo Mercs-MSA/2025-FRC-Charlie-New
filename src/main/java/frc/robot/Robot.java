@@ -13,8 +13,10 @@ import java.util.List;
 
 import com.ctre.phoenix6.Utils;
 
+import edu.wpi.first.net.WebServer;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 // import edu.wpi.first.wpilibj.XboxController;
@@ -45,6 +47,7 @@ public class Robot extends TimedRobot {
   LimelightHelpers.PoseEstimate mt_inUse = null;
 
   HashMap<Double, LimelightHelpers.PoseEstimate> mt_all = new HashMap<>();
+  ArrayList<Double> megaTagAvgAreas = new ArrayList<>();
 
   // private static ArrayList<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
 
@@ -75,6 +78,11 @@ public class Robot extends TimedRobot {
     controlChoiceClimberUp.setDefaultOption("X Button", XboxController.Button.kX);
     SmartDashboard.putData("Climber Down Buttonmap", controlChoiceClimberUp);
     SmartDashboard.putData("PDH", m_robotContainer.m_pdh);
+  }
+
+  @Override
+  public void robotInit() {
+    WebServer.start(5800, Filesystem.getDeployDirectory().getPath());
   }
 
   @Override
@@ -124,7 +132,7 @@ public class Robot extends TimedRobot {
       mt_all.put(mt_back.avgTagArea, mt_back);
     }
     
-    ArrayList<Double> megaTagAvgAreas = new ArrayList<>(mt_all.keySet());
+    megaTagAvgAreas.addAll(mt_all.keySet());
     megaTagAvgAreas.sort(null);
 
     mt_inUse = mt_all.get(megaTagAvgAreas.get(megaTagAvgAreas.size()-1));
