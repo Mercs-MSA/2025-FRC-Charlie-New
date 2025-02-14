@@ -5,10 +5,11 @@
   "pathFolders": [
     "AQP",
     "BMQP",
-    "BQP",
-    "MJ",
     "CONFIG",
-    "SC"
+    "MJ",
+    "CQP",
+    "SC",
+    "TQP"
   ],
   "autoFolders": [
     "Competition Autos",

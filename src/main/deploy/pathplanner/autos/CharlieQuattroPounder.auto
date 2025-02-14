@@ -7,43 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "BQP-Preload"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "BQP-humanPickup1"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "BQP-pickupScore1"
+            "pathName": "CQP-Preload"
           }
         },
         {
@@ -61,13 +25,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.15
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BQP-humanPickup2"
+            "pathName": "CQP-humanPickup1"
           }
         },
         {
@@ -79,13 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "BQP-pickupScore2"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.1
+            "pathName": "CQP-pickupScore1"
           }
         },
         {
@@ -97,13 +55,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.15
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BQP-humanPickup3"
+            "pathName": "CQP-humanPickup2"
           }
         },
         {
@@ -115,7 +73,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "BQP-finalScore"
+            "pathName": "CQP-pickupScore2"
           }
         },
         {
@@ -127,7 +85,37 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
+            "waitTime": 0.15
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-humanPickup3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-finalScore"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.15
           }
         },
         {
