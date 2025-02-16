@@ -107,32 +107,6 @@ public class Constants {
     }
 
 
-    public static final class AlgaePivotConstants{
-        public static final int id = 11;
-
-        public static final boolean attached = true;
-
-        public static final double kP = 3; 
-        public static final double kS = 0; 
-        public static final double kV = 0; 
-
-
-
-        public static final double voltageOut = 0;
-        public static final double positionDescoreLow = 37; 
-
-        public static final double positionDescoreHigh = 45;
-
-        public static final double positionProcessor = 3;
-
-        public static final double restPos = 0.5;
-
-
-        public static final double algaePivotTol = 1;
-
-    }
-
-
     public static final class elevatorMMConstants{
         public static final double acceleration = 100;
         public static final double speed = 150;
@@ -166,7 +140,7 @@ public class Constants {
     public static final class IntakeFlywheelsConstants{
         public static final int id = 13;
 
-        public static final boolean attached = true;
+        public static final boolean attached = false;
 
         public static final double kP = 5; 
         public static final double kS = 0; 
@@ -175,21 +149,6 @@ public class Constants {
 
         // public static final double voltageOut = 2;
         // public static final double position = 0;
-    }
-
-
-    public static final class AlgaeRollersConstants{
-        public static final int id = 31;
-
-        public static final boolean attached = true;
-
-        public static final double kP = 1; 
-        public static final double kS = 0; 
-        public static final double kV = 0; 
-
-        public static final double statorLimit = 20;
-
-
     }
 
 
