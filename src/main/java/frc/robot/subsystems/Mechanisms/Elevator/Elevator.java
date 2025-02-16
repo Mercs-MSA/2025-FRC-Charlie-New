@@ -35,7 +35,7 @@ public class Elevator extends SubsystemLib {
             configForwardGains(velocityKs, velocityKv, 0, 0);
             configGearRatio(1);
             configNeutralBrakeMode(true);
-            configFeedbackSensorSource(FeedbackSensorSourceValue.FusedCANcoder);
+            configFeedbackSensorSource(FeedbackSensorSourceValue.RemoteCANcoder);
             configFeedbackSensorID(CANcoderID);
             isClockwise(false); //true if you want it to spin clockwise
             configMotionMagic(elevatorMMConstants.speed, elevatorMMConstants.acceleration, elevatorMMConstants.jerk);
