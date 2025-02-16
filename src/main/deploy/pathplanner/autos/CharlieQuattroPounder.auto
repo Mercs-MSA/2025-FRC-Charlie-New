@@ -11,27 +11,21 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
           "type": "wait",
           "data": {
             "waitTime": 0.1
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Score"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.15
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "CQP-humanPickup1"
+            "pathName": "CQP-Reef-i-ToStation"
           }
         },
         {
@@ -43,37 +37,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-pickupScore1"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.15
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CQP-humanPickup2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CQP-pickupScore2"
+            "pathName": "CQP-StationToReefK"
           }
         },
         {
@@ -91,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-humanPickup3"
+            "pathName": "CQP-ReefKtoStation"
           }
         },
         {
@@ -103,7 +67,37 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-finalScore"
+            "pathName": "CQP-StationToReefL"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.15
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-ReefLtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-StationToReefA-2"
           }
         },
         {
