@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.7114,
-        "y": 5.0915
+        "x": 5.012,
+        "y": 5.263
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.541935914268479,
-        "y": 5.997289707214122
+        "x": 5.345671543666294,
+        "y": 6.256782993861607
       },
       "isLocked": false,
       "linkedName": null
@@ -20,19 +20,24 @@
         "y": 7.15
       },
       "prevControl": {
-        "x": 2.0407628860978093,
-        "y": 6.49230436534481
+        "x": 3.1081613692498458,
+        "y": 6.175528974093833
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.8337204391891894,
+      "rotationDegrees": -53.966
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.949875930521086,
+      "minWaypointRelativePos": 0.9459057071960265,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -48,7 +53,7 @@
   "eventMarkers": [
     {
       "name": "ELEVIntakePos",
-      "waypointRelativePos": 0.05,
+      "waypointRelativePos": 0.04,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -71,10 +76,10 @@
     "rotation": -53.966
   },
   "reversed": false,
-  "folder": null,
+  "folder": "SCQP",
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": -59.51895686380263
+    "velocity": 0.25,
+    "rotation": -120.27845295814578
   },
   "useDefaultConstraints": true
 }

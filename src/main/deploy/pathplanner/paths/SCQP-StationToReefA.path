@@ -3,40 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.723,
-        "y": 6.094
+        "x": 1.884,
+        "y": 5.055
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.02175,
-        "y": 5.843000000000001
+        "x": 2.028,
+        "y": 4.727
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.9911,
-        "y": 5.231
+        "x": 3.169,
+        "y": 4.247
       },
       "prevControl": {
-        "x": 3.7342500000000003,
-        "y": 5.555750000000001
+        "x": 1.7770000000000001,
+        "y": 4.247
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.8312056737588627,
+      "rotationDegrees": 0.0
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8049627791563146,
+      "minWaypointRelativePos": 0.8009925558312636,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.3,
+        "maxAcceleration": 2.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -48,7 +53,7 @@
   "eventMarkers": [
     {
       "name": "L4",
-      "waypointRelativePos": 0.42,
+      "waypointRelativePos": 0.51,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -68,13 +73,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": -59.99999999999999
+    "rotation": -0.0
   },
   "reversed": false,
-  "folder": null,
+  "folder": "SCQP",
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": -59.99999999999999
+    "rotation": -52.4
   },
   "useDefaultConstraints": true
 }

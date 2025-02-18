@@ -7,31 +7,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "SC-preloadScore"
+            "pathName": "BA-preloadScore"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "SC-humanPickup1"
+            "pathName": "BA-humanPickup1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "SC-pickupScore1"
+            "pathName": "BA-pickupScore1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "SC-humanPickup2"
+            "pathName": "BA-humanPickup2"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "SC-FinalScore"
+            "pathName": "BA-FinalScore"
           }
         }
       ]

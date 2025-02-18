@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-Preload"
+            "pathName": "SCQP-Preload"
           }
         },
         {
@@ -25,7 +25,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-Reef-i-ToStation"
+            "pathName": "SCQP-Reef-i-ToStation"
           }
         },
         {
@@ -37,7 +37,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-StationToSafety"
+            "pathName": "SCQP-StationToSafety"
           }
         },
         {
@@ -49,7 +49,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-StationToReefK"
+            "pathName": "SCQP-StationToReefK"
           }
         },
         {
@@ -67,7 +67,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-ReefKtoStation"
+            "pathName": "SCQP-ReefKtoStation"
           }
         },
         {
@@ -79,7 +79,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-StationToSafety"
+            "pathName": "SCQP-StationToSafety"
           }
         },
         {
@@ -91,7 +91,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-StationToReefL"
+            "pathName": "SCQP-StationToReefL"
           }
         },
         {
@@ -109,7 +109,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-ReefLtoStation"
+            "pathName": "SCQP-ReefLtoStation"
           }
         },
         {
@@ -121,7 +121,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-StationToReefASafety"
+            "pathName": "SCQP-StationToReefASafety"
           }
         },
         {
@@ -133,7 +133,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "ChQP-StationToReefA"
+            "pathName": "SCQP-StationToReefA"
           }
         },
         {

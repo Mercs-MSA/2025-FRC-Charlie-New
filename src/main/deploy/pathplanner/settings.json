@@ -4,11 +4,12 @@
   "holonomicMode": true,
   "pathFolders": [
     "AQP",
+    "BA",
     "BMQP",
     "CONFIG",
-    "MJ",
     "CQP",
-    "SC",
+    "MJ",
+    "SCQP",
     "TQP"
   ],
   "autoFolders": [

@@ -89,36 +89,6 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "TQP-humanPickup3"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "TQP-finalScore"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "ELEVIntakePos"
