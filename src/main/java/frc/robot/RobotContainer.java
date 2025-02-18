@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.CANdleCommands.CommandCandleSetCustomAnim;
@@ -38,7 +39,10 @@ import frc.robot.commands.ElevatorCommands.CommandElevatorToStage;
 import frc.robot.commands.FunnelCommands.CommandFunnelPivotToPos;
 import frc.robot.commands.FunnelCommands.CommandFunnelToggle;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
+import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
+import frc.robot.commands.IntakeCommands.CommandIntakeStop;
+import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
 import frc.robot.commands.VisionCommands.SeedToMegaTag;
 import frc.robot.Constants.ScoringStageVal;
@@ -51,6 +55,7 @@ import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
 import frc.robot.subsystems.SensorSubsystems.CustomAnim.CustomAnimation;
 import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.CustomAnim;
+import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
 
@@ -83,6 +88,7 @@ public class RobotContainer {
     public final IntakeFlywheels m_IntakeFlywheels = new IntakeFlywheels(true);
 
     public final IntakeBeambreak m_intakeBeamBreak = new IntakeBeambreak();
+    public final FunnelBeambreak m_funnelBeamBreak = new FunnelBeambreak();
 
     public final FunnelPivot m_FunnelPivot = new FunnelPivot(true);
 
@@ -95,16 +101,21 @@ public class RobotContainer {
        Map<String, Command> autonomousCommands = new HashMap<String, Command>() {
         {
             
-            // put("Enter Command Name", new Command(m_));
-
-            put("PathWithDriveToPos", new SequentialCommandGroup(
-                new CommandSetDriveToPos("ReefTest"),
-                new CommandToPos(drivetrain)
-            ));
-
+            // put("PathWithDriveToPos", new SequentialCommandGroup(
+            //     new CommandSetDriveToPos("ReefTest"),
+            //     new CommandToPos(drivetrain)
+            // ));
+            
+            put("Safety Command",
+            new CommandWaitUntilIntakeBreak(m_intakeBeamBreak)
+            );
 
             put("Intake Collect", 
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)
+                );
+
+            put("Auto Intake Collect",
+                new CommandIntakeCollectAuto(m_IntakeFlywheels, m_funnelBeamBreak, MaxAngularRate)
                 );
             
             /* Scoring */
@@ -160,6 +171,10 @@ public class RobotContainer {
 
         autoChooser = AutoBuilder.buildAutoChooser("Do Nothing");
         SmartDashboard.putData("Auto Mode", autoChooser);
+
+        Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
+        intakeBreakTrigger.onTrue(new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak));
+
         configureBindings();
         driverControls();
         operatorControls();
@@ -196,7 +211,6 @@ public class RobotContainer {
     }
 
         public void driverControls() {
-
             driver.pov(0).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0.5).withVelocityY(0)));
             driver.pov(45).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0.5).withVelocityY(-0.5)));
             driver.pov(90).whileTrue(drivetrain.applyRequest(() -> povDrive.withVelocityX(0).withVelocityY(-0.5)));

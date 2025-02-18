@@ -2,13 +2,14 @@ package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
-import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
+import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.Constants.ScoringConstants;
 import frc.robot.Constants.ScoringStageVal;
 
 
-public class CommandIntakeCollect extends Command {
+public class CommandIntakeCollectAuto extends Command {
     private final IntakeFlywheels m_intakeFlywheels;
+    private final FunnelBeambreak m_funnelBeambreak;
     
     private double voltage;
 
@@ -17,11 +18,11 @@ public class CommandIntakeCollect extends Command {
 
 
 
-    public CommandIntakeCollect(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_beambreak, double voltage) {
+    public CommandIntakeCollectAuto(IntakeFlywheels m_intakeFlywheels, FunnelBeambreak m_funnelBeambreak, double voltage) {
         this.voltage = voltage;
-        // this.m_breambreak = m_beambreak;
+        this.m_funnelBeambreak = m_funnelBeambreak;
         this.m_intakeFlywheels = m_intakeFlywheels;
-        addRequirements(m_beambreak, m_intakeFlywheels);
+        addRequirements(m_funnelBeambreak, m_intakeFlywheels);
     }
 
     @Override 
@@ -41,13 +42,13 @@ public class CommandIntakeCollect extends Command {
         // This is where you put stuff that happens when the command ends
         ScoringConstants.ScoringStage = finalStage;
 
-        // m_intakeFlywheels.stopIntake();
+
     }
 
     @Override 
     public boolean isFinished() {
         // This is where you put a statment that will determine wether a boolean is true or false
         // This is checked after an execute loop and if the return comes out true the execute loop will stop and end will happen
-        return true; // Will check beambreak until it returns true (meaning it got broke)
+        return m_funnelBeambreak.checkBreak(); // Will check beambreak until it returns true (meaning it got broke)
     }
 }

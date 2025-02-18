@@ -7,7 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-Preload"
+            "pathName": "ChQP-Preload"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Safety Command"
           }
         },
         {
@@ -17,57 +23,33 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "CQP-Reef-i-ToStation"
+            "pathName": "ChQP-Reef-i-ToStation"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Intake Collect"
+            "name": "Auto Intake Collect"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-StationToReefK"
+            "pathName": "ChQP-StationToSafety"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "Score"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.15
+            "name": "Safety Command"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-ReefKtoStation"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "CQP-StationToReefL"
+            "pathName": "ChQP-StationToReefK"
           }
         },
         {
@@ -85,7 +67,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-ReefLtoStation"
+            "pathName": "ChQP-ReefKtoStation"
           }
         },
         {
@@ -97,7 +79,61 @@
         {
           "type": "path",
           "data": {
-            "pathName": "CQP-StationToReefA-2"
+            "pathName": "ChQP-StationToSafety"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Safety Command"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ChQP-StationToReefL"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.15
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ChQP-ReefLtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ChQP-StationToReefASafety"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Safety Command"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "ChQP-StationToReefA"
           }
         },
         {

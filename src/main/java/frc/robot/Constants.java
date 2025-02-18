@@ -18,9 +18,9 @@ public class Constants {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, false, false),
         L1(0.005, true, false, false),
-        L2(1.90, true, false, false),
-        L3(3.22, true, false, false),
-        L4(5.28, true, false, false),
+        L2(2.0, true, false, false),
+        L3(3.3, true, false, false),
+        L4(5.36, true, false, false),
         CLIMBING(0, false, true, false);
 
 
@@ -132,7 +132,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = 0.42; //needs to be tested
+        public static final double posUp = 0.43; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }
@@ -159,6 +159,13 @@ public class Constants {
 
     }
 
+    public static final class FunnelBeambreakConstants {
+        public static final boolean breakAttached = false;
+        public static final String beamBreakName = "funnel_beambreak";
+        public static final int beamBreakChannel = 4; //good
+
+    }
+
     public static final class VisionConstants {
         public static final String limelightLeftName = "limelight-left";
         public static final String limelightRightName = "limelight-right";
@@ -180,13 +187,14 @@ public class Constants {
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
             put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.169, 4.247, new Rotation2d(0))));
             put("reefB", new CommandToPos.Destination("reefB", new Pose2d(3.178, 3.892, new Rotation2d(0))));//
-            put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.679, 2.958, new Rotation2d(1.047))));
+            put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.666, 2.979, new Rotation2d(1.047))));
             put("reefD", new CommandToPos.Destination("reefD", new Pose2d(3.961, 2.801, new Rotation2d(1.047))));
-            put("reefE", new CommandToPos.Destination("reefE", new Pose2d(5.00, 2.789, new Rotation2d(2.0944))));
-            put("reefF", new CommandToPos.Destination("reefF", new Pose2d(5.30, 2.970, new Rotation2d(2.0944))));
+            put("reefE", new CommandToPos.Destination("reefE", new Pose2d(5.00, 2.81, new Rotation2d(2.0944))));
+            put("reefF", new CommandToPos.Destination("reefF", new Pose2d(5.259, 2.9880, new Rotation2d(2.0944))));
             put("reefG", new CommandToPos.Destination("reefG", new Pose2d(5.806, 3.858, new Rotation2d(3.1459))));
-            put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.806, 4.190, new Rotation2d(3.1459))));
-            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.350, 5.063, new Rotation2d(-2.094))));
+            put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.75, 4.160, new Rotation2d(3.1459))));
+
+            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.3, 5.05, new Rotation2d(-2.094))));
             put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.012, 5.263, new Rotation2d(-2.094))));
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
