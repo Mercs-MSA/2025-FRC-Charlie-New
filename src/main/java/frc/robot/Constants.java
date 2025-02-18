@@ -136,6 +136,24 @@ public class Constants {
         public static final double posDown = 0; //needs to be tested
         
     }
+
+    public static final class AlgaePivotConstants {
+        public static final int id = 11;
+        public static final boolean attached = true;
+
+
+        public static final double kP = 12; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+        public static final double posPrepareBottom = 34.5; //needs to be tested
+        public static final double posBottomDescore = 31.8; 
+        public static final double posPrepareTop = 35; //needs to be tested
+        public static final double posTopUp = 50;
+        public static final double posDown = 0.5; //needs to be tested
+ //needs to be tested
+        
+    }
     
     public static final class IntakeFlywheelsConstants{
         public static final int id = 13;
@@ -149,6 +167,18 @@ public class Constants {
 
         // public static final double voltageOut = 2;
         // public static final double position = 0;
+    }
+
+    public static final class AlgaeRollerConstants{
+        public static final int id = 22;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 12; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
     }
 
 
