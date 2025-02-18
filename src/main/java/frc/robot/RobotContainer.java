@@ -27,6 +27,8 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.AlgaeCommands.AlgaePivotToPos;
+import frc.robot.commands.AlgaeCommands.AlgaeRollerVoltage;
 import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.CANdleCommands.CommandCandleSetCustomAnim;
 // import frc.robot.commands.*;
@@ -46,6 +48,8 @@ import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
 import frc.robot.commands.VisionCommands.SeedToMegaTag;
 import frc.robot.Constants.ScoringStageVal;
+import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
+import frc.robot.subsystems.Mechanisms.AlgaeRoller.AlgaeRoller;
 import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Elevator.Elevator;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
@@ -86,6 +90,10 @@ public class RobotContainer {
     public final Climber m_Climber = new Climber(true);
 
     public final IntakeFlywheels m_IntakeFlywheels = new IntakeFlywheels(true);
+
+    public final AlgaePivot m_AlgaePivot = new AlgaePivot(true);
+
+    public final AlgaeRoller m_AlgaeRoller = new AlgaeRoller(true);
 
     public final IntakeBeambreak m_intakeBeamBreak = new IntakeBeambreak();
     public final FunnelBeambreak m_funnelBeamBreak = new FunnelBeambreak();
@@ -261,7 +269,7 @@ public class RobotContainer {
             operator.pov(90).onTrue(new CommandChangeScoreStage(ScoringStageVal.L4));
 
 
-            operator.a().onTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING));
+            //operator.a().onTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING));
 
             operator.b().onTrue(new SequentialCommandGroup(
 
@@ -276,9 +284,24 @@ public class RobotContainer {
 
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
 
-            operator.leftBumper().onTrue(new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 4));
+            //operator.leftBumper().onTrue(new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 4));
 
-            operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
+            //operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
+
+            operator.rightBumper().onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore));
+
+            operator.leftBumper().onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posPrepareBottom));
+
+            operator.rightTrigger(0.8).onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp));
+
+            operator.leftTrigger(0.8).onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posPrepareTop));
+
+            operator.y().onTrue(new AlgaePivotToPos(m_AlgaePivot, 0.5));
+            
+
+            operator.x().onTrue(new AlgaeRollerVoltage(m_AlgaeRoller, 10));
+
+            operator.a().onTrue(new AlgaeRollerVoltage(m_AlgaeRoller, -10));
 
 
 
