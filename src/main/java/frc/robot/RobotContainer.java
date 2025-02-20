@@ -254,6 +254,9 @@ public class RobotContainer {
 
 
 
+
+
+
           
         }
 
@@ -288,20 +291,13 @@ public class RobotContainer {
 
             //operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 
-            operator.rightBumper().onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore));
+            operator.rightTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp), new AlgaeRollerVoltage(m_AlgaeRoller, 10)));
 
-            operator.leftBumper().onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posPrepareBottom));
+            operator.leftTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore), new AlgaeRollerVoltage(m_AlgaeRoller, -10)));
 
-            operator.rightTrigger(0.8).onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp));
-
-            operator.leftTrigger(0.8).onTrue(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posPrepareTop));
-
-            operator.y().onTrue(new AlgaePivotToPos(m_AlgaePivot, 0.5));
+            operator.y().onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, 0.5), new AlgaeRollerVoltage(m_AlgaeRoller, 0)));
             
 
-            operator.x().onTrue(new AlgaeRollerVoltage(m_AlgaeRoller, 10));
-
-            operator.a().onTrue(new AlgaeRollerVoltage(m_AlgaeRoller, -10));
 
 
 
