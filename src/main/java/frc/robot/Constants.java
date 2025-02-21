@@ -132,7 +132,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = 0.43; //needs to be tested
+        public static final double posUp = -0.428; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }
@@ -142,15 +142,13 @@ public class Constants {
         public static final boolean attached = true;
 
 
-        public static final double kP = 12; 
+        public static final double kP = 1; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posPrepareBottom = 34.5; //needs to be tested
-        public static final double posBottomDescore = 31.8; 
-        public static final double posPrepareTop = 35; //needs to be tested
+        public static final double posBottomDescore = 30; 
         public static final double posTopUp = 50;
-        public static final double posDown = 0.5; //needs to be tested
+        public static final double posDown = 0; //needs to be tested
  //needs to be tested
         
     }
@@ -227,6 +225,7 @@ public class Constants {
             put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.012, 5.263, new Rotation2d(-2.094))));
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
+            put("18Descore", new CommandToPos.Destination("18Descore", new Pose2d(3.148, 4.39, new Rotation2d(0))));
             put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
             put("Test", new CommandToPos.Destination("Test", new Pose2d(1.956, 5.4, new Rotation2d(0))));
         }};

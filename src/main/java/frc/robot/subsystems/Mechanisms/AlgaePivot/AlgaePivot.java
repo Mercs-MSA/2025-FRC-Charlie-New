@@ -21,7 +21,7 @@ public class AlgaePivot extends SubsystemLib {
             configForwardGains(velocityKs, velocityKv, 0, 0);
             configGearRatio(1);
             configNeutralBrakeMode(true);
-            isClockwise(true); //true if you want it to spin clockwise
+            isClockwise(false); //true if you want it to spin clockwise
      
         }
     }
