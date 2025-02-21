@@ -20,8 +20,8 @@
         "y": 4.247
       },
       "prevControl": {
-        "x": 1.7770000000000001,
-        "y": 4.247
+        "x": 2.429860026041666,
+        "y": 4.217689887152777
       },
       "nextControl": null,
       "isLocked": false,
@@ -78,7 +78,7 @@
   "reversed": false,
   "folder": "SCQP",
   "idealStartingState": {
-    "velocity": 0.0,
+    "velocity": 5.7,
     "rotation": -52.4
   },
   "useDefaultConstraints": true
