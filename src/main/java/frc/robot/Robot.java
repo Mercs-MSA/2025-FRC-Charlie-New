@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import com.ctre.phoenix.Util;
 import com.ctre.phoenix6.Utils;
 
 import edu.wpi.first.net.WebServer;
@@ -36,9 +37,9 @@ public class Robot extends TimedRobot {
   boolean moveClimberDown;
   boolean spinIntake;
   boolean moveClimberUp;
-  private SendableChooser<XboxController.Button> controlChoiceClimberDown = new SendableChooser<>();
-  private SendableChooser<XboxController.Button> controlChoiceIntake = new SendableChooser<>();
-  private SendableChooser<XboxController.Button> controlChoiceClimberUp = new SendableChooser<>();
+  // private SendableChooser<XboxController.Button> controlChoiceClimberDown = new SendableChooser<>();
+  // private SendableChooser<XboxController.Button> controlChoiceIntake = new SendableChooser<>();
+  // private SendableChooser<XboxController.Button> controlChoiceClimberUp = new SendableChooser<>();
 
   private final RobotContainer m_robotContainer;
 
@@ -65,18 +66,18 @@ public class Robot extends TimedRobot {
         builder.addBooleanProperty("Spin Intake", () -> spinIntake, null);
         builder.addBooleanProperty("Climber Down", () -> moveClimberUp, null);
       }});
-    controlChoiceClimberDown.setDefaultOption("A Button", XboxController.Button.kA);
-    controlChoiceClimberDown.addOption("B Button", XboxController.Button.kB);
-    controlChoiceClimberDown.addOption("X Button", XboxController.Button.kX);
-    SmartDashboard.putData("Climber Up Buttonmap", controlChoiceClimberDown);
-    controlChoiceIntake.addOption("A Button", XboxController.Button.kA);
-    controlChoiceIntake.setDefaultOption("B Button", XboxController.Button.kB);
-    controlChoiceIntake.addOption("X Button", XboxController.Button.kX);
-    SmartDashboard.putData("Intake Buttonmap", controlChoiceIntake);
-    controlChoiceClimberUp.addOption("A Button", XboxController.Button.kA);
-    controlChoiceClimberUp.addOption("B Button", XboxController.Button.kB);
-    controlChoiceClimberUp.setDefaultOption("X Button", XboxController.Button.kX);
-    SmartDashboard.putData("Climber Down Buttonmap", controlChoiceClimberUp);
+    // controlChoiceClimberDown.setDefaultOption("A Button", XboxController.Button.kA);
+    // controlChoiceClimberDown.addOption("B Button", XboxController.Button.kB);
+    // controlChoiceClimberDown.addOption("X Button", XboxController.Button.kX);
+    // SmartDashboard.putData("Climber Up Buttonmap", controlChoiceClimberDown);
+    // controlChoiceIntake.addOption("A Button", XboxController.Button.kA);
+    // controlChoiceIntake.setDefaultOption("B Button", XboxController.Button.kB);
+    // controlChoiceIntake.addOption("X Button", XboxController.Button.kX);
+    // SmartDashboard.putData("Intake Buttonmap", controlChoiceIntake);
+    // controlChoiceClimberUp.addOption("A Button", XboxController.Button.kA);
+    // controlChoiceClimberUp.addOption("B Button", XboxController.Button.kB);
+    // controlChoiceClimberUp.setDefaultOption("X Button", XboxController.Button.kX);
+    // SmartDashboard.putData("Climber Down Buttonmap", controlChoiceClimberUp);
     SmartDashboard.putData("PDH", m_robotContainer.m_pdh);
   }
 
@@ -88,13 +89,16 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     // System.out.println(Constants.ScoringConstants.ScoringStage + " " + Constants.ScoringConstants.ScoringStage.getElevatorRotations());
-
+    
+    
+    double ta = Utils.getSystemTimeSeconds();
+    CommandScheduler.getInstance().run(); 
+    double tX = Utils.getSystemTimeSeconds();
     SmartDashboard.putString("Scoring Stage", Constants.ScoringConstants.ScoringStage.toString());
     
-    CommandScheduler.getInstance().run(); 
 
     boolean doRejectUpdate = false;
-    SmartDashboard.putNumber("PigeonRotation", m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees());
+    
     LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightLeftName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
     LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightRightName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
     LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightBackName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
@@ -105,8 +109,6 @@ public class Robot extends TimedRobot {
 
     //Update Valid IDs
 
-    // LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightLeftName, validIDs.stream().mapToInt(Integer::intValue).toArray());
-    // LimelightHelpers.SetFiducialIDFiltersOverride(Constants.VisionConstants.limelightRightName, validIDs.stream().mapToInt(Integer::intValue).toArray());
     if(Constants.DriveToPosRuntime.target != null){
     SmartDashboard.putString("reefTarget", Constants.DriveToPosRuntime.target);
     }
@@ -184,8 +186,6 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("frontClosestTag", (closestTag != null ? closestTag.id : 0));
     SmartDashboard.putString("possibleDestinationA", Constants.DriveToPosRuntime.autoTargets.get(0));
     SmartDashboard.putString("possibleDestinationB", Constants.DriveToPosRuntime.autoTargets.get(1));
-    // SmartDashboard.putNumberArray("Valid IDs", validIDs.stream().mapToDouble(Integer::intValue).toArray());
-
   }
 
 

@@ -16,11 +16,11 @@
     },
     {
       "anchor": {
-        "x": 5.012,
+        "x": 5.044,
         "y": 5.263
       },
       "prevControl": {
-        "x": 5.34866641838165,
+        "x": 5.38066641838165,
         "y": 5.8461233418392595
       },
       "nextControl": null,
@@ -32,7 +32,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.800573608803987,
+      "minWaypointRelativePos": 0.77,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "L4",
-      "waypointRelativePos": 0.40313390313390296,
+      "waypointRelativePos": 0.37,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

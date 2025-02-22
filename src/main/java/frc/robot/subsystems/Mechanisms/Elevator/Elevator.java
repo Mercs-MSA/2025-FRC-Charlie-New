@@ -102,25 +102,25 @@ public class Elevator extends SubsystemLib {
     @Override 
     public void periodic(){
 
-        if (Constants.elevatorBeambreakConstants.breakAttached = true && motor != null && !hasTared && Constants.isWithinTol(0, elev1MotorGetPosition(), 0.3)) {
-            tareMotor(); 
-            hasTared = true; 
-        }
+        // if (Constants.elevatorBeambreakConstants.breakAttached = true && motor != null && !hasTared && Constants.isWithinTol(0, elev1MotorGetPosition(), 0.3)) {
+        //     tareMotor(); 
+        //     hasTared = true; 
+        // }
 
         // If the limit switch is released, reset the taring flag
-        if (Constants.elevatorBeambreakConstants.breakAttached = true) {
-            hasTared = false; 
-        }
+        // if (Constants.elevatorBeambreakConstants.breakAttached = true) {
+        //     hasTared = false; 
+        // }
 
         if (isPositioning)
         {
             if (Constants.isWithinTol(positionTo, elev1MotorGetPosition(), 0.5)) {isPositioning = false;}
         }
 
-        // // Update motor position on the SmartDashboard
-        SmartDashboard.putNumber("Elevator 1 Pos", elev1MotorGetPosition());
-        SmartDashboard.putBoolean("Elevator reached", isPositioning);
-        SmartDashboard.putNumber("Elevator Required Pos:", positionTo);
+        // // // Update motor position on the SmartDashboard
+        // SmartDashboard.putNumber("Elevator 1 Pos", elev1MotorGetPosition());
+        // SmartDashboard.putBoolean("Elevator reached", isPositioning);
+        // SmartDashboard.putNumber("Elevator Required Pos:", positionTo);
     }
 
     

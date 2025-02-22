@@ -32,7 +32,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.80297766749379,
+      "minWaypointRelativePos": 0.7769823788546261,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "L4",
-      "waypointRelativePos": 0.47,
+      "waypointRelativePos": 0.4047356828193858,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -73,7 +73,7 @@
   "reversed": false,
   "folder": "SCQP",
   "idealStartingState": {
-    "velocity": 0.0,
+    "velocity": 5.2,
     "rotation": -59.99999999999999
   },
   "useDefaultConstraints": true

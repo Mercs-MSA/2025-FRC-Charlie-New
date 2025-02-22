@@ -210,7 +210,7 @@ public class Constants {
     public static final class DriveToPoseConstants {
         public static final double angularDegreesTolerance = 0.3;
         public static final double linearMetersTolerance = 0.05;
-        public static final double linearMetersMaxVel = 3.0;
+        public static final double linearMetersMaxVel = 3.5;
         public static final double linearMetersMaxAccel = 20.0;
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
             put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.169, 4.247, new Rotation2d(0))));
@@ -222,7 +222,7 @@ public class Constants {
             put("reefG", new CommandToPos.Destination("reefG", new Pose2d(5.806, 3.858, new Rotation2d(3.1459))));
             put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.75, 4.160, new Rotation2d(3.1459))));
             put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.3, 5.05, new Rotation2d(-2.094))));
-            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.012, 5.263, new Rotation2d(-2.094))));
+            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.044, 5.267, new Rotation2d(-2.094))));
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
             put("18Descore", new CommandToPos.Destination("18Descore", new Pose2d(3.148, 4.39, new Rotation2d(0))));

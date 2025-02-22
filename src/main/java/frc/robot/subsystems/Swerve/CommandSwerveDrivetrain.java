@@ -175,7 +175,7 @@ public class CommandSwerveDrivetrain extends TunerSwerveDrivetrain implements Su
         RobotConfig config;
         try{
         config = RobotConfig.fromGUISettings();
-        System.out.println(config);
+        // System.out.println(config);
 
         AutoBuilder.configure(
             ()->this.getState().Pose, // Robot pose supplier
