@@ -158,37 +158,39 @@ public class Robot extends TimedRobot {
     {
       doRejectUpdate = true;
     }
-    if(mt_inUse.tagCount == 0)
-    {
-      doRejectUpdate = true;
-    }
-    if(!doRejectUpdate)
-    {
-      m_robotContainer.drivetrain.addVisionMeasurement(
-          mt_inUse.pose,
-          Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
-    }
-    mt_all.clear();
-    megaTagAvgAreas.clear();
+    if (mt_inUse != null) {
+      if(mt_inUse.tagCount == 0)
+      {
+        doRejectUpdate = true;
+      }
+      if(!doRejectUpdate)
+      {
+        m_robotContainer.drivetrain.addVisionMeasurement(
+            mt_inUse.pose,
+            Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
+      }
+      mt_all.clear();
+      megaTagAvgAreas.clear();
 
-    RawFiducial closestTag = null;
-    if (mt_left != null) {
-      for (RawFiducial tag : mt_left.rawFiducials) {
-        if (closestTag == null) {
-          closestTag = tag;
-        } else if (tag.distToRobot < closestTag.distToRobot) {
-          closestTag = tag;
+      RawFiducial closestTag = null;
+      if (mt_left != null) {
+        for (RawFiducial tag : mt_left.rawFiducials) {
+          if (closestTag == null) {
+            closestTag = tag;
+          } else if (tag.distToRobot < closestTag.distToRobot) {
+            closestTag = tag;
+          }
         }
       }
-    }
-    if (closestTag != null) {
-      if (Constants.DriveToPoseConstants.tagDestinationMap.containsKey(Integer.toString(closestTag.id))) {
-        Constants.DriveToPosRuntime.autoTargets = Constants.DriveToPoseConstants.tagDestinationMap.get(Integer.toString(closestTag.id));
+      if (closestTag != null) {
+        if (Constants.DriveToPoseConstants.tagDestinationMap.containsKey(Integer.toString(closestTag.id))) {
+          Constants.DriveToPosRuntime.autoTargets = Constants.DriveToPoseConstants.tagDestinationMap.get(Integer.toString(closestTag.id));
+        }
       }
+      SmartDashboard.putNumber("frontClosestTag", (closestTag != null ? closestTag.id : 0));
+      SmartDashboard.putString("possibleDestinationA", Constants.DriveToPosRuntime.autoTargets.get(0));
+      SmartDashboard.putString("possibleDestinationB", Constants.DriveToPosRuntime.autoTargets.get(1));
     }
-    SmartDashboard.putNumber("frontClosestTag", (closestTag != null ? closestTag.id : 0));
-    SmartDashboard.putString("possibleDestinationA", Constants.DriveToPosRuntime.autoTargets.get(0));
-    SmartDashboard.putString("possibleDestinationB", Constants.DriveToPosRuntime.autoTargets.get(1));
   }
 
 

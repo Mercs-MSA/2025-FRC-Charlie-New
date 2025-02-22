@@ -44,6 +44,7 @@ import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
 import frc.robot.commands.IntakeCommands.CommandIntakeStop;
+import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
 import frc.robot.commands.VisionCommands.SeedToMegaTag;
@@ -113,6 +114,18 @@ public class RobotContainer {
             //     new CommandSetDriveToPos("ReefTest"),
             //     new CommandToPos(drivetrain)
             // ));
+
+            put("Descore Low", 
+            new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore), new AlgaeRollerVoltage(m_AlgaeRoller, -10))
+            );
+
+            put("Descore High", 
+            new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp), new AlgaeRollerVoltage(m_AlgaeRoller, 10))           
+             );
+
+            put("Algae Pivot Reset", 
+            new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, 0.5), new AlgaeRollerVoltage(m_AlgaeRoller, 0))            
+            );
             
             put("Safety Command",
             new CommandWaitUntilIntakeBreak(m_intakeBeamBreak)
@@ -123,12 +136,12 @@ public class RobotContainer {
                 );
 
             put("Auto Intake Collect",
-                new CommandIntakeCollectAuto(m_IntakeFlywheels, m_funnelBeamBreak, MaxAngularRate)
+                new CommandIntakeCollectAuto(m_IntakeFlywheels, m_funnelBeamBreak, m_intakeBeamBreak, MaxAngularRate)
                 );
             
             /* Scoring */
             put("Score", 
-                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)
+                new CommandScoreAuto(m_IntakeFlywheels, m_intakeBeamBreak, m_Elevator, MaxAngularRate)
                 );
             
             put("L1", new SequentialCommandGroup(

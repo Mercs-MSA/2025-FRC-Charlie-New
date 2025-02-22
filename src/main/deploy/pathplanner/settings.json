@@ -8,7 +8,9 @@
     "BMQP",
     "CONFIG",
     "CQP",
+    "CSCS",
     "MJ",
+    "RCQP",
     "SCQP",
     "TQP"
   ],

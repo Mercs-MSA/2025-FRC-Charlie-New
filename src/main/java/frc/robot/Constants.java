@@ -64,7 +64,7 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = 30; 
+        public static final double kP = 50; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
