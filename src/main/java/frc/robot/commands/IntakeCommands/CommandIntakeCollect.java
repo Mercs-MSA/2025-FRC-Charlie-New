@@ -9,6 +9,7 @@ import frc.robot.Constants.ScoringStageVal;
 
 public class CommandIntakeCollect extends Command {
     private final IntakeFlywheels m_intakeFlywheels;
+    private final IntakeBeambreak m_IntakeBeambreak;
     
     private double voltage;
 
@@ -17,18 +18,21 @@ public class CommandIntakeCollect extends Command {
 
 
 
-    public CommandIntakeCollect(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_beambreak, double voltage) {
+    public CommandIntakeCollect(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_IntakeBeambreak, double voltage) {
         this.voltage = voltage;
-        // this.m_breambreak = m_beambreak;
+        this.m_IntakeBeambreak = m_IntakeBeambreak;
+
         this.m_intakeFlywheels = m_intakeFlywheels;
-        addRequirements(m_beambreak, m_intakeFlywheels);
+        addRequirements(m_IntakeBeambreak, m_intakeFlywheels);
     }
 
     @Override 
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
+        if(!m_IntakeBeambreak.checkBreak()){
         ScoringConstants.ScoringStage = initialStage;
         m_intakeFlywheels.applyVoltage(voltage);
+        }
     }
 
     @Override 

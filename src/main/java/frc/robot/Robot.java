@@ -90,7 +90,10 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
     // System.out.println(Constants.ScoringConstants.ScoringStage + " " + Constants.ScoringConstants.ScoringStage.getElevatorRotations());
     
-    
+    SmartDashboard.putNumber("deadband val", ((0.1   /  (m_robotContainer.m_Elevator.GetPosition() + 1))));
+
+
+
     double ta = Utils.getSystemTimeSeconds();
     CommandScheduler.getInstance().run(); 
     double tX = Utils.getSystemTimeSeconds();
