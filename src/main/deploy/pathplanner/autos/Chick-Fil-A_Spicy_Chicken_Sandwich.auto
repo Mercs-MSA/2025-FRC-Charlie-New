@@ -39,6 +39,18 @@
           "data": {
             "pathName": "CSCS_GHAlgaeBackup"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CSCS_GHAlgaeDeScore"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CopyCSCS_GHAlgaeBackup"
+          }
         }
       ]
     }

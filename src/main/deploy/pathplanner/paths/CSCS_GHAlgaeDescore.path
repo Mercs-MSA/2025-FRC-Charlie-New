@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.9182500000000005,
-        "y": 3.8592499999999994
+        "x": 6.287358190351197,
+        "y": 3.858
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.27475,
-        "y": 3.9274999999999993
+        "x": 5.89875,
+        "y": 3.6447499999999993
       },
       "prevControl": {
-        "x": 4.27475,
-        "y": 3.9274999999999993
+        "x": 6.3425,
+        "y": 3.6459999999999986
       },
       "nextControl": null,
       "isLocked": false,
@@ -29,9 +29,35 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 1.0,
+      "maxWaypointRelativePos": 0.0,
+      "constraints": {
+        "maxVelocity": 0.1,
+        "maxAcceleration": 0.1,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Descore Low",
+      "waypointRelativePos": 0.9319587628866067,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Descore Low"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.7,
     "maxAcceleration": 3.55,
@@ -47,8 +73,8 @@
   "reversed": false,
   "folder": "CSCS",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 0.0
+    "velocity": 0.0,
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

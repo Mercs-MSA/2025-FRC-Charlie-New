@@ -209,7 +209,7 @@ public class Constants {
 
     public static final class DriveToPoseConstants {
         public static final double angularDegreesTolerance = 0.3;
-        public static final double linearMetersTolerance = 0.05;
+        public static final double linearMetersTolerance = 0.01;
         public static final double linearMetersMaxVel = 3.5;
         public static final double linearMetersMaxAccel = 20.0;
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
