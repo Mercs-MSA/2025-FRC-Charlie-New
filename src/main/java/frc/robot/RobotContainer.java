@@ -31,6 +31,8 @@ import frc.robot.commands.AlgaeCommands.AlgaePivotToPos;
 import frc.robot.commands.AlgaeCommands.AlgaeRollerVoltage;
 import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.CANdleCommands.CommandCandleSetCustomAnim;
+import frc.robot.LimelightHelpers;  // This is just an example, adjust based on your actual imports
+import frc.robot.LimelightHelpers.RawFiducial;
 // import frc.robot.commands.*;
 // import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.ClimberCommands.CommandClimbToggle;
@@ -104,6 +106,7 @@ public class RobotContainer {
     // public final CANdle_LED m_leds = new CANdle_LED();
 
     public final PowerDistribution m_pdh = new PowerDistribution();
+
 
     private final SendableChooser<Command> autoChooser;
 
@@ -273,6 +276,19 @@ public class RobotContainer {
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 )));
 
+            
+
+            
+
+            driver.rightTrigger().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(2))).andThen(new ParallelCommandGroup (
+                new CommandToPos(drivetrain)
+                // new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore),
+                // new AlgaeRollerVoltage(m_AlgaeRoller, -10)
+                )));
+
+
+
+
 
 
 
@@ -302,9 +318,9 @@ public class RobotContainer {
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)));
 
 
-            operator.leftStick().onTrue(new SequentialCommandGroup(
-                new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
-                new CommandClimbToggle(m_Climber, m_FunnelPivot)));
+            // operator.leftStick().onTrue(new SequentialCommandGroup(
+            //     new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
+            //     new CommandClimbToggle(m_Climber, m_FunnelPivot)));
 
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
 

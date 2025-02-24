@@ -7,6 +7,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.numbers.N3;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -201,6 +202,17 @@ public class Constants {
         public static final Vector<N3> visionStdDevs = VecBuilder.fill(.7,.7,9999999);
     }
 
+    public boolean isEven(double num){
+
+        if(Math.ceil(num / 2) == num / 2){
+            return true;
+        }
+    
+        return false;
+        
+
+    }
+
     public static final class FieldConstants {
         public static final double fieldLengthMeters = 16.54;
         public static final double fieldWidthMeters = 8.02;
@@ -215,28 +227,43 @@ public class Constants {
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
             put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.169, 4.247, new Rotation2d(0))));
             put("reefB", new CommandToPos.Destination("reefB", new Pose2d(3.178, 3.892, new Rotation2d(0))));//
+            put("reefABDescore", new CommandToPos.Destination("reefABDescore", new Pose2d(3.12, 4.386, new Rotation2d(0))));//
+
             put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.666, 2.979, new Rotation2d(1.047))));
             put("reefD", new CommandToPos.Destination("reefD", new Pose2d(3.961, 2.801, new Rotation2d(1.047))));
+            put("reefCDDescore", new CommandToPos.Destination("reefCDDescore", new Pose2d(3.487, 2.988, new Rotation2d(1.047))));
+
+
             put("reefE", new CommandToPos.Destination("reefE", new Pose2d(5.00, 2.81, new Rotation2d(2.0944))));
             put("reefF", new CommandToPos.Destination("reefF", new Pose2d(5.259, 2.9880, new Rotation2d(2.0944))));
+            put("reefEFDescore", new CommandToPos.Destination("reefEFDescore", new Pose2d(4.867, 2.678, new Rotation2d(2.0944))));
+
+
             put("reefG", new CommandToPos.Destination("reefG", new Pose2d(5.806, 3.858, new Rotation2d(3.1459))));
             put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.75, 4.160, new Rotation2d(3.1459))));
+            put("reefGHDescore", new CommandToPos.Destination("reefGHDescore", new Pose2d(5.859, 3.686, new Rotation2d(3.1459))));
+
             put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.3, 5.05, new Rotation2d(-2.094))));
             put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.044, 5.267, new Rotation2d(-2.094))));
+            put("reefIJDescore", new CommandToPos.Destination("reefIJDescore", new Pose2d(5.456, 5.034, new Rotation2d(-2.094))));
+
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
-            put("18Descore", new CommandToPos.Destination("18Descore", new Pose2d(3.148, 4.39, new Rotation2d(0))));
+            put("reefKLDescore", new CommandToPos.Destination("reefKLDescore", new Pose2d(4.107, 5.391, new Rotation2d(-1.047))));
+
+
+            // put("18Descore", new CommandToPos.Destination("18Descore", new Pose2d(3.148, 4.39, new Rotation2d(0))));
             put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
             put("Test", new CommandToPos.Destination("Test", new Pose2d(1.956, 5.4, new Rotation2d(0))));
         }};
 
         public static final HashMap<String, List<String>> tagDestinationMap = new HashMap<String, List<String>>() {{
-            put("18", List.of("reefA", "reefB"));
-            put("17", List.of("reefC", "reefD"));
-            put("19", List.of("reefK", "reefL"));
-            put("21", List.of("reefH", "reefG"));
-            put("20", List.of("reefI", "reefJ"));
-            put("22", List.of("reefF", "reefE"));
+            put("18", List.of("reefA", "reefB", "reefABDescore"));
+            put("17", List.of("reefC", "reefD", "reefCDDescore"));
+            put("19", List.of("reefK", "reefL", "reefKLDescore"));
+            put("21", List.of("reefH", "reefG", "reefGHDescore"));
+            put("20", List.of("reefI", "reefJ", "reefIJDescore"));
+            put("22", List.of("reefF", "reefE", "reefEFDescore"));
         }};
 
         public static final TreeMap<String, Integer> leftTagNames = new TreeMap<>() {{
@@ -256,7 +283,20 @@ public class Constants {
             put("reefF", 22);
         }};
         
-    }
+    
+
+    public static final TreeMap<String, Integer> algaeDescoreNames = new TreeMap<>() {{ 
+        put("reefCDDescore", 17);
+        put("reefABDescore", 18);
+        put("reefKLDescore", 19);
+        put("reefIJDescore", 20);
+        put("reefGHDescore", 21);
+        put("reefEFDescore", 22);
+    }};
+
+}
+    
+
 
     public static boolean isWithinTol(double targetPose, double currentPose, double tolerance) {
         return (Math.abs(targetPose - currentPose) <= tolerance);
@@ -273,10 +313,13 @@ public class Constants {
 
     public class DriveToPosRuntime {
         public static String target = null;
-        public static List<String> autoTargets = new ArrayList<String>(2) {{
+        public static List<String> autoTargets = new ArrayList<String>(3) {{
+            add("");
             add("");
             add("");
         }};
     }
+
+  
     
 }

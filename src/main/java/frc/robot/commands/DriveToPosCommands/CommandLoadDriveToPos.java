@@ -18,7 +18,7 @@ public class CommandLoadDriveToPos extends Command {
     public void initialize() {
         // Robot.tagReset();
         Constants.DriveToPosRuntime.target = this.getter.get();
-        SmartDashboard.putString("driveToPose_Target", Constants.DriveToPosRuntime.target);
+        SmartDashboard.putString("driveToPose_Target-TAG", Constants.DriveToPosRuntime.target);
     }
 
     @Override

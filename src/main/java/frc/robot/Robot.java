@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants.DriveToPosRuntime;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.LimelightHelpers.RawFiducial;
+import frc.robot.LimelightHelpers;  // This is just an example, adjust based on your actual imports
 import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
 
@@ -88,9 +89,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+
+
     // System.out.println(Constants.ScoringConstants.ScoringStage + " " + Constants.ScoringConstants.ScoringStage.getElevatorRotations());
     
     SmartDashboard.putNumber("deadband val", ((0.1   /  (m_robotContainer.m_Elevator.GetPosition() + 1))));
+
+    SmartDashboard.putNumber("Test Tag Target", Constants.DriveToPosRuntime.autoTargets.indexOf(Constants.DriveToPosRuntime.autoTargets.get(0)));
+
+    SmartDashboard.putString("reeftar", Constants.DriveToPosRuntime.autoTargets.get(0));
+
 
 
 
@@ -113,7 +121,7 @@ public class Robot extends TimedRobot {
     //Update Valid IDs
 
     if(Constants.DriveToPosRuntime.target != null){
-    SmartDashboard.putString("reefTarget", Constants.DriveToPosRuntime.target);
+      // SmartDashboard.putNumber("reefTargetNew", Constants.DriveToPoseConstants.algaeDescoreNames.get(Constants.DriveToPosRuntime.target));
     }
 
 
