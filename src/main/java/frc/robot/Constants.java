@@ -212,36 +212,50 @@ public class Constants {
         public static final double linearMetersMaxVel = 3.5;
         public static final double linearMetersMaxAccel = 20.0;
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
+              
             put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.169, 4.247, new Rotation2d(0))));
             put("reefB", new CommandToPos.Destination("reefB", new Pose2d(3.178, 3.892, new Rotation2d(0))));//
+            put("reefABDescore", new CommandToPos.Destination("reefABDescore", new Pose2d(3.12, 4.386, new Rotation2d(0))));//
+
             put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.666, 2.979, new Rotation2d(1.047))));
             put("reefD", new CommandToPos.Destination("reefD", new Pose2d(3.961, 2.801, new Rotation2d(1.047))));
+            put("reefCDDescore", new CommandToPos.Destination("reefCDDescore", new Pose2d(3.487, 2.988, new Rotation2d(1.047))));
+
+
             put("reefE", new CommandToPos.Destination("reefE", new Pose2d(5.00, 2.81, new Rotation2d(2.0944))));
             put("reefF", new CommandToPos.Destination("reefF", new Pose2d(5.259, 2.9880, new Rotation2d(2.0944))));
+            put("reefEFDescore", new CommandToPos.Destination("reefEFDescore", new Pose2d(4.867, 2.678, new Rotation2d(2.0944))));
+
+
             put("reefG", new CommandToPos.Destination("reefG", new Pose2d(5.806, 3.858, new Rotation2d(3.1459))));
             put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.75, 4.160, new Rotation2d(3.1459))));
+            put("reefGHDescore", new CommandToPos.Destination("reefGHDescore", new Pose2d(5.859, 3.686, new Rotation2d(3.1459))));
+
             put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.3, 5.05, new Rotation2d(-2.094))));
             put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.044, 5.267, new Rotation2d(-2.094))));
+            put("reefIJDescore", new CommandToPos.Destination("reefIJDescore", new Pose2d(5.456, 5.034, new Rotation2d(-2.094))));
+
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
-            put("18Descore", new CommandToPos.Destination("18Descore", new Pose2d(3.148, 4.39, new Rotation2d(0))));
+            put("reefKLDescore", new CommandToPos.Destination("reefKLDescore", new Pose2d(4.107, 5.391, new Rotation2d(-1.047))));
+        
             put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
             put("Test", new CommandToPos.Destination("Test", new Pose2d(1.956, 5.4, new Rotation2d(0))));
         }};
 
         public static final HashMap<String, List<String>> tagDestinationMap = new HashMap<String, List<String>>() {{
-            put("18", List.of("reefA", "reefB")); // blue
-            put("7", List.of("reefA", "reefB")); // red
-            put("17", List.of("reefC", "reefD")); // blue
-            put("8", List.of("reefC", "reefD")); // red
-            put("19", List.of("reefK", "reefL")); // blue
-            put("6", List.of("reefK", "reefL")); // red
-            put("21", List.of("reefH", "reefG")); // blue
-            put("10", List.of("reefH", "reefG")); // red
-            put("20", List.of("reefI", "reefJ")); // blue
-            put("11", List.of("reefI", "reefJ")); // red
-            put("22", List.of("reefF", "reefE")); // blue
-            put("9", List.of("reefF", "reefE")); // red
+            put("18", List.of("reefA", "reefB", "reefABDescore")); // blue
+            put("7", List.of("reefA", "reefB", "reefABDescore")); // red
+            put("17", List.of("reefC", "reefD", "reefCDDescore")); // blue
+            put("8", List.of("reefC", "reefD", "reefCDDescore")); // red
+            put("19", List.of("reefK", "reefL", "reefKLDescore")); // blue
+            put("6", List.of("reefK", "reefL", "reefKLDescore")); // red
+            put("21", List.of("reefH", "reefG", "reefGHDescore")); // blue
+            put("10", List.of("reefH", "reefG", "reefGHDescore")); // red
+            put("20", List.of("reefI", "reefJ", "reefIJDescore")); // blue
+            put("11", List.of("reefI", "reefJ", "reefIJDescore")); // red
+            put("22", List.of("reefF", "reefE", "reefEFDescore")); // blue
+            put("9", List.of("reefF", "reefE", "reefEFDescore")); // red
         }};
 
         // public static final TreeMap<String, Integer> leftTagNames = new TreeMap<>() {{
@@ -278,7 +292,8 @@ public class Constants {
 
     public class DriveToPosRuntime {
         public static String target = null;
-        public static List<String> autoTargets = new ArrayList<String>(2) {{
+        public static List<String> autoTargets = new ArrayList<String>(3) {{
+            add("");
             add("");
             add("");
         }};

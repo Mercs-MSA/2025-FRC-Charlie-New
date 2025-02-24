@@ -273,6 +273,11 @@ public class RobotContainer {
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 )));
 
+            driver.leftTrigger().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(2))).andThen(new ParallelCommandGroup (
+                new CommandToPos(drivetrain)
+                )));
+    
+
 
 
 
