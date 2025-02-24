@@ -10,7 +10,6 @@ import frc.robot.commands.DriveToPosCommands.CommandToPos;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.TreeMap;
 
 public class Constants {
 
@@ -202,7 +201,7 @@ public class Constants {
     }
 
     public static final class FieldConstants {
-        public static final double fieldLengthMeters = 16.54;
+        public static final double fieldLengthMeters = 17.54;
         public static final double fieldWidthMeters = 8.02;
         
     }
@@ -231,30 +230,36 @@ public class Constants {
         }};
 
         public static final HashMap<String, List<String>> tagDestinationMap = new HashMap<String, List<String>>() {{
-            put("18", List.of("reefA", "reefB"));
-            put("17", List.of("reefC", "reefD"));
-            put("19", List.of("reefK", "reefL"));
-            put("21", List.of("reefH", "reefG"));
-            put("20", List.of("reefI", "reefJ"));
-            put("22", List.of("reefF", "reefE"));
+            put("18", List.of("reefA", "reefB")); // blue
+            put("7", List.of("reefA", "reefB")); // red
+            put("17", List.of("reefC", "reefD")); // blue
+            put("8", List.of("reefC", "reefD")); // red
+            put("19", List.of("reefK", "reefL")); // blue
+            put("6", List.of("reefK", "reefL")); // red
+            put("21", List.of("reefH", "reefG")); // blue
+            put("10", List.of("reefH", "reefG")); // red
+            put("20", List.of("reefI", "reefJ")); // blue
+            put("11", List.of("reefI", "reefJ")); // red
+            put("22", List.of("reefF", "reefE")); // blue
+            put("9", List.of("reefF", "reefE")); // red
         }};
 
-        public static final TreeMap<String, Integer> leftTagNames = new TreeMap<>() {{
-            put("reefC", 17);
-            put("reefA", 18);
-            put("reefK", 19);
-            put("reefI", 20);
-            put("reefG", 21);
-            put("reefE", 22);
-        }};
-        public static final TreeMap<String, Integer> rightTagNames = new TreeMap<>() {{ 
-            put("reefD", 17);
-            put("reefB", 18);
-            put("reefL", 19);
-            put("reefJ", 20);
-            put("reefH", 21);
-            put("reefF", 22);
-        }};
+        // public static final TreeMap<String, Integer> leftTagNames = new TreeMap<>() {{
+        //     put("reefC", 17);
+        //     put("reefA", 18);
+        //     put("reefK", 19);
+        //     put("reefI", 20);
+        //     put("reefG", 21);
+        //     put("reefE", 22);
+        // }};
+        // public static final TreeMap<String, Integer> rightTagNames = new TreeMap<>() {{ 
+        //     put("reefD", 17);
+        //     put("reefB", 18);
+        //     put("reefL", 19);
+        //     put("reefJ", 20);
+        //     put("reefH", 21);
+        //     put("reefF", 22);
+        // }};
         
     }
 
