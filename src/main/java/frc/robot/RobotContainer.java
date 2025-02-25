@@ -34,6 +34,7 @@ import frc.robot.commands.CANdleCommands.CommandCandleSetCustomAnim;
 // import frc.robot.commands.*;
 // import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.ClimberCommands.CommandClimbToggle;
+import frc.robot.commands.ClimberCommands.CommandClimberManual;
 import frc.robot.commands.DriveToPosCommands.CommandLoadDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandSetDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
@@ -48,6 +49,7 @@ import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
 import frc.robot.commands.VisionCommands.SeedToMegaTag;
+import frc.robot.commands.ClimberCommands.CommandClimberManual;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
 import frc.robot.subsystems.Mechanisms.AlgaeRoller.AlgaeRoller;
@@ -79,8 +81,8 @@ public class RobotContainer {
 
     private final Telemetry logger = new Telemetry(MaxSpeed);
 
-    private final CommandXboxController driver = new CommandXboxController(0);
-    private final CommandXboxController operator = new CommandXboxController(1);
+    public final CommandXboxController driver = new CommandXboxController(0);
+    public final CommandXboxController operator = new CommandXboxController(1);
 
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
@@ -104,6 +106,10 @@ public class RobotContainer {
     // public final CANdle_LED m_leds = new CANdle_LED();
 
     public final PowerDistribution m_pdh = new PowerDistribution();
+
+
+
+
 
     private final SendableChooser<Command> autoChooser;
 
@@ -195,6 +201,8 @@ public class RobotContainer {
 
         Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
         intakeBreakTrigger.onTrue(new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak));
+
+
 
         configureBindings();
         driverControls();
@@ -307,9 +315,23 @@ public class RobotContainer {
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)));
 
 
-            operator.leftStick().onTrue(new SequentialCommandGroup(
+            operator.leftStick().whileTrue(new SequentialCommandGroup(
                 new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
-                new CommandClimbToggle(m_Climber, m_FunnelPivot)));
+                new CommandClimberManual(m_Climber, m_FunnelPivot, 1)));
+
+
+            // if(operator.getLeftX() > 0.5){
+            //     System.out.println("run command");
+
+            //     new SequentialCommandGroup(
+            //     new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
+
+            //     new CommandClimberManual(m_Climber, m_FunnelPivot, operator.getLeftX())
+            //     );
+            // }
+
+             
+
 
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
 

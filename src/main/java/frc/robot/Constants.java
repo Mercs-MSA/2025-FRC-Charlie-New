@@ -96,10 +96,16 @@ public class Constants {
 
 
 
-        public static final double voltageOut = 0;
-        public static final double positionUp = 333; //-240
+        public static final double deployVoltage = 4;
 
-        public static final double positionDown = 0;
+        public static final double recoilVoltage = -4;
+
+
+        public static final double positionUp = 20;
+
+        public static final double positionStart = 0;
+
+        public static final double positionDown = -20;
 
         public static final double climberTol = 1;
 

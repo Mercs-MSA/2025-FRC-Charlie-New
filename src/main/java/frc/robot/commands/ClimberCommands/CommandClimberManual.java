@@ -9,13 +9,14 @@ import frc.robot.Constants.Elevator1Constants;
 import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 
-public class CommandClimbToggle extends Command {
+public class CommandClimberManual extends Command {
+    private double voltage;
     private Climber m_Climber;
     private FunnelPivot m_FunnelPivot;
 
 
-    public CommandClimbToggle(Climber m_Climber, FunnelPivot m_FunnelPivot) {
-
+    public CommandClimberManual(Climber m_Climber, FunnelPivot m_FunnelPivot, double voltage) {
+        this.voltage = voltage;
         this.m_Climber = m_Climber;
         this.m_FunnelPivot = m_FunnelPivot;
         addRequirements(m_Climber, m_FunnelPivot);
@@ -25,16 +26,8 @@ public class CommandClimbToggle extends Command {
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
 
-        if (Constants.ScoringConstants.ScoringStage.canClimb() && m_FunnelPivot.getPivotMotorPosition() < 0.01){
-            if (Constants.isWithinTol(Constants.ClimberConstants.positionUp, m_Climber.GetPosition(), 3)){
-                m_Climber.climberGoToPosition(ClimberConstants.positionDown);
-
-            }
-
-            else {
-                m_Climber.climberGoToPosition(ClimberConstants.positionUp); 
-
-            }
+        if (Constants.ScoringConstants.ScoringStage.canClimb() && m_FunnelPivot.getPivotMotorPosition() < 0.1){
+            m_Climber.climberApplyVoltage(voltage);
         }
             }
 
@@ -46,6 +39,7 @@ public class CommandClimbToggle extends Command {
 
     @Override 
     public void end(boolean interrupted) {
+        m_Climber.stopClimb();
         // This is where you put stuff that happens when the command ends
     }
 

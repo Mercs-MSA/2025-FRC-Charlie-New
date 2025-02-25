@@ -1,5 +1,7 @@
 package frc.robot.subsystems.Mechanisms.Climber;
 
+import com.ctre.phoenix6.controls.NeutralOut;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.ClimberConstants;
 import frc.robot.subsystems.SubsystemUtils.SubsystemLib;
@@ -45,6 +47,17 @@ public class Climber extends SubsystemLib {
 
     public double getClimberMotorPosition() {
         return GetPosition();
+    }
+
+    public void stopClimb(){
+        motor.setControl(new NeutralOut());
+    }
+
+    public void climberApplyVoltage(double voltage)
+    {
+        if(motor.getPosition().getValueAsDouble() < ClimberConstants.positionUp && motor.getPosition().getValueAsDouble() > ClimberConstants.positionDown){
+            setVoltage(voltage);
+        }
     }
 
     

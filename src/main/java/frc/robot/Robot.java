@@ -92,7 +92,7 @@ public class Robot extends TimedRobot {
     
     SmartDashboard.putNumber("deadband val", ((0.1   /  (m_robotContainer.m_Elevator.GetPosition() + 1))));
 
-
+    SmartDashboard.putNumber("left stick pos", m_robotContainer.operator.getLeftX());
 
     double ta = Utils.getSystemTimeSeconds();
     CommandScheduler.getInstance().run(); 
