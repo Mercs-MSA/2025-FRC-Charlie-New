@@ -101,11 +101,11 @@ public class Constants {
         public static final double recoilVoltage = -4;
 
 
-        public static final double positionUp = 20;
+        public static final double positionUp = -42;
 
         public static final double positionStart = 0;
 
-        public static final double positionDown = -20;
+        public static final double positionDown = 172;
 
         public static final double climberTol = 1;
 
@@ -219,7 +219,7 @@ public class Constants {
         public static final double linearMetersMaxAccel = 20.0;
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
               
-            put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.169, 4.247, new Rotation2d(0))));
+            put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.169, 4.227, new Rotation2d(0))));
             put("reefB", new CommandToPos.Destination("reefB", new Pose2d(3.178, 3.892, new Rotation2d(0))));//
             put("reefABDescore", new CommandToPos.Destination("reefABDescore", new Pose2d(3.12, 4.386, new Rotation2d(0))));//
 

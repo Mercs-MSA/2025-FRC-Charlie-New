@@ -20,23 +20,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AlgaeCommands.AlgaePivotToPos;
 import frc.robot.commands.AlgaeCommands.AlgaeRollerVoltage;
-import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
-import frc.robot.commands.CANdleCommands.CommandCandleSetCustomAnim;
 // import frc.robot.commands.*;
 // import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
-import frc.robot.commands.ClimberCommands.CommandClimbToggle;
-import frc.robot.commands.ClimberCommands.CommandClimberManual;
+import frc.robot.commands.ClimberCommands.CommandClimbToggleDown;
+import frc.robot.commands.ClimberCommands.CommandClimbToggleUp;
 import frc.robot.commands.DriveToPosCommands.CommandLoadDriveToPos;
-import frc.robot.commands.DriveToPosCommands.CommandSetDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
 import frc.robot.commands.ElevatorCommands.CommandElevatorToStage;
 import frc.robot.commands.FunnelCommands.CommandFunnelPivotToPos;
@@ -48,8 +42,6 @@ import frc.robot.commands.IntakeCommands.CommandIntakeStop;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
-import frc.robot.commands.VisionCommands.SeedToMegaTag;
-import frc.robot.commands.ClimberCommands.CommandClimberManual;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
 import frc.robot.subsystems.Mechanisms.AlgaeRoller.AlgaeRoller;
@@ -59,9 +51,6 @@ import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
 // import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
-import frc.robot.subsystems.SensorSubsystems.CustomAnim.CustomAnimation;
-import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
-import frc.robot.subsystems.SensorSubsystems.CustomAnim;
 import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
@@ -254,7 +243,6 @@ public class RobotContainer {
             
 
             driver.rightTrigger(0.5).onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
-            driver.leftTrigger(0.5).onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
 
             driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
             driver.b().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
@@ -315,10 +303,14 @@ public class RobotContainer {
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)));
 
 
-            operator.leftStick().whileTrue(new SequentialCommandGroup(
+            operator.start().whileTrue(new SequentialCommandGroup(
                 new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
-                new CommandClimberManual(m_Climber, m_FunnelPivot, 1)));
+                new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));
 
+            operator.back().whileTrue(new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
+                new CommandClimbToggleUp(m_Climber, m_FunnelPivot)));
+    
 
             // if(operator.getLeftX() > 0.5){
             //     System.out.println("run command");

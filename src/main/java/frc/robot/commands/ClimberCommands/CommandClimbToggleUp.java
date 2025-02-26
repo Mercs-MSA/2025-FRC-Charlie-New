@@ -9,12 +9,12 @@ import frc.robot.Constants.Elevator1Constants;
 import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 
-public class CommandClimbToggle extends Command {
+public class CommandClimbToggleUp extends Command {
     private Climber m_Climber;
     private FunnelPivot m_FunnelPivot;
 
 
-    public CommandClimbToggle(Climber m_Climber, FunnelPivot m_FunnelPivot) {
+    public CommandClimbToggleUp(Climber m_Climber, FunnelPivot m_FunnelPivot) {
 
         this.m_Climber = m_Climber;
         this.m_FunnelPivot = m_FunnelPivot;
@@ -25,18 +25,8 @@ public class CommandClimbToggle extends Command {
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
 
-        if (Constants.ScoringConstants.ScoringStage.canClimb() && m_FunnelPivot.getPivotMotorPosition() < 0.01){
-            if (Constants.isWithinTol(Constants.ClimberConstants.positionUp, m_Climber.GetPosition(), 3)){
-                m_Climber.climberGoToPosition(ClimberConstants.positionDown);
-
-            }
-
-            else {
                 m_Climber.climberGoToPosition(ClimberConstants.positionUp); 
-
-            }
-        }
-            }
+    }
 
     @Override 
     public void execute() {
@@ -47,6 +37,9 @@ public class CommandClimbToggle extends Command {
     @Override 
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
+        if (interrupted) {
+            m_Climber.stopClimb();
+        }
     }
 
     @Override 
