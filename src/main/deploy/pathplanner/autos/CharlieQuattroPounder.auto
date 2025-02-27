@@ -5,6 +5,12 @@
     "data": {
       "commands": [
         {
+          "type": "named",
+          "data": {
+            "name": "ForceVision"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CQP-Preload"

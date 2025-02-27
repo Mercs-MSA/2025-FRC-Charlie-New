@@ -23,10 +23,13 @@ public class CommandClimbToggleDown extends Command {
 
     @Override 
     public void initialize() {
-        // This is where you put stuff that happens right at the start of the command
-                m_Climber.climberGoToPosition(ClimberConstants.positionDown);
 
-            }
+    
+
+                m_Climber.climberGoToPosition(ClimberConstants.positionDown);
+    }
+
+            
 
     @Override 
     public void execute() {
@@ -37,9 +40,8 @@ public class CommandClimbToggleDown extends Command {
     @Override 
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
-        if (interrupted) {
             m_Climber.stopClimb();
-        }
+        
     }
 
     @Override 
@@ -51,7 +53,7 @@ public class CommandClimbToggleDown extends Command {
         // System.out.println("isf");
         // System.out.println(Constants.isWithinTol(pos, m_testIntakePivot.GetPosition(), Constants.TestIntakePivotConstants.tol));
         // return Constants.isWithinTol(pos, m_testIntakePivot.GetPosition(), Constants.TestIntakePivotConstants.tol);
-        return true;
+        return false;
     }
 
 

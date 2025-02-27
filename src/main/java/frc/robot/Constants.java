@@ -101,7 +101,7 @@ public class Constants {
         public static final double recoilVoltage = -4;
 
 
-        public static final double positionUp = -42;
+        public static final double positionUp = -50;
 
         public static final double positionStart = 0;
 
@@ -219,7 +219,7 @@ public class Constants {
         public static final double linearMetersMaxAccel = 20.0;
         public static final HashMap<String, CommandToPos.Destination> positions = new HashMap<String, CommandToPos.Destination>() {{
               
-            put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.169, 4.227, new Rotation2d(0))));
+            put("reefA", new CommandToPos.Destination("reefA", new Pose2d(3.198, 4.2, new Rotation2d(0))));
             put("reefB", new CommandToPos.Destination("reefB", new Pose2d(3.178, 3.892, new Rotation2d(0))));//
             put("reefABDescore", new CommandToPos.Destination("reefABDescore", new Pose2d(3.12, 4.386, new Rotation2d(0))));//
 
@@ -238,7 +238,7 @@ public class Constants {
             put("reefGHDescore", new CommandToPos.Destination("reefGHDescore", new Pose2d(5.859, 3.686, new Rotation2d(3.1459))));
 
             put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.3, 5.05, new Rotation2d(-2.094))));
-            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.044, 5.267, new Rotation2d(-2.094))));
+            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(4.965, 5.220, new Rotation2d(-2.094))));
             put("reefIJDescore", new CommandToPos.Destination("reefIJDescore", new Pose2d(5.456, 5.034, new Rotation2d(-2.094))));
 
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));

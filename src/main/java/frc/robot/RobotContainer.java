@@ -30,6 +30,8 @@ import frc.robot.commands.AlgaeCommands.AlgaeRollerVoltage;
 // import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.ClimberCommands.CommandClimbToggleDown;
 import frc.robot.commands.ClimberCommands.CommandClimbToggleUp;
+import frc.robot.commands.ClimberCommands.CommandClimberManual;
+import frc.robot.commands.DriveToPosCommands.AutoSeed;
 import frc.robot.commands.DriveToPosCommands.CommandLoadDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
 import frc.robot.commands.ElevatorCommands.CommandElevatorToStage;
@@ -42,6 +44,7 @@ import frc.robot.commands.IntakeCommands.CommandIntakeStop;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
+import frc.robot.commands.VisionCommands.CommandForceVisionMeasurement;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
 import frc.robot.subsystems.Mechanisms.AlgaeRoller.AlgaeRoller;
@@ -172,6 +175,8 @@ public class RobotContainer {
                 new CommandFunnelPivotToPos(Constants.FunnelPivotConstants.posUp)
             ));
 
+            put("ForceVision", new CommandForceVisionMeasurement(drivetrain));
+
     
     
             
@@ -244,8 +249,8 @@ public class RobotContainer {
 
             driver.rightTrigger(0.5).onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
 
-            driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
-            driver.b().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
+            driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 12));
+            driver.b().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 12));
 
 
 
@@ -294,8 +299,6 @@ public class RobotContainer {
             operator.pov(90).onTrue(new CommandChangeScoreStage(ScoringStageVal.L4));
 
 
-            //operator.a().onTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING));
-
             operator.b().onTrue(new SequentialCommandGroup(
 
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
@@ -303,31 +306,18 @@ public class RobotContainer {
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)));
 
 
-            operator.start().whileTrue(new SequentialCommandGroup(
-                new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
-                new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));
+            operator.start().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));
 
-            operator.back().whileTrue(new SequentialCommandGroup(
-                new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
-                new CommandClimbToggleUp(m_Climber, m_FunnelPivot)));
+            operator.back().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleUp(m_Climber, m_FunnelPivot)));
+
+            // operator.leftStick().whileTrue(new SequentialCommandGroup(
+            //     new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
+            //     new CommandClimberManual(m_Climber, m_FunnelPivot, operator.getLeftX()
+            //     )));
+                
     
 
-            // if(operator.getLeftX() > 0.5){
-            //     System.out.println("run command");
-
-            //     new SequentialCommandGroup(
-            //     new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
-
-            //     new CommandClimberManual(m_Climber, m_FunnelPivot, operator.getLeftX())
-            //     );
-            // }
-
-             
-
-
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
-
-            //operator.leftBumper().onTrue(new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, 4));
 
             operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 

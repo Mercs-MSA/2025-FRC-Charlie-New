@@ -37,9 +37,8 @@ public class CommandClimbToggleUp extends Command {
     @Override 
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
-        if (interrupted) {
             m_Climber.stopClimb();
-        }
+        
     }
 
     @Override 
@@ -51,7 +50,7 @@ public class CommandClimbToggleUp extends Command {
         // System.out.println("isf");
         // System.out.println(Constants.isWithinTol(pos, m_testIntakePivot.GetPosition(), Constants.TestIntakePivotConstants.tol));
         // return Constants.isWithinTol(pos, m_testIntakePivot.GetPosition(), Constants.TestIntakePivotConstants.tol);
-        return true;
+        return false;
     }
 
 

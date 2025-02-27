@@ -1408,7 +1408,7 @@ public class LimelightHelpers {
         SetRobotOrientation_INTERNAL(limelightName, yaw, yawRate, pitch, pitchRate, roll, rollRate, false);
     }
 
-    private static void SetRobotOrientation_INTERNAL(String limelightName, double yaw, double yawRate, 
+    public static void SetRobotOrientation_INTERNAL(String limelightName, double yaw, double yawRate, 
         double pitch, double pitchRate, 
         double roll, double rollRate, boolean flush) {
 

@@ -10,13 +10,13 @@ import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 
 public class CommandClimberManual extends Command {
-    private double voltage;
+    private double leftXVal;
     private Climber m_Climber;
     private FunnelPivot m_FunnelPivot;
 
 
-    public CommandClimberManual(Climber m_Climber, FunnelPivot m_FunnelPivot, double voltage) {
-        this.voltage = voltage;
+    public CommandClimberManual(Climber m_Climber, FunnelPivot m_FunnelPivot, double leftXVal) {
+        this.leftXVal = leftXVal;
         this.m_Climber = m_Climber;
         this.m_FunnelPivot = m_FunnelPivot;
         addRequirements(m_Climber, m_FunnelPivot);
@@ -26,10 +26,20 @@ public class CommandClimberManual extends Command {
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
 
-        if (Constants.ScoringConstants.ScoringStage.canClimb() && m_FunnelPivot.getPivotMotorPosition() < 0.1){
-            m_Climber.climberApplyVoltage(voltage);
+        if (Constants.ScoringConstants.ScoringStage.canClimb() && m_FunnelPivot.getPivotMotorPosition() < 0.1 && leftXVal > 0.2){
+            System.out.println("climbing");
+            m_Climber.climberGoToPosition(ClimberConstants.positionUp);
+        }
+
+        else if (Constants.ScoringConstants.ScoringStage.canClimb() && m_FunnelPivot.getPivotMotorPosition() < 0.1 && leftXVal < -0.2){
+            System.out.println("climbing");
+
+            m_Climber.climberGoToPosition(ClimberConstants.positionDown);
+
         }
             }
+
+
 
     @Override 
     public void execute() {
@@ -39,8 +49,6 @@ public class CommandClimberManual extends Command {
 
     @Override 
     public void end(boolean interrupted) {
-        m_Climber.stopClimb();
-        // This is where you put stuff that happens when the command ends
     }
 
     @Override 
@@ -52,7 +60,7 @@ public class CommandClimberManual extends Command {
         // System.out.println("isf");
         // System.out.println(Constants.isWithinTol(pos, m_testIntakePivot.GetPosition(), Constants.TestIntakePivotConstants.tol));
         // return Constants.isWithinTol(pos, m_testIntakePivot.GetPosition(), Constants.TestIntakePivotConstants.tol);
-        return true;
+        return false;
     }
 
 
