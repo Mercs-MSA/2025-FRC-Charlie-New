@@ -15,15 +15,16 @@ public class Constants {
 
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
-        INTAKING(0, false, false, false),
+        INTAKING(0, false, true, true),
         L1(0.005, true, false, false),
-        L2(2.0, true, false, false),
-        L3(3.3, true, false, false),
+        L2(1.9, true, false, false),
+        L3(3.22, true, false, false),
         L4(5.36, true, false, false),
         CLIMBING(0, false, true, false);
 
 
         private double elevatorRotations;
+
         private boolean canElev;
         private boolean canClimb;
         private boolean canPivot;
@@ -101,11 +102,11 @@ public class Constants {
         public static final double recoilVoltage = -4;
 
 
-        public static final double positionUp = -50;
+        public static final double positionUp = -80;
 
         public static final double positionStart = 0;
 
-        public static final double positionDown = 172;
+        public static final double positionDown = 165;
 
         public static final double climberTol = 1;
 
@@ -223,7 +224,7 @@ public class Constants {
             put("reefB", new CommandToPos.Destination("reefB", new Pose2d(3.178, 3.892, new Rotation2d(0))));//
             put("reefABDescore", new CommandToPos.Destination("reefABDescore", new Pose2d(3.12, 4.386, new Rotation2d(0))));//
 
-            put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.666, 2.979, new Rotation2d(1.047))));
+            put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.696, 2.979, new Rotation2d(1.047))));
             put("reefD", new CommandToPos.Destination("reefD", new Pose2d(3.961, 2.801, new Rotation2d(1.047))));
             put("reefCDDescore", new CommandToPos.Destination("reefCDDescore", new Pose2d(3.487, 2.988, new Rotation2d(1.047))));
 
