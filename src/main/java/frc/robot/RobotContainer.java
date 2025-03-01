@@ -33,6 +33,7 @@ import frc.robot.commands.ClimberCommands.CommandClimbToggleUp;
 import frc.robot.commands.ClimberCommands.CommandClimberManual;
 import frc.robot.commands.DriveToPosCommands.AutoSeed;
 import frc.robot.commands.DriveToPosCommands.CommandLoadDriveToPos;
+import frc.robot.commands.DriveToPosCommands.CommandSetDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
 import frc.robot.commands.ElevatorCommands.CommandElevatorToStage;
 import frc.robot.commands.FunnelCommands.CommandFunnelPivotToPos;
@@ -261,7 +262,7 @@ public class RobotContainer {
             driver.y().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric())); //Seed
 
             // driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
-            // driver.back().whileTrue(new CommandSetDriveToPos("Test").andThen(new CommandToPos(drivetrain)));
+            driver.back().whileTrue(new CommandSetDriveToPos("Test").andThen(new CommandToPos(drivetrain)));
 
 
             driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
