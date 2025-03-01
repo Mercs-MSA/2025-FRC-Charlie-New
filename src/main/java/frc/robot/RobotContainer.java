@@ -318,7 +318,7 @@ public class RobotContainer {
                 
     
 
-            operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot));
+            operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot, m_Climber));
 
             operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 

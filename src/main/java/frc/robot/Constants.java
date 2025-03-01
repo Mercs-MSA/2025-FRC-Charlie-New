@@ -97,9 +97,9 @@ public class Constants {
 
 
 
-        public static final double deployVoltage = 4;
+        public static final double deployVoltage = 3.5;
 
-        public static final double recoilVoltage = -4;
+        public static final double recoilVoltage = -3.5;
 
 
         public static final double positionUp = -80;

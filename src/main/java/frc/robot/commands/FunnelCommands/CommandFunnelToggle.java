@@ -2,22 +2,26 @@ package frc.robot.commands.FunnelCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
+import frc.robot.Constants.ScoringStageVal;
+import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 
 
 public class CommandFunnelToggle extends Command {
     private FunnelPivot m_FunnelPivot;
+    private Climber m_Climber;
 
 
-    public CommandFunnelToggle(FunnelPivot m_FunnelPivot) {
+    public CommandFunnelToggle(FunnelPivot m_FunnelPivot, Climber m_climber) {
         this.m_FunnelPivot = m_FunnelPivot;
+        this.m_Climber = m_climber;
         addRequirements(m_FunnelPivot);
     }
 
     @Override 
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
-        if(Constants.ScoringConstants.ScoringStage.canPivot()){
+        if(Constants.ScoringConstants.ScoringStage.canPivot()  || (Constants.ScoringConstants.ScoringStage == ScoringStageVal.CLIMBING && m_Climber.GetPosition() > 0)){
             if (Constants.isWithinTol(Constants.FunnelPivotConstants.posDown, m_FunnelPivot.getPivotMotorPosition(), 0.09))
             {
                 m_FunnelPivot.motorToPosMM(Constants.FunnelPivotConstants.posUp);
