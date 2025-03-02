@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.376786885245901,
-        "y": 1.9233422131147557
+        "x": 5.17725,
+        "y": 2.2992499999999993
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.0549180327868852,
-        "y": 0.9261782786885238
+        "x": 0.975,
+        "y": 0.831
       },
       "prevControl": {
-        "x": 2.757172131147541,
-        "y": 1.7053790983606552
+        "x": 2.677254098360656,
+        "y": 1.6102008196721314
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,7 +32,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.9459057071960265,
+      "minWaypointRelativePos": 0.8982630272952888,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -68,7 +68,7 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 55.5
+    "rotation": 53.028045855664125
   },
   "reversed": false,
   "folder": "RCQP",

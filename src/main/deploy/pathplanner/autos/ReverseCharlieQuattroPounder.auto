@@ -23,12 +23,6 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "Score"
@@ -61,7 +55,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.15
           }
         },
         {
@@ -97,7 +91,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.15
           }
         },
         {
@@ -122,36 +116,6 @@
           "type": "named",
           "data": {
             "name": "Auto Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-StationToReefA-2"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.15
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "ELEVIntakePos"
           }
         }
       ]
