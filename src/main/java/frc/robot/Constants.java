@@ -102,7 +102,7 @@ public class Constants {
         public static final double recoilVoltage = -3.5;
 
 
-        public static final double positionUp = -80;
+        public static final double positionUp = -60;
 
         public static final double positionStart = 0;
 
