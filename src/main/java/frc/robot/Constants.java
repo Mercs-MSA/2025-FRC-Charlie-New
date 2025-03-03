@@ -225,7 +225,7 @@ public class Constants {
             put("reefABDescore", new CommandToPos.Destination("reefABDescore", new Pose2d(3.12, 4.386, new Rotation2d(0))));//
 
             put("reefC", new CommandToPos.Destination("reefC", new Pose2d(3.696, 2.979, new Rotation2d(1.047))));
-            put("reefD", new CommandToPos.Destination("reefD", new Pose2d(3.963, 2.741, new Rotation2d(1.082))));
+            put("reefD", new CommandToPos.Destination("reefD", new Pose2d(4.000, 2.800, new Rotation2d(1.082))));
             put("reefCDDescore", new CommandToPos.Destination("reefCDDescore", new Pose2d(3.487, 2.988, new Rotation2d(1.047))));
 
 
