@@ -40,6 +40,7 @@ import frc.robot.commands.FunnelCommands.CommandFunnelPivotToPos;
 import frc.robot.commands.FunnelCommands.CommandFunnelToggle;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
+import frc.robot.commands.IntakeCommands.CommandIntakeCollectTesting;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
 import frc.robot.commands.IntakeCommands.CommandIntakeStop;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
@@ -137,6 +138,11 @@ public class RobotContainer {
             put("Auto Intake Collect",
                 new CommandIntakeCollectAuto(m_IntakeFlywheels, m_funnelBeamBreak, m_intakeBeamBreak, MaxAngularRate)
                 );
+
+            
+            put("Test Intake Collect",
+            new CommandIntakeCollectTesting(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)
+            );
             
             /* Scoring */
             put("Score", 
