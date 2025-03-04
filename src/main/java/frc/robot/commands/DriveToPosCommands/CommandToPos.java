@@ -23,11 +23,11 @@ public class CommandToPos extends Command {
     new ProfiledPIDController(6, 1.0, 0, new TrapezoidProfile.Constraints(Math.PI, Math.PI));
     // new PIDController(2, 0, 0);
   private final ProfiledPIDController xVelController =
-    new ProfiledPIDController(2.5, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
+    new ProfiledPIDController(3.5, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
     // new PIDController(2.5, 0, 0);
   private final ProfiledPIDController yVelController =
     // new PIDController(2.5, 0, 0);
-    new ProfiledPIDController(2.5, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
+    new ProfiledPIDController(3.5, 0, 0, new TrapezoidProfile.Constraints(Constants.DriveToPoseConstants.linearMetersMaxVel, Constants.DriveToPoseConstants.linearMetersMaxAccel));
 
   public static class Destination {
     public Pose2d destPose;
