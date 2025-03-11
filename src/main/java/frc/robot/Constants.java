@@ -5,6 +5,8 @@ import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.numbers.N3;
+import frc.robot.LimelightHelpers.LimelightResults;
+import frc.robot.LimelightHelpers.PoseEstimate;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
 
 import java.util.ArrayList;
@@ -64,7 +66,7 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = 50; 
+        public static final double kP = 19; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
@@ -205,6 +207,7 @@ public class Constants {
         public static final String limelightRightName = "limelight-right";
         public static final String limelightBackName = "limelight-back";
         public static final Vector<N3> visionStdDevs = VecBuilder.fill(.7,.7,9999999);
+        public static PoseEstimate bestLimelightPose;
     }
 
     public static final class FieldConstants {

@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.386975190811366,
-        "y": 6.345234420262173
+        "x": 1.9921762004280925,
+        "y": 6.357810529571369
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 5.092
       },
       "prevControl": {
-        "x": 3.2876801346589035,
-        "y": 5.825904334947021
+        "x": 3.2007172131147543,
+        "y": 5.433555327868853
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.80297766749379,
+      "minWaypointRelativePos": 0.8494776828110147,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.15,
+        "maxAcceleration": 2.25,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -56,11 +56,22 @@
           "name": "L4"
         }
       }
+    },
+    {
+      "name": "Score",
+      "waypointRelativePos": 0.9007597340930704,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Score"
+        }
+      }
     }
   ],
   "globalConstraints": {
     "maxVelocity": 5.7,
-    "maxAcceleration": 3.35,
+    "maxAcceleration": 3.4,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.3,

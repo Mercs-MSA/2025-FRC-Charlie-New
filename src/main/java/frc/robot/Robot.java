@@ -169,6 +169,7 @@ public class Robot extends TimedRobot {
             mt_inUse.pose,
             Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
       }
+      Constants.VisionConstants.bestLimelightPose = mt_inUse;
       mt_all.clear();
       megaTagAvgAreas.clear();
 
