@@ -5,6 +5,12 @@
     "data": {
       "commands": [
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "TQP-Preload"
@@ -13,7 +19,43 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.1
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.25
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "TQP-Reef-i-ToStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "TQP-StationToReefK"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
           }
         },
         {
@@ -31,7 +73,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "TQP-humanPickup1"
+            "pathName": "TQP-ReefKtoStation"
           }
         },
         {
@@ -43,37 +85,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "TQP-pickupScore1"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score"
+            "pathName": "TQP-StationToReefL"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "TQP-humanPickup2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "TQP-pickupScore2"
+            "waitTime": 0.3
           }
         },
         {
