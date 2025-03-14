@@ -28,12 +28,7 @@
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.6302220394736844,
-      "rotationDegrees": 0.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
@@ -52,17 +47,6 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Auto Intake Collect",
-      "waypointRelativePos": 0,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Auto Intake Collect"
-        }
-      }
-    },
-    {
       "name": "L4",
       "waypointRelativePos": 0.51,
       "endWaypointRelativePos": null,
@@ -72,6 +56,7 @@
           "name": "L4"
         }
       }
+<<<<<<< Updated upstream
     },
     {
       "name": "L4",
@@ -99,6 +84,13 @@
   "globalConstraints": {
     "maxVelocity": 2.0,
     "maxAcceleration": 1.5,
+=======
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 1.0,
+    "maxAcceleration": 1.0,
+>>>>>>> Stashed changes
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.3,

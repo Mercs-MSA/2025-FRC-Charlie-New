@@ -47,30 +47,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Auto Intake Collect",
-      "waypointRelativePos": 0,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Auto Intake Collect"
-        }
-      }
-    },
-    {
       "name": "L4",
       "waypointRelativePos": 0.45,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "L4"
-        }
-      }
-    },
-    {
-      "name": "L4",
-      "waypointRelativePos": 0.7450142450142448,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -92,8 +70,13 @@
     }
   ],
   "globalConstraints": {
+<<<<<<< Updated upstream
     "maxVelocity": 2.0,
     "maxAcceleration": 1.5,
+=======
+    "maxVelocity": 1.0,
+    "maxAcceleration": 1.0,
+>>>>>>> Stashed changes
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.3,

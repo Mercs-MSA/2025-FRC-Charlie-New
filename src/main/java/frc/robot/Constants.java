@@ -140,7 +140,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = -0.456; //needs to be tested
+        public static final double posUp = -0.48; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }
