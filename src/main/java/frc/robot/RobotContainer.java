@@ -190,10 +190,22 @@ public class RobotContainer {
         
     };
     public RobotContainer() {
+        boolean isCompetition = false; //Change to true at comp
+
         NamedCommands.registerCommands(autonomousCommands);
 
-        autoChooser = AutoBuilder.buildAutoChooser("Do Nothing");
-        SmartDashboard.putData("Auto Mode", autoChooser);
+        // autoChooser = AutoBuilder.buildAutoChooser("Do Nothing");
+        // SmartDashboard.putData("Auto Mode", autoChooser);
+
+        /*this is to filter out all other autos*/
+        autoChooser = AutoBuilder.buildAutoChooserWithOptionsModifier(
+        (stream) -> isCompetition
+        ? stream.filter(auto -> auto.getName().startsWith("Comp"))
+        : stream
+        );
+
+        autoChooser.setDefaultOption("Do Nothing", AutoBuilder.buildAuto("Do Nothing")); // delete if it doesn't work
+        SmartDashboard.putData("Auto Chooser", autoChooser);
 
         Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
         intakeBreakTrigger.onTrue(new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak));
