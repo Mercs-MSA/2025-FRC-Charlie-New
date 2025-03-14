@@ -141,7 +141,7 @@ public class RobotContainer {
             
             /* Scoring */
             put("Score", 
-                new CommandScoreAuto(m_IntakeFlywheels, m_intakeBeamBreak, m_Elevator, MaxAngularRate)
+                new CommandScoreAuto(m_IntakeFlywheels, m_intakeBeamBreak, m_Elevator, 11)
                 );
             
             put("L1", new SequentialCommandGroup(

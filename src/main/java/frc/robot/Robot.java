@@ -203,7 +203,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    isDoingMegaTag2Vision = true;
+    // isDoingMegaTag2Vision = true;
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
@@ -211,7 +211,85 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousPeriodic() {
-  }
+    LimelightHelpers.PoseEstimate mt_left = LimelightHelpers.getBotPoseEstimate_wpiBlue(Constants.VisionConstants.limelightLeftName);
+      LimelightHelpers.PoseEstimate mt_right = LimelightHelpers.getBotPoseEstimate_wpiBlue(Constants.VisionConstants.limelightRightName);
+      LimelightHelpers.PoseEstimate mt_back = LimelightHelpers.getBotPoseEstimate_wpiBlue(Constants.VisionConstants.limelightBackName);
+
+      boolean doRejectUpdate = false;
+      isDoingMegaTag2Vision = false;
+
+      m_robotContainer.drivetrain.setVisionMeasurementStdDevs(Constants.VisionConstants.visionStdDevs);
+
+      if (mt_left != null) {
+        mt_all.put(mt_left.avgTagArea, mt_left);
+      }
+
+      if (mt_right != null) {
+        mt_all.put(mt_right.avgTagArea, mt_right);
+      }
+
+      if (mt_back != null) {
+        mt_all.put(mt_back.avgTagArea, mt_back);
+      }
+      
+      megaTagAvgAreas.addAll(mt_all.keySet());
+      megaTagAvgAreas.sort(null);
+
+      if (mt_all.size() > 0) {
+        mt_inUse = mt_all.get(megaTagAvgAreas.get(megaTagAvgAreas.size()-1));
+      }
+
+      if (mt_inUse == mt_left) {
+        SmartDashboard.putString("LimelightInUse", "Left");
+      } else if (mt_inUse == mt_right) {
+        SmartDashboard.putString("LimelightInUse", "Right");
+      } else if (mt_inUse == mt_back) {
+        SmartDashboard.putString("LimelightInUse", "Back");
+      } else {
+        SmartDashboard.putString("LimelightInUse", "None");
+      }
+
+      if(Math.abs(m_robotContainer.drivetrain.getPigeon2().getAngularVelocityZWorld().getValueAsDouble()) > 720) // if our angular velocity is greater than 720 degrees per second, ignore vision updates
+      {
+        doRejectUpdate = true;
+      }
+      if (mt_inUse != null) {
+        if(mt_inUse.tagCount == 0)
+        {
+          doRejectUpdate = true;
+        }
+        if(!doRejectUpdate)
+        {
+          m_robotContainer.drivetrain.addVisionMeasurement(
+              mt_inUse.pose,
+              Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds)
+          );
+        }
+        Constants.VisionConstants.bestLimelightPose = mt_inUse;
+        mt_all.clear();
+        megaTagAvgAreas.clear();
+
+        RawFiducial closestTag = null;
+        if (mt_left != null) {
+          for (RawFiducial tag : mt_left.rawFiducials) {
+            if (closestTag == null) {
+              closestTag = tag;
+            } else if (tag.distToRobot < closestTag.distToRobot) {
+              closestTag = tag;
+            }
+          }
+        }
+        if (closestTag != null) {
+          if (Constants.DriveToPoseConstants.tagDestinationMap.containsKey(Integer.toString(closestTag.id))) {
+            Constants.DriveToPosRuntime.autoTargets = Constants.DriveToPoseConstants.tagDestinationMap.get(Integer.toString(closestTag.id));
+          }
+        }
+        SmartDashboard.putNumber("frontClosestTag", (closestTag != null ? closestTag.id : 0));
+        SmartDashboard.putString("possibleDestinationA", Constants.DriveToPosRuntime.autoTargets.get(0));
+        SmartDashboard.putString("possibleDestinationB", Constants.DriveToPosRuntime.autoTargets.get(1));
+      }
+    }
+  
 
   @Override
   public void autonomousExit() {}

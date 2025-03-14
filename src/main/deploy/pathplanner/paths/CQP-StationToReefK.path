@@ -32,7 +32,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8190883190883207,
+      "minWaypointRelativePos": 0.6348528015194691,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -81,7 +81,7 @@
     },
     {
       "name": "Score",
-      "waypointRelativePos": 0.8988603988604031,
+      "waypointRelativePos": 0.944444444444443,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -92,8 +92,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 5.7,
-    "maxAcceleration": 3.4,
+    "maxVelocity": 2.0,
+    "maxAcceleration": 1.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.3,
