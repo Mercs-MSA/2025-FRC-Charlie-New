@@ -47,8 +47,30 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
+      "name": "Auto Intake Collect",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Auto Intake Collect"
+        }
+      }
+    },
+    {
       "name": "L4",
       "waypointRelativePos": 0.45,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "L4"
+        }
+      }
+    },
+    {
+      "name": "L4",
+      "waypointRelativePos": 0.7450142450142448,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

@@ -18,7 +18,7 @@ public class Constants {
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, true, true),
-        L1(0.005, true, false, false),
+        L1(0.62, true, false, false),
         L2(1.9, true, false, false),
         L3(3.22, true, false, false),
         L4(5.36, true, false, false),
@@ -66,7 +66,7 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = 19; 
+        public static final double kP = 17; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
@@ -140,7 +140,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = -0.448; //needs to be tested
+        public static final double posUp = -0.456; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }
@@ -251,6 +251,7 @@ public class Constants {
         
             put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
             put("Test", new CommandToPos.Destination("Test", new Pose2d(2.16, 3.9, new Rotation2d(0))));
+            put("AutoLeft", new CommandToPos.Destination("AutoLeft", new Pose2d(7.26, 6.00, new Rotation2d(3.14))));
         }};
 
         public static final HashMap<String, List<String>> tagDestinationMap = new HashMap<String, List<String>>() {{
