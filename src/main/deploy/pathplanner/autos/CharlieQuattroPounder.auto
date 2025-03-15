@@ -29,12 +29,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Auto Intake Collect"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "CQP-StationToReefK"
@@ -47,12 +41,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "Auto Intake Collect"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "CQP-StationToReefL"
@@ -62,12 +50,6 @@
           "type": "path",
           "data": {
             "pathName": "CQP-ReefLtoStation"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Auto Intake Collect"
           }
         },
         {

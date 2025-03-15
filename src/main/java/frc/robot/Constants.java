@@ -140,7 +140,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = -0.448; //needs to be tested
+        public static final double posUp = -0.46; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }
@@ -249,7 +249,7 @@ public class Constants {
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
             put("reefKLDescore", new CommandToPos.Destination("reefKLDescore", new Pose2d(4.107, 5.391, new Rotation2d(-1.047))));
         
-            put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
+            put("Source", new CommandToPos.Destination("Source", new Pose2d(1.05, 7.15, new Rotation2d(-0.9599))));
             put("Test", new CommandToPos.Destination("Test", new Pose2d(2.16, 3.9, new Rotation2d(0))));
         }};
 
