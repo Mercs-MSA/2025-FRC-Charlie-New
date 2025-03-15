@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.0069672131147542,
-        "y": 3.8631659836065584
+        "x": 2.19375,
+        "y": 3.244999999999999
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 3.892
       },
       "prevControl": {
-        "x": 1.9598992332175917,
-        "y": 3.869526114004629
+        "x": 1.6574999999999998,
+        "y": 3.362
       },
       "nextControl": null,
       "isLocked": false,
@@ -37,7 +37,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8,
+      "minWaypointRelativePos": 0.49748201438848966,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -59,6 +59,17 @@
         "type": "named",
         "data": {
           "name": "L4"
+        }
+      }
+    },
+    {
+      "name": "Score",
+      "waypointRelativePos": 0.9305755395683458,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Score"
         }
       }
     }

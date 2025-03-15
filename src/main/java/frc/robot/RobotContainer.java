@@ -44,6 +44,8 @@ import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
 import frc.robot.commands.IntakeCommands.CommandIntakeStop;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
+import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
+
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
 import frc.robot.commands.VisionCommands.CommandForceVisionMeasurement;
@@ -132,7 +134,7 @@ public class RobotContainer {
             );
 
             put("Intake Collect", 
-                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)
+                new CommandIntakeCollectNoFunnel(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)
                 );
 
             put("Auto Intake Collect",

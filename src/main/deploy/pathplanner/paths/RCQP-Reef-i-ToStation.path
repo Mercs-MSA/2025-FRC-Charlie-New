@@ -56,6 +56,17 @@
           "name": "ELEVIntakePos"
         }
       }
+    },
+    {
+      "name": "Auto Intake Collect",
+      "waypointRelativePos": 0.730575539568343,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Auto Intake Collect"
+        }
+      }
     }
   ],
   "globalConstraints": {

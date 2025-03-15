@@ -13,55 +13,61 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.5
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-Preload"
+            "pathName": "LTPCMN-Preload"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-Reef-i-ToStation"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-StationToReefK"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-ReefKtoStation"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-StationToReefL"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-ReefLtoStation"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-StationToReefA-2"
+            "pathName": "LTPCMN-Reef-i-ToStation"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "ELEVIntakePos"
+            "name": "Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LTPCMN-StationToReefK"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LTPCMN-ReefKtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LTPCMN-StationToReefL"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "LTPCMN-ReefLtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
           }
         }
       ]

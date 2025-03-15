@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.055,
-        "y": 0.926
+        "x": 7.300512295081968,
+        "y": 2.1848872950819667
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.296618852459016,
-        "y": 2.256813524590163
+        "x": 5.859749999999999,
+        "y": 2.5429999999999997
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.961,
-        "y": 2.801
+        "x": 5.29425,
+        "y": 2.9915000000000003
       },
       "prevControl": {
-        "x": 3.0688524590163935,
-        "y": 2.1249487704918035
+        "x": 5.937750000000001,
+        "y": 2.5429999999999997
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.521942446043168,
+      "minWaypointRelativePos": 0.3449640287769799,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.3,
+        "maxAcceleration": 1.9,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,8 +47,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
+      "name": "Funnel up",
+      "waypointRelativePos": 0.09237113402061846,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "MoveFunnel"
+        }
+      }
+    },
+    {
       "name": "L4",
-      "waypointRelativePos": 0.2820618556701096,
+      "waypointRelativePos": 0.207835051546391,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -59,7 +70,7 @@
     },
     {
       "name": "Score",
-      "waypointRelativePos": 0.916187050359707,
+      "waypointRelativePos": 0.9003597122302215,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -79,13 +90,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 59.99999999999999
+    "rotation": 119.99999999999999
   },
   "reversed": false,
-  "folder": "RCQP",
+  "folder": "RTPCMN",
   "idealStartingState": {
-    "velocity": 0.0,
-    "rotation": 54.94035264126888
+    "velocity": 0.25,
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

@@ -3,40 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.055,
-        "y": 0.926
+        "x": 1.05,
+        "y": 7.15
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.296618852459016,
-        "y": 2.256813524590163
+        "x": 1.4744877049180327,
+        "y": 3.923104508196721
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 3.961,
-        "y": 2.801
+        "x": 3.169,
+        "y": 4.247
       },
       "prevControl": {
-        "x": 3.0688524590163935,
-        "y": 2.1249487704918035
+        "x": 1.7770000000000001,
+        "y": 4.247
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.6742081447963799,
+      "rotationDegrees": 0.0
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.521942446043168,
+      "minWaypointRelativePos": 0.8009925558312636,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.3,
+        "maxAcceleration": 2.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -48,23 +53,12 @@
   "eventMarkers": [
     {
       "name": "L4",
-      "waypointRelativePos": 0.2820618556701096,
+      "waypointRelativePos": 0.51,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
           "name": "L4"
-        }
-      }
-    },
-    {
-      "name": "Score",
-      "waypointRelativePos": 0.916187050359707,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Score"
         }
       }
     }
@@ -79,13 +73,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 59.99999999999999
+    "rotation": -0.0
   },
   "reversed": false,
-  "folder": "RCQP",
+  "folder": "LTPCMN",
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": 54.94035264126888
+    "rotation": -53.966
   },
   "useDefaultConstraints": true
 }

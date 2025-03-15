@@ -5,57 +5,75 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "BMQP-GoToReef1"
+            "name": "ForceVision"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BMQP-GoToHuman2"
+            "pathName": "RTPCMN-Preload"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BMQP-GoToReef3"
+            "pathName": "RTPCMN-Reef-i-ToStation"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BMQP-GoToHuman4"
+            "pathName": "RTPCMN-StationToReefK"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BMQP-GoToReef5"
+            "pathName": "RTPCMN-ReefKtoStation"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BMQP-GoToHuman6"
+            "pathName": "RTPCMN-StationToReefL"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BMQP-GoToReef7"
+            "pathName": "RTPCMN-ReefLtoStation"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "BMQP-GoToHuman8"
+            "pathName": "RTPCMN-StationToReefA-2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ELEVIntakePos"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Competition Untested",
+  "folder": "Competition Autos",
   "choreoAuto": false
 }
