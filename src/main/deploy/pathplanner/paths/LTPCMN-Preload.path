@@ -67,17 +67,6 @@
           "name": "L4"
         }
       }
-    },
-    {
-      "name": "Score",
-      "waypointRelativePos": 0.9178537511870852,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Score"
-        }
-      }
     }
   ],
   "globalConstraints": {
@@ -96,7 +85,7 @@
   "folder": "LTPCMN",
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": 180.0
+    "rotation": -119.99999999999999
   },
   "useDefaultConstraints": true
 }

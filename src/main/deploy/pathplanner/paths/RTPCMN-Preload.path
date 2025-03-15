@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.005840163934426,
-        "y": 2.1848872950819667
+        "x": 6.074249999999999,
+        "y": 2.06525
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 2.9915000000000003
       },
       "prevControl": {
-        "x": 6.029815573770492,
-        "y": 2.1129610655737703
+        "x": 6.064500000000001,
+        "y": 2.0457499999999995
       },
       "nextControl": null,
       "isLocked": false,
@@ -67,17 +67,6 @@
           "name": "L4"
         }
       }
-    },
-    {
-      "name": "Score",
-      "waypointRelativePos": 0.9444444444444439,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Score"
-        }
-      }
     }
   ],
   "globalConstraints": {
@@ -96,7 +85,7 @@
   "folder": "RTPCMN",
   "idealStartingState": {
     "velocity": 0.25,
-    "rotation": 180.0
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": true
 }

@@ -5,18 +5,6 @@
     "data": {
       "commands": [
         {
-          "type": "named",
-          "data": {
-            "name": "ForceVision"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "CQP-Preload"
@@ -26,6 +14,12 @@
           "type": "path",
           "data": {
             "pathName": "CQP-Reef-i-ToStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
           }
         },
         {
@@ -41,6 +35,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "CQP-StationToReefL"
@@ -50,6 +50,12 @@
           "type": "path",
           "data": {
             "pathName": "CQP-ReefLtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
           }
         },
         {
@@ -73,7 +79,7 @@
       ]
     }
   },
-  "resetOdom": true,
+  "resetOdom": false,
   "folder": "Competition Autos",
   "choreoAuto": false
 }

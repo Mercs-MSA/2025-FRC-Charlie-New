@@ -14,6 +14,8 @@ import java.util.List;
 import com.ctre.phoenix.Util;
 import com.ctre.phoenix6.Utils;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.net.WebServer;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
@@ -101,6 +103,90 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run(); 
     double tX = Utils.getSystemTimeSeconds();
     SmartDashboard.putString("Scoring Stage", Constants.ScoringConstants.ScoringStage.toString());
+  }
+
+
+
+
+
+
+
+  public Rotation2d performMegaTagRotation(){
+    boolean doRejectUpdate = false;
+  
+    LimelightHelpers.PoseEstimate mt_left = LimelightHelpers.getBotPoseEstimate_wpiBlue(Constants.VisionConstants.limelightLeftName);
+    LimelightHelpers.PoseEstimate mt_right = LimelightHelpers.getBotPoseEstimate_wpiBlue(Constants.VisionConstants.limelightRightName);
+    LimelightHelpers.PoseEstimate mt_back = LimelightHelpers.getBotPoseEstimate_wpiBlue(Constants.VisionConstants.limelightBackName);
+    
+    //Update Valid IDs
+
+    // if(Constants.DriveToPosRuntime.target != null){
+    // SmartDashboard.putString("reefTarget", Constants.DriveToPosRuntime.target);
+    // }
+
+
+
+
+    // SmartDashboard.putBoolean("LeftLimelightOnlineStatus", mt_left != null);
+    // SmartDashboard.putBoolean("RightLimelightOnlineStatus", mt_right != null);
+    // SmartDashboard.putBoolean("BackLimelightOnlineStatus", mt_back != null);
+
+
+    if (mt_left != null) {
+      mt_all.put(mt_left.avgTagArea, mt_left);
+    }
+
+    if (mt_right != null) {
+      mt_all.put(mt_right.avgTagArea, mt_right);
+    }
+
+    if (mt_back != null) {
+      mt_all.put(mt_back.avgTagArea, mt_back);
+    }
+    
+    megaTagAvgAreas.addAll(mt_all.keySet());
+    megaTagAvgAreas.sort(null);
+
+    if (mt_all.size() > 0) {
+      mt_inUse = mt_all.get(megaTagAvgAreas.get(megaTagAvgAreas.size()-1));
+    }
+
+
+    if (mt_inUse != null) {
+      if(mt_inUse.tagCount == 0)
+      {
+        doRejectUpdate = true;
+      }
+      if(!doRejectUpdate)
+      {
+        LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightLeftName, mt_inUse.pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+        LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightRightName, mt_inUse.pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
+        LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightBackName, mt_inUse.pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);    
+        // m_robotContainer.drivetrain.addVisionMeasurement(
+        //     mt_inUse.pose,
+        //     Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds));
+        
+      }
+      Constants.VisionConstants.bestLimelightPose = mt_inUse;
+      mt_all.clear();
+      megaTagAvgAreas.clear();
+
+      RawFiducial closestTag = null;
+      if (mt_left != null) {
+        for (RawFiducial tag : mt_left.rawFiducials) {
+          if (closestTag == null) {
+            closestTag = tag;
+          } else if (tag.distToRobot < closestTag.distToRobot) {
+            closestTag = tag;
+          }
+        }
+      }
+
+      return mt_inUse.pose.getRotation();
+    }
+    System.out.println("bad megatagrot");
+    return new Rotation2d();
+
   }
 
   public void performMegaTag2() {
@@ -199,6 +285,94 @@ public class Robot extends TimedRobot {
     }
   }
 
+  public void performMegaTagXY(Rotation2d rot) {
+    
+    boolean doRejectUpdate = false;
+    
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightLeftName, rot.getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightRightName, rot.getDegrees(), 0, 0, 0, 0, 0);
+    LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightBackName, rot.getDegrees(), 0, 0, 0, 0, 0);
+    
+    LimelightHelpers.PoseEstimate mt_left = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightLeftName);
+    LimelightHelpers.PoseEstimate mt_right = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightRightName);
+    LimelightHelpers.PoseEstimate mt_back = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(Constants.VisionConstants.limelightBackName);
+
+    //Update Valid IDs
+
+   
+
+
+
+
+    m_robotContainer.drivetrain.setVisionMeasurementStdDevs(Constants.VisionConstants.visionStdDevs);
+
+    if (mt_left != null) {
+      mt_all.put(mt_left.avgTagArea, mt_left);
+    }
+
+    if (mt_right != null) {
+      mt_all.put(mt_right.avgTagArea, mt_right);
+    }
+
+    if (mt_back != null) {
+      mt_all.put(mt_back.avgTagArea, mt_back);
+    }
+    
+    megaTagAvgAreas.addAll(mt_all.keySet());
+    megaTagAvgAreas.sort(null);
+
+    if (mt_all.size() > 0) {
+      mt_inUse = mt_all.get(megaTagAvgAreas.get(megaTagAvgAreas.size()-1));
+    }
+
+    if (mt_inUse == mt_left) {
+      SmartDashboard.putString("LimelightInUse", "Left");
+    } else if (mt_inUse == mt_right) {
+      SmartDashboard.putString("LimelightInUse", "Right");
+    } else if (mt_inUse == mt_back) {
+      SmartDashboard.putString("LimelightInUse", "Back");
+    } else {
+      SmartDashboard.putString("LimelightInUse", "None");
+    }
+
+    if (mt_inUse != null) {
+      if(mt_inUse.tagCount == 0)
+      {
+        doRejectUpdate = true;
+      }
+      if(!doRejectUpdate)
+      {
+        m_robotContainer.drivetrain.resetPose(
+            new Pose2d(mt_inUse.pose.getTranslation(), rot)
+            // Utils.fpgaToCurrentTime(mt_inUse.timestampSeconds)
+            );
+      }
+      Constants.VisionConstants.bestLimelightPose = mt_inUse;
+      mt_all.clear();
+      megaTagAvgAreas.clear();
+
+      RawFiducial closestTag = null;
+      if (mt_left != null) {
+        for (RawFiducial tag : mt_left.rawFiducials) {
+          if (closestTag == null) {
+            closestTag = tag;
+          } else if (tag.distToRobot < closestTag.distToRobot) {
+            closestTag = tag;
+          }
+        }
+      }
+      if (closestTag != null) {
+        if (Constants.DriveToPoseConstants.tagDestinationMap.containsKey(Integer.toString(closestTag.id))) {
+          Constants.DriveToPosRuntime.autoTargets = Constants.DriveToPoseConstants.tagDestinationMap.get(Integer.toString(closestTag.id));
+        }
+      }
+      SmartDashboard.putNumber("frontClosestTag", (closestTag != null ? closestTag.id : 0));
+      SmartDashboard.putString("possibleDestinationA", Constants.DriveToPosRuntime.autoTargets.get(0));
+      SmartDashboard.putString("possibleDestinationB", Constants.DriveToPosRuntime.autoTargets.get(1));
+    }
+  }
+
+
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
@@ -220,10 +394,15 @@ public class Robot extends TimedRobot {
     }
   }
 
-  public void autoDisabledPeriodic(){
-    if (false) {
 
-    }
+
+  public void autoDisabledPeriodic(){
+
+    performMegaTagXY(performMegaTagRotation());
+
+
+
+
   }
 
   @Override

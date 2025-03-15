@@ -67,17 +67,6 @@
           "name": "L4"
         }
       }
-    },
-    {
-      "name": "Score",
-      "waypointRelativePos": 0.9121557454890798,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Score"
-        }
-      }
     }
   ],
   "globalConstraints": {
