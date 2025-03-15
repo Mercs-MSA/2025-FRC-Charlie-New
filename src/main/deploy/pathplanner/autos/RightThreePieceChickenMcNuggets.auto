@@ -13,7 +13,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.3
+            "waitTime": 0.5
           }
         },
         {
@@ -29,15 +29,45 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RTPCMN-StationToReefK"
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "RTPCMN-ReefKtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake Collect"
           }
         },
         {
@@ -53,21 +83,9 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "RTPCMN-StationToReefA-2"
-          }
-        },
-        {
           "type": "named",
           "data": {
-            "name": "ELEVIntakePos"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score"
+            "name": "Intake Collect"
           }
         }
       ]

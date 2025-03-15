@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.521942446043168,
+      "minWaypointRelativePos": 0.5113960113960082,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.3,
+        "maxAcceleration": 1.9,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -54,17 +54,6 @@
         "type": "named",
         "data": {
           "name": "L4"
-        }
-      }
-    },
-    {
-      "name": "Score",
-      "waypointRelativePos": 0.916187050359707,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Score"
         }
       }
     }
