@@ -17,6 +17,7 @@ import com.ctre.phoenix6.Utils;
 import edu.wpi.first.net.WebServer;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.util.sendable.SendableBuilder;
+import edu.wpi.first.wpilibj.DSControlWord;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
@@ -53,7 +54,7 @@ public class Robot extends TimedRobot {
   // private static ArrayList<Integer> validIDs = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22));
 
 
-
+  DSControlWord driverStationWord = new DSControlWord();
 
 
   public Robot() {
@@ -88,6 +89,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotPeriodic() {
+    driverStationWord.refresh();
+
     // System.out.println(Constants.ScoringConstants.ScoringStage + " " + Constants.ScoringConstants.ScoringStage.getElevatorRotations());
     
     SmartDashboard.putNumber("deadband val", ((0.1   /  (m_robotContainer.m_Elevator.GetPosition() + 1))));
@@ -98,8 +101,10 @@ public class Robot extends TimedRobot {
     CommandScheduler.getInstance().run(); 
     double tX = Utils.getSystemTimeSeconds();
     SmartDashboard.putString("Scoring Stage", Constants.ScoringConstants.ScoringStage.toString());
-    
+  }
 
+  public void performMegaTag2() {
+    
     boolean doRejectUpdate = false;
     
     LimelightHelpers.SetRobotOrientation(Constants.VisionConstants.limelightLeftName, m_robotContainer.drivetrain.getState().Pose.getRotation().getDegrees(), 0, 0, 0, 0, 0);
@@ -194,7 +199,6 @@ public class Robot extends TimedRobot {
     }
   }
 
-
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
@@ -205,7 +209,22 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    performMegaTag2();
+  }
+
+  @Override
+  public void disabledPeriodic() {
+    if (driverStationWord.isAutonomous()) {
+      autoDisabledPeriodic();
+    }
+  }
+
+  public void autoDisabledPeriodic(){
+    if (false) {
+
+    }
+  }
 
   @Override
   public void autonomousExit() {}
@@ -215,6 +234,11 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+  }
+
+  @Override
+  public void teleopPeriodic() {
+    performMegaTag2();
   }
 
   @Override
