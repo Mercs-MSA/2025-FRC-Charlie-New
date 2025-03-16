@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.666,
+        "x": 3.696,
         "y": 2.979
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.1457991803278684,
-        "y": 1.933145491803279
+        "x": 2.523054823760458,
+        "y": 2.0780890090933566
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 0.962
       },
       "prevControl": {
-        "x": 2.1577868852459017,
-        "y": 1.9091700819672122
+        "x": 2.0446652765020197,
+        "y": 1.6210020034007342
       },
       "nextControl": null,
       "isLocked": false,
@@ -36,7 +36,7 @@
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.25,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "Auto Intake Collect",
-      "waypointRelativePos": 0.517625899280578,
+      "waypointRelativePos": 0.6,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

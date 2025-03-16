@@ -7,13 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-Preload"
+            "pathName": "CQP-Preload"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-Reef-i-ToStation"
+            "pathName": "LeftChezCQP-Reef-i-ToStation"
           }
         },
         {
@@ -25,13 +25,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-StationToReefK"
+            "pathName": "LeftChezCQP-StationToReefK"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-ReefKtoStation"
+            "pathName": "CQP-ReefKtoStation"
           }
         },
         {
@@ -43,13 +43,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-StationToReefL"
+            "pathName": "CQP-StationToReefL"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-ReefLtoStation"
+            "pathName": "CQP-ReefLtoStation"
           }
         },
         {
@@ -61,7 +61,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-StationToReefA-2"
+            "pathName": "CQP-StationToReefA-2"
           }
         },
         {

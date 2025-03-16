@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.294,
-        "y": 2.992
+        "x": 5.0,
+        "y": 2.81
       },
       "prevControl": null,
       "nextControl": {
-        "x": 5.376786885245901,
-        "y": 1.9233422131147557
+        "x": 4.831585575595814,
+        "y": 2.222669103781687
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 0.9261782786885238
       },
       "prevControl": {
-        "x": 2.757172131147541,
-        "y": 1.7053790983606552
+        "x": 3.1084593767402415,
+        "y": 1.909894166876899
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.9459057071960265,
+      "minWaypointRelativePos": 0.95,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.25,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "Auto Intake Collect",
-      "waypointRelativePos": 0.730575539568343,
+      "waypointRelativePos": 0.7,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.7092213114754102,
-        "y": 2.0530225409836067
+        "x": 2.4061620968203474,
+        "y": 1.7966693299336607
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 0.926
       },
       "prevControl": {
-        "x": 2.757254098360656,
-        "y": 1.9569426229508196
+        "x": 2.1107382101389396,
+        "y": 1.6707689787126125
       },
       "nextControl": null,
       "isLocked": false,
@@ -59,7 +59,7 @@
     },
     {
       "name": "Auto Intake Collect",
-      "waypointRelativePos": 0.6557553956834496,
+      "waypointRelativePos": 0.6,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

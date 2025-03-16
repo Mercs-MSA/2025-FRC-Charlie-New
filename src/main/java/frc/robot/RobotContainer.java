@@ -15,6 +15,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -79,6 +80,9 @@ public class RobotContainer {
 
     public final CommandXboxController driver = new CommandXboxController(0);
     public final CommandXboxController operator = new CommandXboxController(1);
+
+    public final XboxController theRumblerTumbler = new XboxController(0); 
+
 
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
@@ -319,7 +323,7 @@ public class RobotContainer {
 
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, MaxAngularRate)));
+                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, theRumblerTumbler, MaxAngularRate)));
 
 
             operator.start().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));
@@ -337,9 +341,9 @@ public class RobotContainer {
 
             operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 
-            operator.rightTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp), new AlgaeRollerVoltage(m_AlgaeRoller, 10)));
+            operator.rightTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp), new AlgaeRollerVoltage(m_AlgaeRoller, 0)));
 
-            operator.leftTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore), new AlgaeRollerVoltage(m_AlgaeRoller, -10)));
+            operator.leftTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore), new AlgaeRollerVoltage(m_AlgaeRoller, /*-*/0)));
 
             operator.y().onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, 0.5), new AlgaeRollerVoltage(m_AlgaeRoller, 0)));
             

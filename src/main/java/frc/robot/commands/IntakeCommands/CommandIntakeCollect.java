@@ -1,15 +1,30 @@
 package frc.robot.commands.IntakeCommands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
+import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.Constants.ScoringConstants;
 import frc.robot.Constants.ScoringStageVal;
+import frc.robot.commands.RumbleCommand.CommandRumble;
 
 
 public class CommandIntakeCollect extends Command {
     private final IntakeFlywheels m_intakeFlywheels;
     private final IntakeBeambreak m_IntakeBeambreak;
+    private final FunnelBeambreak m_FunnelBeambreak;
+
+    private final XboxController m_controller;
+
+    
+
+
+
     
     private double voltage;
 
@@ -18,9 +33,11 @@ public class CommandIntakeCollect extends Command {
 
 
 
-    public CommandIntakeCollect(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_IntakeBeambreak, double voltage) {
+    public CommandIntakeCollect(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_IntakeBeambreak, FunnelBeambreak m_FunnelBeambreak, XboxController m_controller, double voltage) {
         this.voltage = voltage;
         this.m_IntakeBeambreak = m_IntakeBeambreak;
+        this.m_FunnelBeambreak = m_FunnelBeambreak;
+        this.m_controller = m_controller;
 
         this.m_intakeFlywheels = m_intakeFlywheels;
         addRequirements(m_IntakeBeambreak, m_intakeFlywheels);
@@ -44,7 +61,16 @@ public class CommandIntakeCollect extends Command {
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
         ScoringConstants.ScoringStage = finalStage;
+        CommandScheduler.getInstance().schedule(
+            new SequentialCommandGroup(
+                new CommandRumble(800, m_controller),
+                new WaitCommand(1),
+                new CommandRumble(0, m_controller)
+            ));
 
+       
+      
+    
         // m_intakeFlywheels.stopIntake();
     }
 
@@ -52,6 +78,6 @@ public class CommandIntakeCollect extends Command {
     public boolean isFinished() {
         // This is where you put a statment that will determine wether a boolean is true or false
         // This is checked after an execute loop and if the return comes out true the execute loop will stop and end will happen
-        return true; // Will check beambreak until it returns true (meaning it got broke)
+        return m_IntakeBeambreak.checkBreak(); // Will check beambreak until it returns true (meaning it got broke)
     }
 }

@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.99,
-        "y": 2.28
+        "x": 1.427,
+        "y": 7.352
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.686323137228439,
-        "y": 2.294012958903189
+        "x": 3.1407786885245903,
+        "y": 6.176793032786884
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.0,
-        "y": 2.81
+        "x": 3.9911,
+        "y": 5.231
       },
       "prevControl": {
-        "x": 5.428631292430134,
-        "y": 2.591742777554389
+        "x": 3.512397540983606,
+        "y": 5.8171618852459
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,11 +32,11 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8076923076923063,
+      "minWaypointRelativePos": 0.8456790123456787,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.25,
+        "maxAcceleration": 2.3,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -47,19 +47,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Funnel up",
-      "waypointRelativePos": 0.11,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "MoveFunnel"
-        }
-      }
-    },
-    {
       "name": "L4",
-      "waypointRelativePos": 0.3,
+      "waypointRelativePos": 0.4,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -70,7 +59,7 @@
     },
     {
       "name": "Score",
-      "waypointRelativePos": 0.92,
+      "waypointRelativePos": 0.9216524216524207,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -90,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 119.99999999999999
+    "rotation": -59.99999999999999
   },
   "reversed": false,
-  "folder": "RCQP",
+  "folder": "LeftCheese",
   "idealStartingState": {
-    "velocity": 0.25,
-    "rotation": 130.0
+    "velocity": 0.0,
+    "rotation": -53.966
   },
   "useDefaultConstraints": true
 }

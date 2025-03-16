@@ -3,43 +3,48 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.99,
-        "y": 2.28
+        "x": 4.965,
+        "y": 5.22
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.686323137228439,
-        "y": 2.294012958903189
+        "x": 5.11875,
+        "y": 5.55343237704918
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.0,
-        "y": 2.81
+        "x": 1.4265368852459013,
+        "y": 7.351588114754097
       },
       "prevControl": {
-        "x": 5.428631292430134,
-        "y": 2.591742777554389
+        "x": 3.484698254495748,
+        "y": 6.37711708884793
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.8496601359456234,
+      "rotationDegrees": -53.966
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8076923076923063,
+      "minWaypointRelativePos": 0.9634377967711295,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.25,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
+        "nominalVoltage": 12.3,
         "unlimited": false
       }
     }
@@ -47,35 +52,24 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Funnel up",
-      "waypointRelativePos": 0.11,
+      "name": "ELEVIntakePos",
+      "waypointRelativePos": 0.04,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "MoveFunnel"
+          "name": "ELEVIntakePos"
         }
       }
     },
     {
-      "name": "L4",
-      "waypointRelativePos": 0.3,
+      "name": "Intake Collect",
+      "waypointRelativePos": 0.6971553156146176,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L4"
-        }
-      }
-    },
-    {
-      "name": "Score",
-      "waypointRelativePos": 0.92,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "Score"
+          "name": "Auto Intake Collect"
         }
       }
     }
@@ -90,13 +84,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 119.99999999999999
+    "rotation": -53.822
   },
   "reversed": false,
-  "folder": "RCQP",
+  "folder": "LeftCheese",
   "idealStartingState": {
     "velocity": 0.25,
-    "rotation": 130.0
+    "rotation": -120.27845295814578
   },
   "useDefaultConstraints": true
 }

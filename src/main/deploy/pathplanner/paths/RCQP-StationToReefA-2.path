@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.19375,
-        "y": 3.244999999999999
+        "x": 2.07252391755121,
+        "y": 2.4419530658812256
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 3.892
       },
       "prevControl": {
-        "x": 1.6574999999999998,
-        "y": 3.362
+        "x": 2.4836526835953117,
+        "y": 3.087108203420107
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,18 +30,18 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5741879111842105,
+      "waypointRelativePos": 0.63,
       "rotationDegrees": 0.0
     }
   ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.49748201438848966,
+      "minWaypointRelativePos": 0.7981330221703615,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
-        "maxAcceleration": 2.5,
+        "maxAcceleration": 2.25,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
         "nominalVoltage": 12.0,
@@ -53,7 +53,7 @@
   "eventMarkers": [
     {
       "name": "L4",
-      "waypointRelativePos": 0.38762886597938623,
+      "waypointRelativePos": 0.51,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -64,7 +64,7 @@
     },
     {
       "name": "Score",
-      "waypointRelativePos": 0.9305755395683458,
+      "waypointRelativePos": 0.9520417853751197,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
