@@ -18,6 +18,7 @@ public class Constants {
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, true, true),
+
         L1(0.005, true, false, false),
         L2(1.9, true, false, false),
         L3(3.22, true, false, false),

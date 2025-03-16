@@ -37,6 +37,7 @@ import frc.robot.commands.DriveToPosCommands.AutoSeed;
 import frc.robot.commands.DriveToPosCommands.CommandLoadDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandSetDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
+import frc.robot.commands.ElevatorCommands.CommandCoralStuck;
 import frc.robot.commands.ElevatorCommands.CommandElevatorToStage;
 import frc.robot.commands.FunnelCommands.CommandFunnelPivotToPos;
 import frc.robot.commands.FunnelCommands.CommandFunnelToggle;
@@ -347,6 +348,7 @@ public class RobotContainer {
 
             operator.y().onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, 0.5), new AlgaeRollerVoltage(m_AlgaeRoller, 0)));
             
+            operator.x().onTrue(new CommandCoralStuck(m_intakeBeamBreak, m_Elevator));
 
 
 
