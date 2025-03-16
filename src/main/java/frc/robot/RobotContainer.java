@@ -265,8 +265,8 @@ public class RobotContainer {
 
             driver.rightTrigger(0.5).onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
 
-            driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 12));
-            driver.b().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 12));
+            driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
+            driver.b().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
 
 
 

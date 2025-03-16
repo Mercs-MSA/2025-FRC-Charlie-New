@@ -23,8 +23,8 @@ public class CommandForceVisionMeasurement extends Command {
 
   @Override
   public void execute() {
-    System.out.println(drivetrain.getState().Pose.getRotation().getDegrees());
-    System.out.println(Constants.VisionConstants.bestLimelightPose.pose.getRotation().getDegrees());
+    // System.out.println(drivetrain.getState().Pose.getRotation().getDegrees());
+    // System.out.println(Constants.VisionConstants.bestLimelightPose.pose.getRotation().getDegrees());
   }
   
   @Override

@@ -136,11 +136,11 @@ public class Constants {
         public static final boolean attached = true;
 
 
-        public static final double kP = 100; 
+        public static final double kP = 20; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = -0.46; //needs to be tested
+        public static final double posUp = -0.44; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }
@@ -206,7 +206,7 @@ public class Constants {
         public static final String limelightLeftName = "limelight-left";
         public static final String limelightRightName = "limelight-right";
         public static final String limelightBackName = "limelight-back";
-        public static final Vector<N3> visionStdDevs = VecBuilder.fill(.7,.7,9999999);
+        public static final Vector<N3> visionStdDevs = VecBuilder.fill(.5,.5,9999999);
         public static PoseEstimate bestLimelightPose;
     }
 

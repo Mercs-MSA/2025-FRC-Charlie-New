@@ -33,8 +33,18 @@ import frc.robot.Constants.ScoringStageVal;
 import frc.robot.LimelightHelpers.RawFiducial;
 import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
+import edu.wpi.first.util.datalog.BooleanLogEntry;
+import edu.wpi.first.util.datalog.DataLog;
+import edu.wpi.first.util.datalog.DoubleLogEntry;
+import edu.wpi.first.util.datalog.StringLogEntry;
+import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
+
+
 
 public class Robot extends TimedRobot {
+  
+
   private Command m_autonomousCommand;
 
   boolean moveClimberDown;
@@ -60,6 +70,11 @@ public class Robot extends TimedRobot {
 
 
   public Robot() {
+
+    DataLogManager.start();
+
+    DriverStation.startDataLog(DataLogManager.getLog());
+
     m_robotContainer = new RobotContainer();
 
     SmartDashboard.putData("Selectable Action Test", new Sendable() {

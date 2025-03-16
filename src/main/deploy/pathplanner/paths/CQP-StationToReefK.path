@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.05,
-        "y": 7.15
+        "x": 1.067,
+        "y": 7.1
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.7931352459016394,
-        "y": 6.176793032786884
+        "x": 2.8101352459016393,
+        "y": 6.126793032786884
       },
       "isLocked": false,
       "linkedName": null
@@ -59,7 +59,7 @@
     },
     {
       "name": "Score",
-      "waypointRelativePos": 0.8988603988604031,
+      "waypointRelativePos": 0.9216524216524207,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
