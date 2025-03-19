@@ -19,10 +19,7 @@ import frc.robot.Constants;
 
 public class Elevator extends SubsystemLib {
     public class TestSubsystemConfig extends Config {
-        /* MAKE SURE TO CHANGE THESE VALUES! THE PID IS NOT CONFIGURED */
-
-        /* These values will later be added into a constants file that has not yet been created. 
-         */
+     
         public final int CANcoderID = 62;
 
         public final double velocityKp = Elevator1Constants.kP;
@@ -56,15 +53,6 @@ public class Elevator extends SubsystemLib {
 
 
 
-    // public boolean isPressed;
-
-    // public Elevator(boolean attached){
-    //     super(attached);
-    //     if(attached){
-    //         motor = TalonFXFactory.createConfigTalon(config.id, config.talonConfig);
-            
-    //         followerMotor = TalonFXFactory.createPermanentFollowerTalon(new CanDeviceId(Elevator2Constants.id, "rio"), motor, true);
-    //     }
     // }
     public Elevator(boolean attached){
         super(attached);
@@ -102,27 +90,15 @@ public class Elevator extends SubsystemLib {
     @Override 
     public void periodic(){
 
-        // if (Constants.elevatorBeambreakConstants.breakAttached = true && motor != null && !hasTared && Constants.isWithinTol(0, elev1MotorGetPosition(), 0.3)) {
-        //     tareMotor(); 
-        //     hasTared = true; 
-        // }
+      
 
-        // If the limit switch is released, reset the taring flag
-        // if (Constants.elevatorBeambreakConstants.breakAttached = true) {
-        //     hasTared = false; 
+        // if (isPositioning)
+        // {
+        //     if (Constants.isWithinTol(positionTo, elev1MotorGetPosition(), 0.5)) {isPositioning = false;}
         // }
-
-        if (isPositioning)
-        {
-            if (Constants.isWithinTol(positionTo, elev1MotorGetPosition(), 0.5)) {isPositioning = false;}
-        }
 
         SmartDashboard.putNumber("elevator Pos", motor.getPosition().getValueAsDouble());
 
-        // // // Update motor position on the SmartDashboard
-        // SmartDashboard.putNumber("Elevator 1 Pos", elev1MotorGetPosition());
-        // SmartDashboard.putBoolean("Elevator reached", isPositioning);
-        // SmartDashboard.putNumber("Elevator Required Pos:", positionTo);
     }
 
     

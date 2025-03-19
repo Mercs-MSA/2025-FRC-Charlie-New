@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AlgaeCommands.AlgaePivotToPos;
 import frc.robot.commands.AlgaeCommands.AlgaeRollerVoltage;
 // import frc.robot.commands.*;
-// import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
+import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.ClimberCommands.CommandClimbToggleDown;
 import frc.robot.commands.ClimberCommands.CommandClimbToggleUp;
 import frc.robot.commands.ClimberCommands.CommandClimberManual;
@@ -46,6 +46,7 @@ import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
 import frc.robot.commands.IntakeCommands.CommandIntakeStop;
+import frc.robot.commands.IntakeCommands.CommandLaserScore;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
 
@@ -61,9 +62,11 @@ import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Elevator.Elevator;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
-import frc.robot.subsystems.Mechanisms.L1Servo.ServoServo;
-// import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
+import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
+import frc.robot.subsystems.SensorSubsystems.LaserCANSub;
+
+import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
 import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
@@ -109,12 +112,20 @@ public class RobotContainer {
 
     public final IntakeBeambreak m_intakeBeamBreak = new IntakeBeambreak();
     public final FunnelBeambreak m_funnelBeamBreak = new FunnelBeambreak();
+    public final LaserCANSub m_laserCAN = new LaserCANSub();
+
+
 
     public final FunnelPivot m_FunnelPivot = new FunnelPivot(true);
 
-    // public final CANdle_LED m_leds = new CANdle_LED();
+    public final CANdle_LED m_leds = new CANdle_LED();
 
     public final PowerDistribution m_pdh = new PowerDistribution();
+
+    private boolean laserScoreActive = false; 
+
+    private Command laserScoreCommand;
+
 
 
 
@@ -223,7 +234,13 @@ public class RobotContainer {
         SmartDashboard.putData("Auto Chooser", autoChooser);
 
         Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
+
+
         intakeBreakTrigger.onTrue(new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak));
+
+
+
+  
 
 
 
@@ -276,31 +293,37 @@ public class RobotContainer {
 
             
 
-            driver.rightTrigger(0.5).onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 10));
+            driver.rightTrigger(0.5).onTrue(new SequentialCommandGroup(
+                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8),
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeRed)));
 
             driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
-            driver.b().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
 
 
+            
+            driver.b().onTrue(new SequentialCommandGroup(
+                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, 0.5)
+                //maybe add animation 
+                ));       
+      
 
-            // driver.leftTrigger().whileTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
-            // driver.rightTrigger(.8).whileTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
+            
 
 
             driver.y().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric())); //Seed
 
-            // driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
-            driver.x().whileTrue(new CommandSetDriveToPos("Source").andThen(new CommandToPos(drivetrain)));
+            driver.back().whileTrue(new CommandSetDriveToPos("Source").andThen(new CommandToPos(drivetrain)));
 
 
             driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
-                // new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Strobe)
-                )));
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeWhite))));
+
             driver.rightBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeWhite)
                 )));
 
             driver.leftTrigger().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(2))).andThen(new ParallelCommandGroup (
@@ -332,8 +355,8 @@ public class RobotContainer {
 
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandL1(m_Servo),
-                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, theRumblerTumbler, MaxAngularRate)));
+                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, theRumblerTumbler, MaxAngularRate),
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeGreen)));
 
 
             operator.start().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));

@@ -125,12 +125,7 @@ public class Constants {
 
 
 
-    public static final class elevatorBeambreakConstants {
-        public static boolean breakAttached = false;
-        public static final String beamBreakName = "elevatorBeambreak";
-        public static final int beamBreakChannel = 2;
-
-    }
+ 
 
     public static final class FunnelPivotConstants {
         public static final int id = 15;
@@ -193,6 +188,17 @@ public class Constants {
         public static final boolean breakAttached = false;
         public static final String beamBreakName = "intake_beambreak";
         public static final int beamBreakChannel = 3; //good
+
+    }
+
+    public static final class LaserCANConstants {
+        public static final int deviceID = 3;
+        
+        public static double L2L3Range = 70; // change
+
+        public static double L4Range = 60; //change
+
+
 
     }
 

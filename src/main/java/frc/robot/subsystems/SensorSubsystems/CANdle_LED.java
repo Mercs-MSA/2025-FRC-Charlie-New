@@ -28,7 +28,10 @@ public class CANdle_LED extends SubsystemBase {
         Rainbow,
         RgbFade,
         SingleFade,
-        Strobe,
+        StrobeGreen,
+        StrobeYellow,
+        StrobeWhite,
+        StrobeRed,
         Twinkle,
         TwinkleOff,
         SetAll
@@ -55,8 +58,8 @@ public class CANdle_LED extends SubsystemBase {
             case Larson: changeAnimation(AnimationTypes.Rainbow); break;
             case Rainbow: changeAnimation(AnimationTypes.RgbFade); break;
             case RgbFade: changeAnimation(AnimationTypes.SingleFade); break;
-            case SingleFade: changeAnimation(AnimationTypes.Strobe); break;
-            case Strobe: changeAnimation(AnimationTypes.Twinkle); break;
+            case SingleFade: changeAnimation(AnimationTypes.StrobeGreen); break;
+            case StrobeGreen: changeAnimation(AnimationTypes.Twinkle); break;
             case Twinkle: changeAnimation(AnimationTypes.TwinkleOff); break;
             case TwinkleOff: changeAnimation(AnimationTypes.ColorFlow); break;
             case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
@@ -70,8 +73,8 @@ public class CANdle_LED extends SubsystemBase {
             case Rainbow: changeAnimation(AnimationTypes.Larson); break;
             case RgbFade: changeAnimation(AnimationTypes.Rainbow); break;
             case SingleFade: changeAnimation(AnimationTypes.RgbFade); break;
-            case Strobe: changeAnimation(AnimationTypes.SingleFade); break;
-            case Twinkle: changeAnimation(AnimationTypes.Strobe); break;
+            case StrobeGreen: changeAnimation(AnimationTypes.SingleFade); break;
+            case Twinkle: changeAnimation(AnimationTypes.StrobeGreen); break;
             case TwinkleOff: changeAnimation(AnimationTypes.Twinkle); break;
             case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
         }
@@ -115,8 +118,17 @@ public class CANdle_LED extends SubsystemBase {
             case SingleFade:
                 m_toAnimate = new SingleFadeAnimation(50, 2, 200, 0, 0.5, LedCount);
                 break;
-            case Strobe:
-                m_toAnimate = new StrobeAnimation(255, 255, 255, 0, 0.2, LedCount);
+            case StrobeGreen:
+                m_toAnimate = new StrobeAnimation(0, 255, 0, 0, 0.2, LedCount);
+                break;
+            case StrobeYellow:
+                m_toAnimate = new StrobeAnimation(255, 255, 0, 0, 0.2, LedCount);
+                break;
+            case StrobeRed:
+                m_toAnimate = new StrobeAnimation(255, 0, 0, 0, 0.2, LedCount);
+                break;
+            case StrobeWhite:
+                m_toAnimate = new StrobeAnimation(255, 255, 255, 0, 0.6, LedCount);
                 break;
             case Twinkle:
                 m_toAnimate = new TwinkleAnimation(255, 10, 10, 0, 1, LedCount, TwinklePercent.Percent42);
