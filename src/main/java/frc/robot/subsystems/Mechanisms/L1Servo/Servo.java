@@ -31,7 +31,7 @@ public class Servo extends SubsystemBase{
     public void periodic(){
        
 
-        // SmartDashboard.putBoolean("Detects coral", detectsCoral);
+        SmartDashboard.putNumber("PWM", m_Servo.getPosition());
 
     }
 }

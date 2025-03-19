@@ -20,7 +20,7 @@ public class Constants {
         INTAKING(0, false, true, true),
 
         L1(0.005, true, false, false),
-        L2(1.9, true, false, false),
+        L2(1.77, true, false, false),
         L3(3.22, true, false, false),
         L4(5.36, true, false, false),
         CLIMBING(0, false, true, false);
@@ -141,7 +141,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = -0.465; //needs to be tested
+        public static final double posUp = -0.455; //needs to be tested
         public static final double posDown = 0; //needs to be tested
         
     }

@@ -31,7 +31,7 @@ public class CommandCoralStuck extends Command {
        
 
             if(Constants.ScoringConstants.ScoringStage == Constants.ScoringStageVal.INTAKEREADY) {
-            this.pos = 1.05;
+            this.pos = 0.8;
 
             m_Elevator.elevatorToPos(pos);
 

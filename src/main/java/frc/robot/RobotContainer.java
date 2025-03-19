@@ -23,6 +23,7 @@ import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
@@ -50,6 +51,8 @@ import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
 
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
+import frc.robot.commands.ServoCommand.CommandL1;
+import frc.robot.commands.ServoCommand.CommandServoToggle;
 import frc.robot.commands.VisionCommands.CommandForceVisionMeasurement;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
@@ -58,11 +61,13 @@ import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Elevator.Elevator;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
+import frc.robot.subsystems.Mechanisms.L1Servo.ServoServo;
 // import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
 import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.Mechanisms.L1Servo.Servo;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -84,12 +89,15 @@ public class RobotContainer {
 
     public final XboxController theRumblerTumbler = new XboxController(0); 
 
+    public final Servo m_PWM = new Servo();
+
 
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     public final Elevator m_Elevator = new Elevator(true);
 
+    public final ServoServo m_Servo = new ServoServo();
 
     public final Climber m_Climber = new Climber(true);
 
@@ -268,7 +276,7 @@ public class RobotContainer {
 
             
 
-            driver.rightTrigger(0.5).onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
+            driver.rightTrigger(0.5).onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 10));
 
             driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
             driver.b().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
@@ -282,7 +290,7 @@ public class RobotContainer {
             driver.y().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric())); //Seed
 
             // driver.start().onTrue(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Twinkle));
-            driver.back().whileTrue(new CommandSetDriveToPos("Source").andThen(new CommandToPos(drivetrain)));
+            driver.x().whileTrue(new CommandSetDriveToPos("Source").andThen(new CommandToPos(drivetrain)));
 
 
             driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
@@ -324,6 +332,7 @@ public class RobotContainer {
 
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new CommandL1(m_Servo),
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, theRumblerTumbler, MaxAngularRate)));
 
 
@@ -342,13 +351,21 @@ public class RobotContainer {
 
             operator.rightBumper().onTrue(new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator));
 
-            operator.rightTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp), new AlgaeRollerVoltage(m_AlgaeRoller, 0)));
+            operator.rightTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posTopUp), new AlgaeRollerVoltage(m_AlgaeRoller, 16)));
 
-            operator.leftTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore), new AlgaeRollerVoltage(m_AlgaeRoller, /*-*/0)));
+            operator.leftTrigger(0.8).onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, Constants.AlgaePivotConstants.posBottomDescore), new AlgaeRollerVoltage(m_AlgaeRoller, -16)));
 
             operator.y().onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, 0.5), new AlgaeRollerVoltage(m_AlgaeRoller, 0)));
             
             operator.x().onTrue(new CommandCoralStuck(m_intakeBeamBreak, m_Elevator));
+
+            operator.leftBumper().onTrue(new CommandServoToggle(m_Servo));
+
+            operator.leftStick().onTrue(new SequentialCommandGroup(
+                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8),
+                new WaitCommand(0.05),
+                new CommandServoToggle(m_Servo)));
+
 
 
 
