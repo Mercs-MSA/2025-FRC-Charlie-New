@@ -40,6 +40,7 @@ import frc.robot.commands.DriveToPosCommands.CommandSetDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
 import frc.robot.commands.ElevatorCommands.CommandCoralStuck;
 import frc.robot.commands.ElevatorCommands.CommandElevatorToStage;
+import frc.robot.commands.ElevatorCommands.CommandL1ScorePos;
 import frc.robot.commands.FunnelCommands.CommandFunnelPivotToPos;
 import frc.robot.commands.FunnelCommands.CommandFunnelToggle;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
@@ -52,9 +53,7 @@ import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
 
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
-import frc.robot.commands.ServoCommand.CommandL1;
 import frc.robot.commands.ServoCommand.CommandServoToggle;
-import frc.robot.commands.VisionCommands.CommandForceVisionMeasurement;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
 import frc.robot.subsystems.Mechanisms.AlgaeRoller.AlgaeRoller;
@@ -70,7 +69,6 @@ import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
 import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
-import frc.robot.subsystems.Mechanisms.L1Servo.Servo;
 
 public class RobotContainer {
     private double MaxSpeed = TunerConstants.kSpeedAt12Volts.in(MetersPerSecond); // kSpeedAt12Volts desired top speed
@@ -92,7 +90,6 @@ public class RobotContainer {
 
     public final XboxController theRumblerTumbler = new XboxController(0); 
 
-    public final Servo m_PWM = new Servo();
 
 
 
@@ -100,7 +97,6 @@ public class RobotContainer {
 
     public final Elevator m_Elevator = new Elevator(true);
 
-    public final ServoServo m_Servo = new ServoServo();
 
     public final Climber m_Climber = new Climber(true);
 
@@ -203,7 +199,6 @@ public class RobotContainer {
                 new CommandFunnelPivotToPos(Constants.FunnelPivotConstants.posUp)
             ));
 
-            put("ForceVision", new CommandForceVisionMeasurement(drivetrain));
 
     
     
@@ -216,7 +211,7 @@ public class RobotContainer {
         
     };
     public RobotContainer() {
-        boolean isCompetition = false; //Change to true at comp
+        boolean isCompetition = true; //Change to true at comp
 
         NamedCommands.registerCommands(autonomousCommands);
 
@@ -236,7 +231,9 @@ public class RobotContainer {
         Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
 
 
-        intakeBreakTrigger.onTrue(new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak));
+        intakeBreakTrigger.onTrue(new ParallelCommandGroup(
+            new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak), 
+            new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire)));
 
 
 
@@ -294,17 +291,15 @@ public class RobotContainer {
             
 
             driver.rightTrigger(0.5).onTrue(new SequentialCommandGroup(
-                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8),
+                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants.supplyOuttakeSpeed()),
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire)));
+
+            driver.a().onTrue(new SequentialCommandGroup(
+                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants.supplyOuttakeSpeed()),
                 new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeRed)));
 
-            driver.a().onTrue(new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8));
-
-
             
-            driver.b().onTrue(new SequentialCommandGroup(
-                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, 0.5)
-                //maybe add animation 
-                ));       
+    
       
 
             
@@ -318,22 +313,38 @@ public class RobotContainer {
             driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeWhite))));
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.RgbFade))));
+
+
+            driver.leftBumper().onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire));
+
+            driver.rightBumper().onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire));
+
+            driver.leftTrigger().onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire));
+
+
+
+
 
             driver.rightBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeWhite)
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.RgbFade)
                 )));
 
-            driver.leftTrigger().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(2))).andThen(new ParallelCommandGroup (
-                new CommandToPos(drivetrain)
+            driver.leftTrigger().whileTrue((
+                new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(2))).andThen(new ParallelCommandGroup (
+                new CommandToPos(drivetrain),
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.RgbFade)
                 )));
-    
 
-
-
-
+            driver.rightStick().onTrue(new SequentialCommandGroup(
+                    new CommandChangeScoreStage(ScoringStageVal.L1),
+                    new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                    new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
+                    new WaitCommand(.05),
+                    new CommandL1ScorePos(m_Elevator)
+                ));
 
 
           
@@ -342,21 +353,44 @@ public class RobotContainer {
         public void operatorControls(){
 
 
-            operator.pov(180).onTrue(new CommandChangeScoreStage(ScoringStageVal.L1));
+            // operator.pov(180).onTrue(new SequentialCommandGroup(
+            //     new CommandChangeScoreStage(ScoringStageVal.L1),
+            //     new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+            //     new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
+            //     new WaitCommand(.05),
+            //     new CommandL1ScorePos(m_Elevator)
+            // ));
 
-            operator.pov(270).onTrue(new CommandChangeScoreStage(ScoringStageVal.L2));
+            operator.pov(180).onTrue(new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.L1),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
+                new WaitCommand(.05),
+                new CommandL1ScorePos(m_Elevator)
+            ));
 
-            operator.pov(0).onTrue(new CommandChangeScoreStage(ScoringStageVal.L3));
+            operator.pov(270).onTrue(new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.L2),
+                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, Constants.supplyOuttakeSpeed())
+            ));
 
-            operator.pov(90).onTrue(new CommandChangeScoreStage(ScoringStageVal.L4));
+            operator.pov(0).onTrue(new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.L3),
+                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, Constants.supplyOuttakeSpeed())
+            ));
+
+            operator.pov(90).onTrue(new SequentialCommandGroup(
+                new CommandChangeScoreStage(ScoringStageVal.L4),
+                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, Constants.supplyOuttakeSpeed())
+            ));
 
 
             operator.b().onTrue(new SequentialCommandGroup(
+                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire),
 
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, theRumblerTumbler, MaxAngularRate),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeGreen)));
+                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, 5)));
 
 
             operator.start().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));
@@ -380,14 +414,14 @@ public class RobotContainer {
 
             operator.y().onTrue(new SequentialCommandGroup(new AlgaePivotToPos(m_AlgaePivot, 0.5), new AlgaeRollerVoltage(m_AlgaeRoller, 0)));
             
-            operator.x().onTrue(new CommandCoralStuck(m_intakeBeamBreak, m_Elevator));
+            operator.x().onTrue(new CommandCoralStuck(m_Elevator));
 
-            operator.leftBumper().onTrue(new CommandServoToggle(m_Servo));
+            // operator.leftBumper().onTrue(new CommandServoToggle(m_Servo));
 
-            operator.leftStick().onTrue(new SequentialCommandGroup(
-                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8),
-                new WaitCommand(0.05),
-                new CommandServoToggle(m_Servo)));
+            // operator.leftStick().onTrue(new SequentialCommandGroup(
+            //     new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 8),
+            //     new WaitCommand(0.05),
+            //     new CommandServoToggle(m_Servo)));
 
 
 

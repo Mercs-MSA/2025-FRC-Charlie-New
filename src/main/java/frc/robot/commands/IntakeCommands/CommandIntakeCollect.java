@@ -19,7 +19,6 @@ public class CommandIntakeCollect extends Command {
     private final IntakeBeambreak m_IntakeBeambreak;
     private final FunnelBeambreak m_FunnelBeambreak;
 
-    private final XboxController m_controller;
 
     
 
@@ -33,11 +32,10 @@ public class CommandIntakeCollect extends Command {
 
 
 
-    public CommandIntakeCollect(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_IntakeBeambreak, FunnelBeambreak m_FunnelBeambreak, XboxController m_controller, double voltage) {
+    public CommandIntakeCollect(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_IntakeBeambreak, FunnelBeambreak m_FunnelBeambreak, double voltage) {
         this.voltage = voltage;
         this.m_IntakeBeambreak = m_IntakeBeambreak;
         this.m_FunnelBeambreak = m_FunnelBeambreak;
-        this.m_controller = m_controller;
 
         this.m_intakeFlywheels = m_intakeFlywheels;
         addRequirements(m_IntakeBeambreak, m_intakeFlywheels);
@@ -61,12 +59,11 @@ public class CommandIntakeCollect extends Command {
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
         ScoringConstants.ScoringStage = finalStage;
-        CommandScheduler.getInstance().schedule(
-            new SequentialCommandGroup(
-                new CommandRumble(800, m_controller),
-                new WaitCommand(1),
-                new CommandRumble(0, m_controller)
-            ));
+
+        m_intakeFlywheels.stopIntake();
+        
+
+        
 
        
       

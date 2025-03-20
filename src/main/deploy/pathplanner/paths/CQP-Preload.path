@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 4.965,
-        "y": 5.22
+        "x": 5.016,
+        "y": 5.283
       },
       "prevControl": {
-        "x": 5.395122950819672,
-        "y": 5.435727459016393
+        "x": 5.446122950819672,
+        "y": 5.4987274590163935
       },
       "nextControl": null,
       "isLocked": false,
@@ -70,7 +70,7 @@
     },
     {
       "name": "Score",
-      "waypointRelativePos": 0.9197530864197532,
+      "waypointRelativePos": 0.9102564102564099,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

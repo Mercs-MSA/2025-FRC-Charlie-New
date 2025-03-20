@@ -6,12 +6,12 @@ import frc.robot.Constants.Elevator1Constants;
 import frc.robot.subsystems.Mechanisms.Elevator.Elevator;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
 
-public class CommandCoralStuck extends Command {
+public class CommandL1ScorePos extends Command {
     private final Elevator m_Elevator;
 
 
 
-    public CommandCoralStuck(Elevator m_Elevator) {
+    public CommandL1ScorePos(Elevator m_Elevator) {
 
 
         // if (Constants.ScoringConstants.ScoringStage.canElev())
@@ -29,7 +29,7 @@ public class CommandCoralStuck extends Command {
 
         
 
-            m_Elevator.elevatorToPos(1.05);
+            m_Elevator.elevatorToPos(1.15);
 
             
         

@@ -43,6 +43,7 @@ import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
+import au.grapplerobotics.CanBridge;
 
 public class Robot extends TimedRobot {
   
@@ -74,6 +75,7 @@ public class Robot extends TimedRobot {
   public Robot() {
 
     DataLogManager.start();
+    CanBridge.runTCP();
 
     DriverStation.startDataLog(DataLogManager.getLog());
 

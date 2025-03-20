@@ -17,7 +17,7 @@ public class LaserCANSub extends SubsystemBase{
 
     public LaserCANSub(){
         try {
-            m_IntakeLaserCan.setRegionOfInterest(new LaserCan.RegionOfInterest(8, 8, 16, 16)); //Configure ROI for the proper pole placement
+            m_IntakeLaserCan.setRegionOfInterest(new LaserCan.RegionOfInterest(16, 16, 16, 16)); //Configure ROI for the proper pole placement
         }
         catch (ConfigurationFailedException e) {
             System.out.println("Configuration failed! " + e);

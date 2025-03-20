@@ -19,9 +19,9 @@ public class Constants {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, true, true),
 
-        L1(0.005, true, false, false),
-        L2(1.77, true, false, false),
-        L3(3.22, true, false, false),
+        L1(0.9, true, false, false),
+        L2(1.73, true, false, false),
+        L3(3.18, true, false, false),
         L4(5.36, true, false, false),
         CLIMBING(0, false, true, false);
 
@@ -67,7 +67,7 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = 19; 
+        public static final double kP = 15; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
@@ -132,12 +132,12 @@ public class Constants {
         public static final boolean attached = true;
 
 
-        public static final double kP = 20; 
+        public static final double kP = 100; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = -0.455; //needs to be tested
-        public static final double posDown = 0; //needs to be tested
+        public static final double posUp = -0.436; //needs to be tested
+        public static final double posDown = 0; 
         
     }
 
@@ -150,7 +150,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posBottomDescore = 28; //30 is old position with spinning wheel on pivot
+        public static final double posBottomDescore = 30; //30 is old position with spinning wheel on pivot
         public static final double posTopUp = 50;
         public static final double posDown = 0; //needs to be tested
  //needs to be tested
@@ -192,14 +192,20 @@ public class Constants {
     }
 
     public static final class LaserCANConstants {
-        public static final int deviceID = 3;
+        public static final int deviceID = 30;
         
-        public static double L2L3Range = 70; // change
+        public static double L2L3Range = 1; // change
 
-        public static double L4Range = 60; //change
+        public static double L4Range = 1; //change
 
 
 
+    }
+
+    public static final class CANrangeConstants {
+        public static final int deviceID = 4;
+        public static double L2L3Range = 0.070; // change
+        public static double L4Range = 0.060; //change
     }
 
     public static final class FunnelBeambreakConstants {
@@ -248,8 +254,8 @@ public class Constants {
             put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.75, 4.160, new Rotation2d(3.1459))));
             put("reefGHDescore", new CommandToPos.Destination("reefGHDescore", new Pose2d(5.859, 3.686, new Rotation2d(3.1459))));
 
-            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.3, 5.05, new Rotation2d(-2.094))));
-            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(4.965, 5.220, new Rotation2d(-2.094))));
+            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.308, 5.06, new Rotation2d(-2.094))));
+            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.016, 5.283, new Rotation2d(-2.094))));
             put("reefIJDescore", new CommandToPos.Destination("reefIJDescore", new Pose2d(5.456, 5.034, new Rotation2d(-2.094))));
 
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
@@ -300,6 +306,28 @@ public class Constants {
 
     public static double slowDownWithElevator(double pos) {
         return pos * 0.8;
+    }
+
+    public static double supplyOuttakeSpeed(){
+
+        if(ScoringConstants.ScoringStage == Constants.ScoringStageVal.L1){
+                return 2;
+        }
+
+        else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L2){
+            return 8;
+        }
+
+        else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L3){
+            return 8;
+        }
+
+        else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L4){
+            return 8;
+        }
+        else{
+            return 8;
+        }
     }
 
     public class ScoringConstants
