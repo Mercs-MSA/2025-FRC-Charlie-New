@@ -28,12 +28,13 @@ public class CommandElevatorToStage extends Command {
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
 
+        System.out.println("DEBUG: CommandElevatorToStage::init");
         if (Constants.ScoringConstants.ScoringStage.canElev()){
 
             if(m_Beambreak.checkBreak() || Constants.ScoringConstants.ScoringStage == Constants.ScoringStageVal.INTAKEREADY) {
             this.pos = Constants.ScoringConstants.ScoringStage.getElevatorRotations();
 
-            System.out.println(pos);
+            System.out.println("DEBUG: CommandElevatorToStage::init - Position: " + Double.toString(pos));
             m_Elevator.elevatorToPos(pos);
 
             }
@@ -47,6 +48,7 @@ public class CommandElevatorToStage extends Command {
 
     @Override 
     public void end(boolean interrupted) {
+        System.out.println("DEBUG: CommandElevatorToStage::end");
         // This is where you put stuff that happens when the command ends
     }
 

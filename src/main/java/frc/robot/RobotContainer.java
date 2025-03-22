@@ -22,6 +22,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -108,7 +109,6 @@ public class RobotContainer {
 
     public final IntakeBeambreak m_intakeBeamBreak = new IntakeBeambreak();
     public final FunnelBeambreak m_funnelBeamBreak = new FunnelBeambreak();
-    public final LaserCANSub m_laserCAN = new LaserCANSub();
 
 
 
@@ -310,6 +310,14 @@ public class RobotContainer {
             driver.back().whileTrue(new CommandSetDriveToPos("Source").andThen(new CommandToPos(drivetrain)));
 
 
+            driver.x().whileTrue(new CommandSetDriveToPos("L1Left").andThen(new CommandToPos(drivetrain)));
+            driver.b().whileTrue(new CommandSetDriveToPos("L1Right").andThen(new CommandToPos(drivetrain)));
+
+
+
+
+
+
             driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
@@ -370,24 +378,20 @@ public class RobotContainer {
             ));
 
             operator.pov(270).onTrue(new SequentialCommandGroup(
-                new CommandChangeScoreStage(ScoringStageVal.L2),
-                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, Constants.supplyOuttakeSpeed())
+                new CommandChangeScoreStage(ScoringStageVal.L2)
             ));
 
             operator.pov(0).onTrue(new SequentialCommandGroup(
-                new CommandChangeScoreStage(ScoringStageVal.L3),
-                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, Constants.supplyOuttakeSpeed())
+                new CommandChangeScoreStage(ScoringStageVal.L3)
             ));
 
             operator.pov(90).onTrue(new SequentialCommandGroup(
-                new CommandChangeScoreStage(ScoringStageVal.L4),
-                new CommandLaserScore(m_IntakeFlywheels, m_intakeBeamBreak, m_laserCAN, m_Elevator, Constants.supplyOuttakeSpeed())
+                new CommandChangeScoreStage(ScoringStageVal.L4)
             ));
 
 
             operator.b().onTrue(new SequentialCommandGroup(
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire),
-
+                new PrintCommand("DEBUG: normal intake button pressed"),
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, 5)));
@@ -397,6 +401,10 @@ public class RobotContainer {
 
             operator.back().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleUp(m_Climber, m_FunnelPivot)));
 
+            // This is a bandaid solution to manually run the intake, incase the normal command gets stuck. -Brady
+            operator.leftBumper().onTrue(new SequentialCommandGroup(
+                new PrintCommand("DEBUG: emergency intake button pressed"),
+                new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, 5)));
             // operator.leftStick().whileTrue(new SequentialCommandGroup(
             //     new CommandChangeScoreStage(ScoringStageVal.CLIMBING), 
             //     new CommandClimberManual(m_Climber, m_FunnelPivot, operator.getLeftX()

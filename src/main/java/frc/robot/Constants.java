@@ -263,8 +263,12 @@ public class Constants {
             put("reefKLDescore", new CommandToPos.Destination("reefKLDescore", new Pose2d(4.107, 5.391, new Rotation2d(-1.047))));
         
             put("Source", new CommandToPos.Destination("Source", new Pose2d(1.067, 7.1, new Rotation2d(-0.939))));
+            put("L1Left", new CommandToPos.Destination("L1Left", new Pose2d(3.05, 4.26, new Rotation2d(0.252))));
+            put("L1Right", new CommandToPos.Destination("L1Right", new Pose2d(3.48, 2.94, new Rotation2d(1.222))));
+
             put("Test", new CommandToPos.Destination("Test", new Pose2d(2.16, 3.9, new Rotation2d(0))));
         }};
+
 
         public static final HashMap<String, List<String>> tagDestinationMap = new HashMap<String, List<String>>() {{
             put("18", List.of("reefA", "reefB", "reefABDescore")); // blue
