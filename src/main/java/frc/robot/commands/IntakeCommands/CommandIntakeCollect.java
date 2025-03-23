@@ -43,11 +43,11 @@ public class CommandIntakeCollect extends Command {
 
     @Override 
     public void initialize() {
-        // System.out.println("DEBUG: CommandIntakeCollect::init");
+        System.out.println("DEBUG: CommandIntakeCollect::init");
         // This is where you put stuff that happens right at the start of the command
         if(!m_IntakeBeambreak.checkBreak()){
             ScoringConstants.ScoringStage = initialStage;
-            // System.out.println("DEBUG: CommandIntakeCollect::init - Applying voltage to flywheels");
+            System.out.println("DEBUG: CommandIntakeCollect::init - Applying voltage to flywheels");
             m_intakeFlywheels.applyVoltage(voltage);
         }
     }
@@ -63,7 +63,7 @@ public class CommandIntakeCollect extends Command {
         ScoringConstants.ScoringStage = finalStage;
 
         m_intakeFlywheels.stopIntake();
-        // System.out.println("DEBUG: CommandIntakeCollect::end");
+        System.out.println("DEBUG: CommandIntakeCollect::end");
         
 
         
