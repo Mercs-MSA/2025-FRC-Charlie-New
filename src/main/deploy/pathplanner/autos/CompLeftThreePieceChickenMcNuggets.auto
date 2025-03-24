@@ -5,21 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "TQP-Preload"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
+            "pathName": "LTPCMN-Preload"
           }
         },
         {
@@ -29,15 +17,9 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.25
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "TQP-Reef-i-ToStation"
+            "pathName": "LTPCMN-Reef-i-ToStation"
           }
         },
         {
@@ -49,13 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "TQP-StationToReefK"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
+            "pathName": "LTPCMN-StationToReefK"
           }
         },
         {
@@ -65,15 +41,9 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.2
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "TQP-ReefKtoStation"
+            "pathName": "LTPCMN-ReefKtoStation"
           }
         },
         {
@@ -85,13 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "TQP-StationToReefL"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
+            "pathName": "LTPCMN-StationToReefL"
           }
         },
         {
@@ -101,21 +65,21 @@
           }
         },
         {
-          "type": "wait",
+          "type": "path",
           "data": {
-            "waitTime": 0.2
+            "pathName": "LTPCMN-ReefLtoStation"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "ELEVIntakePos"
+            "name": "Intake Collect"
           }
         }
       ]
     }
   },
-  "resetOdom": true,
+  "resetOdom": false,
   "folder": "Competition Autos",
   "choreoAuto": false
 }

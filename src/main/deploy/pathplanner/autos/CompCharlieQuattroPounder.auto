@@ -1,0 +1,91 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-Preload"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-Reef-i-ToStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-StationToReefK"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-ReefKtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-StationToReefL"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-ReefLtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CQP-StationToReefA-2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ELEVIntakePos"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": false,
+  "folder": "Competition Autos",
+  "choreoAuto": false
+}

@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 1.05,
-        "y": 7.15
+        "x": 1.067,
+        "y": 7.1
       },
       "prevControl": {
-        "x": 2.1027518136160714,
-        "y": 6.401154436383928
+        "x": 2.1197518136160713,
+        "y": 6.351154436383927
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,7 +32,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.9558312655086787,
+      "minWaypointRelativePos": 0.9363309352517988,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -79,7 +79,7 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": -53.966
+    "rotation": -53.0
   },
   "reversed": false,
   "folder": "CQP",

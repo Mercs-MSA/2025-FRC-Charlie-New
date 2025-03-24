@@ -79,7 +79,7 @@ public class CommandToPos extends Command {
     if (Constants.DriveToPosRuntime.target == null) {
       return;
     }
-    System.out.println(Constants.DriveToPosRuntime.target);
+    // System.out.println(Constants.DriveToPosRuntime.target);
   }
 
   @Override

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.05,
-        "y": 7.15
+        "x": 1.067,
+        "y": 7.1
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.7931352459016394,
-        "y": 6.176793032786884
+        "x": 2.8097773921132005,
+        "y": 6.12699282554592
       },
       "isLocked": false,
       "linkedName": null
@@ -20,8 +20,8 @@
         "y": 5.231
       },
       "prevControl": {
-        "x": 3.536372950819672,
-        "y": 5.937038934426229
+        "x": 3.5362658259753386,
+        "y": 5.937205263460493
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,7 +32,7 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8190883190883207,
+      "minWaypointRelativePos": 0.8456790123456787,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 2.0,
@@ -59,7 +59,7 @@
     },
     {
       "name": "Score",
-      "waypointRelativePos": 0.8988603988604031,
+      "waypointRelativePos": 0.9216524216524207,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

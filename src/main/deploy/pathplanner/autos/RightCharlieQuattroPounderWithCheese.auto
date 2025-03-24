@@ -1,0 +1,85 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RCQP-Preload"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightChezRCQP-Reef-i-ToStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightChezRCQP-StationToReefK"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RCQP-ReefKtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RCQP-StationToReefL"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RCQP-ReefLtoStation"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RCQP-StationToReefA-2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ELEVIntakePos"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": false,
+  "folder": null,
+  "choreoAuto": false
+}

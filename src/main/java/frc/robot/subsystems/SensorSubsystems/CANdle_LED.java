@@ -15,10 +15,12 @@ import com.ctre.phoenix.led.TwinkleOffAnimation.TwinkleOffPercent;
 
 public class CANdle_LED extends SubsystemBase {
     private final CANdle m_candle = new CANdle(29, "rio");
-    private final int LedCount = 150; //lower number decreases cycle time interval
+    private final int LedCount = 100; //lower number decreases cycle time interval
     // private XboxController joystick;
 
-    private Animation m_toAnimate = new FireAnimation(1, 0.2, LedCount, 0.2, 0.5);
+    private Animation m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.7, 0.5);
+    
+
     private boolean isRunningCustom = false;
 
     public enum AnimationTypes {
@@ -28,7 +30,11 @@ public class CANdle_LED extends SubsystemBase {
         Rainbow,
         RgbFade,
         SingleFade,
-        Strobe,
+        SolidWhite,
+        StrobeGreen,
+        StrobePurple,
+        StrobeWhite,
+        StrobeRed,
         Twinkle,
         TwinkleOff,
         SetAll
@@ -43,20 +49,21 @@ public class CANdle_LED extends SubsystemBase {
         configAll.statusLedOffWhenActive = true;
         configAll.disableWhenLOS = false;
         configAll.stripType = LEDStripType.GRB;
-        configAll.brightnessScalar = 1.0;
+        configAll.brightnessScalar = .3;
         configAll.vBatOutputMode = VBatOutputMode.Modulated;
         m_candle.configAllSettings(configAll, 100);
     }
 
     public void incrementAnimation() {
         switch(m_currentAnimation) {
-            case ColorFlow: changeAnimation(AnimationTypes.Fire); break;
+            case ColorFlow: changeAnimation(AnimationTypes.SolidWhite); break;
+            case SolidWhite: changeAnimation(AnimationTypes.Fire); break;
             case Fire: changeAnimation(AnimationTypes.Larson); break;
             case Larson: changeAnimation(AnimationTypes.Rainbow); break;
             case Rainbow: changeAnimation(AnimationTypes.RgbFade); break;
             case RgbFade: changeAnimation(AnimationTypes.SingleFade); break;
-            case SingleFade: changeAnimation(AnimationTypes.Strobe); break;
-            case Strobe: changeAnimation(AnimationTypes.Twinkle); break;
+            case SingleFade: changeAnimation(AnimationTypes.StrobeGreen); break;
+            case StrobeGreen: changeAnimation(AnimationTypes.Twinkle); break;
             case Twinkle: changeAnimation(AnimationTypes.TwinkleOff); break;
             case TwinkleOff: changeAnimation(AnimationTypes.ColorFlow); break;
             case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
@@ -70,8 +77,8 @@ public class CANdle_LED extends SubsystemBase {
             case Rainbow: changeAnimation(AnimationTypes.Larson); break;
             case RgbFade: changeAnimation(AnimationTypes.Rainbow); break;
             case SingleFade: changeAnimation(AnimationTypes.RgbFade); break;
-            case Strobe: changeAnimation(AnimationTypes.SingleFade); break;
-            case Twinkle: changeAnimation(AnimationTypes.Strobe); break;
+            case StrobeGreen: changeAnimation(AnimationTypes.SingleFade); break;
+            case Twinkle: changeAnimation(AnimationTypes.StrobeGreen); break;
             case TwinkleOff: changeAnimation(AnimationTypes.Twinkle); break;
             case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
         }
@@ -98,7 +105,10 @@ public class CANdle_LED extends SubsystemBase {
         switch(toChange)
         {
             case ColorFlow:
-                m_toAnimate = new ColorFlowAnimation(128, 20, 70, 0, 0.7, LedCount, Direction.Forward);
+                m_toAnimate = new ColorFlowAnimation(128, 20, 70, 0, 0.1, LedCount, Direction.Forward);
+                break;
+            case SolidWhite:
+                m_toAnimate = new StrobeAnimation(255, 255, 255, 0, 0.1, LedCount);
                 break;
             case Fire:
                 m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.7, 0.5);
@@ -110,13 +120,22 @@ public class CANdle_LED extends SubsystemBase {
                 m_toAnimate = new RainbowAnimation(1, 0.1, LedCount);
                 break;
             case RgbFade:
-                m_toAnimate = new RgbFadeAnimation(0.7, 0.4, LedCount);
+                m_toAnimate = new RgbFadeAnimation(0.7, 1, LedCount);
                 break;
             case SingleFade:
-                m_toAnimate = new SingleFadeAnimation(50, 2, 200, 0, 0.5, LedCount);
+                m_toAnimate = new SingleFadeAnimation(0, 255, 0, 0, 1, LedCount);
                 break;
-            case Strobe:
-                m_toAnimate = new StrobeAnimation(255, 255, 255, 0, 0.2, LedCount);
+            case StrobeGreen:
+                m_toAnimate = new StrobeAnimation(0, 255, 0, 0, 0.5, LedCount);
+                break;
+            case StrobePurple:
+                m_toAnimate = new StrobeAnimation(128, 0, 128, 0, 0.1, LedCount);
+                break;
+            case StrobeRed:
+                m_toAnimate = new StrobeAnimation(255, 0, 0, 0, 0.1, LedCount);
+                break;
+            case StrobeWhite:
+                m_toAnimate = new StrobeAnimation(255, 255, 255, 0, 0.1, LedCount);
                 break;
             case Twinkle:
                 m_toAnimate = new TwinkleAnimation(255, 10, 10, 0, 1, LedCount, TwinklePercent.Percent42);

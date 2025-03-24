@@ -18,9 +18,10 @@ public class Constants {
     public enum ScoringStageVal {
         INTAKEREADY(0, true, false, true),
         INTAKING(0, false, true, true),
-        L1(0.005, true, false, false),
-        L2(1.9, true, false, false),
-        L3(3.22, true, false, false),
+
+        L1(0.9, true, false, false),
+        L2(1.73, true, false, false),
+        L3(3.18, true, false, false),
         L4(5.36, true, false, false),
         CLIMBING(0, false, true, false);
 
@@ -66,7 +67,7 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = 19; 
+        public static final double kP = 15; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
@@ -124,12 +125,7 @@ public class Constants {
 
 
 
-    public static final class elevatorBeambreakConstants {
-        public static boolean breakAttached = false;
-        public static final String beamBreakName = "elevatorBeambreak";
-        public static final int beamBreakChannel = 2;
-
-    }
+ 
 
     public static final class FunnelPivotConstants {
         public static final int id = 15;
@@ -140,8 +136,8 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posUp = -0.448; //needs to be tested
-        public static final double posDown = 0; //needs to be tested
+        public static final double posUp = -0.436; //needs to be tested
+        public static final double posDown = 0; 
         
     }
 
@@ -154,7 +150,7 @@ public class Constants {
         public static final double kS = 0; 
         public static final double kV = 0; 
 
-        public static final double posBottomDescore = 30; 
+        public static final double posBottomDescore = 30; //30 is old position with spinning wheel on pivot
         public static final double posTopUp = 50;
         public static final double posDown = 0; //needs to be tested
  //needs to be tested
@@ -195,6 +191,23 @@ public class Constants {
 
     }
 
+    public static final class LaserCANConstants {
+        public static final int deviceID = 30;
+        
+        public static double L2L3Range = 1; // change
+
+        public static double L4Range = 1; //change
+
+
+
+    }
+
+    public static final class CANrangeConstants {
+        public static final int deviceID = 4;
+        public static double L2L3Range = 0.070; // change
+        public static double L4Range = 0.060; //change
+    }
+
     public static final class FunnelBeambreakConstants {
         public static final boolean breakAttached = false;
         public static final String beamBreakName = "funnel_beambreak";
@@ -206,7 +219,7 @@ public class Constants {
         public static final String limelightLeftName = "limelight-left";
         public static final String limelightRightName = "limelight-right";
         public static final String limelightBackName = "limelight-back";
-        public static final Vector<N3> visionStdDevs = VecBuilder.fill(.7,.7,9999999);
+        public static final Vector<N3> visionStdDevs = VecBuilder.fill(.5,.5,9999999);
         public static PoseEstimate bestLimelightPose;
     }
 
@@ -241,17 +254,21 @@ public class Constants {
             put("reefH", new CommandToPos.Destination("reefH", new Pose2d(5.75, 4.160, new Rotation2d(3.1459))));
             put("reefGHDescore", new CommandToPos.Destination("reefGHDescore", new Pose2d(5.859, 3.686, new Rotation2d(3.1459))));
 
-            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.3, 5.05, new Rotation2d(-2.094))));
-            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(4.965, 5.220, new Rotation2d(-2.094))));
+            put("reefI", new CommandToPos.Destination("reefI", new Pose2d(5.308, 5.06, new Rotation2d(-2.094))));
+            put("reefJ", new CommandToPos.Destination("reefJ", new Pose2d(5.016, 5.283, new Rotation2d(-2.094))));
             put("reefIJDescore", new CommandToPos.Destination("reefIJDescore", new Pose2d(5.456, 5.034, new Rotation2d(-2.094))));
 
             put("reefK", new CommandToPos.Destination("reefK", new Pose2d(3.9911, 5.2315, new Rotation2d(-1.047))));
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(3.7114, 5.0915, new Rotation2d(-1.047))));
             put("reefKLDescore", new CommandToPos.Destination("reefKLDescore", new Pose2d(4.107, 5.391, new Rotation2d(-1.047))));
         
-            put("Source", new CommandToPos.Destination("Source", new Pose2d(1.00, 7.2, new Rotation2d(-1.13))));
+            put("Source", new CommandToPos.Destination("Source", new Pose2d(1.067, 7.1, new Rotation2d(-0.939))));
+            put("L1Left", new CommandToPos.Destination("L1Left", new Pose2d(3.05, 4.26, new Rotation2d(0.252))));
+            put("L1Right", new CommandToPos.Destination("L1Right", new Pose2d(3.48, 2.94, new Rotation2d(1.222))));
+
             put("Test", new CommandToPos.Destination("Test", new Pose2d(2.16, 3.9, new Rotation2d(0))));
         }};
+
 
         public static final HashMap<String, List<String>> tagDestinationMap = new HashMap<String, List<String>>() {{
             put("18", List.of("reefA", "reefB", "reefABDescore")); // blue
@@ -293,6 +310,28 @@ public class Constants {
 
     public static double slowDownWithElevator(double pos) {
         return pos * 0.8;
+    }
+
+    public static double supplyOuttakeSpeed(){
+
+        if(ScoringConstants.ScoringStage == Constants.ScoringStageVal.L1){
+                return 2;
+        }
+
+        else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L2){
+            return 8;
+        }
+
+        else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L3){
+            return 8;
+        }
+
+        else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L4){
+            return 8;
+        }
+        else{
+            return 8;
+        }
     }
 
     public class ScoringConstants

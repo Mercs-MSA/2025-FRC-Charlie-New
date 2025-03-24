@@ -15,8 +15,10 @@ public class CommandChangeScoreStage extends Command {
     
     @Override 
     public void initialize() {
+        // System.out.println("DEBUG: CommandChangeScoreStage::init");
         if(ScoringConstants.ScoringStage != ScoringStageVal.INTAKING){
             ScoringConstants.ScoringStage = target;
+            // System.out.println("DEBUG: CommandChangeScoreStage::init - Changed to" + this.target.toString());
         }
 
         // This is where you put stuff that happens right at the start of the command
@@ -30,6 +32,7 @@ public class CommandChangeScoreStage extends Command {
     @Override 
     public void end(boolean interrupted) {
         // This is where you put stuff that happens when the command ends
+        // System.out.println("DEBUG: CommandChangeScoreStage::end");
     }
 
     @Override 
