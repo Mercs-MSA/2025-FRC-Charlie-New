@@ -69,6 +69,7 @@ import frc.robot.subsystems.SensorSubsystems.LaserCANSub;
 import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
 import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
+import frc.robot.subsystems.Vision.Vision;
 import frc.robot.generated.TunerConstants;
 
 public class RobotContainer {
@@ -90,9 +91,6 @@ public class RobotContainer {
     public final CommandXboxController operator = new CommandXboxController(1);
 
     public final XboxController theRumblerTumbler = new XboxController(0); 
-
-
-
 
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
@@ -117,6 +115,8 @@ public class RobotContainer {
     public final CANdle_LED m_leds = new CANdle_LED();
 
     public final PowerDistribution m_pdh = new PowerDistribution();
+
+    public final Vision m_vision = new Vision(drivetrain, true, Vision.OrientationUpdateMethod.DRIVEBASE_UPDATE);
 
     private boolean laserScoreActive = false; 
 
