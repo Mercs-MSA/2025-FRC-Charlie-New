@@ -14,7 +14,7 @@ import com.ctre.phoenix.led.TwinkleAnimation.TwinklePercent;
 import com.ctre.phoenix.led.TwinkleOffAnimation.TwinkleOffPercent;
 
 public class CANdle_LED extends SubsystemBase {
-    private final CANdle m_candle = new CANdle(29, "rio");
+    // private final CANdle m_candle = new CANdle(29, "rio");
     private final int LedCount = 100; //lower number decreases cycle time interval
     // private XboxController joystick;
 
@@ -51,8 +51,8 @@ public class CANdle_LED extends SubsystemBase {
         configAll.stripType = LEDStripType.GRB;
         configAll.brightnessScalar = .3;
         configAll.vBatOutputMode = VBatOutputMode.Modulated;
-        m_candle.configAllSettings(configAll, 100);
-    }
+        // m_candle.configAllSettings(configAll, 100);
+    }   
 
     public void incrementAnimation() {
         switch(m_currentAnimation) {
@@ -89,14 +89,14 @@ public class CANdle_LED extends SubsystemBase {
     }
 
     /* Wrappers so we can access the CANdle from the subsystem */
-    public double getVbat() { return m_candle.getBusVoltage(); }
-    public double get5V() { return m_candle.get5VRailVoltage(); }
-    public double getCurrent() { return m_candle.getCurrent(); }
-    public double getTemperature() { return m_candle.getTemperature(); }
-    public void configBrightness(double percent) { m_candle.configBrightnessScalar(percent, 0); }
-    public void configLos(boolean disableWhenLos) { m_candle.configLOSBehavior(disableWhenLos, 0); }
-    public void configLedType(LEDStripType type) { m_candle.configLEDType(type, 0); }
-    public void configStatusLedBehavior(boolean offWhenActive) { m_candle.configStatusLedState(offWhenActive, 0); }
+    // public double getVbat() { return m_candle.getBusVoltage(); }
+    // public double get5V() { return m_candle.get5VRailVoltage(); }
+    // public double getCurrent() { return m_candle.getCurrent(); }
+    // public double getTemperature() { return m_candle.getTemperature(); }
+    // public void configBrightness(double percent) { m_candle.configBrightnessScalar(percent, 0); }
+    // public void configLos(boolean disableWhenLos) { m_candle.configLOSBehavior(disableWhenLos, 0); }
+    // public void configLedType(LEDStripType type) { m_candle.configLEDType(type, 0); }
+    // public void configStatusLedBehavior(boolean offWhenActive) { m_candle.configStatusLedState(offWhenActive, 0); }
 
     public void changeAnimation(AnimationTypes toChange) {
         isRunningCustom = false;
@@ -157,7 +157,7 @@ public class CANdle_LED extends SubsystemBase {
 
     public void stopAnim()
     {
-        m_candle.clearAnimation(0);
+        // m_candle.clearAnimation(0);
     }
 
     @Override
@@ -171,17 +171,17 @@ public class CANdle_LED extends SubsystemBase {
         //     m_candle.animate(m_toAnimate);
         // }
         // m_candle.modulateVBatOutput(joystick.getRightY());
-        m_candle.animate(m_toAnimate);
-        SmartDashboard.putNumber("MAX ANIMATION SLOTS", m_candle.getMaxSimultaneousAnimationCount());
+        // m_candle.animate(m_toAnimate);
+        // SmartDashboard.putNumber("MAX ANIMATION SLOTS", m_candle.getMaxSimultaneousAnimationCount());
     }  
     
     
     public void setLEDs(int startIndex, int interval, int[] color)
     {
-        for (int i = startIndex; i < LedCount; i += interval)
-        {
-            m_candle.setLEDs(color[0], color[1], color[2], 0, i, 1);
-        }
+        // for (int i = startIndex; i < LedCount; i += interval)
+        // {
+        //     m_candle.setLEDs(color[0], color[1], color[2], 0, i, 1);
+        // }
     }
 
 
