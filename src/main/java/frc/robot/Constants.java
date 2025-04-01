@@ -215,7 +215,7 @@ public class Constants {
     }
 
     public static Pose2d generateReefPose(String pole){
-         final double intakeOffset = 0.02;
+         final double intakeOffset = 0.0254;
          final double centerTagToPole = (0.35 / 2);
          List<Double> faceACoords = List.of(3.162, 4.022, 0.0);
          List<Double> faceBCoords = List.of(3.827, 2.884, 1.0472);
