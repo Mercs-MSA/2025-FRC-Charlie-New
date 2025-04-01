@@ -20,8 +20,8 @@ public class Constants {
         INTAKING(0, false, true, true),
 
         L1(0.9, true, false, false),
-        L2(1.73, true, false, false),
-        L3(3.18, true, false, false),
+        L2(1.76, true, false, false),
+        L3(3.21, true, false, false),
         L4(5.36, true, false, false),
         CLIMBING(0, false, true, false);
 
@@ -191,22 +191,7 @@ public class Constants {
 
     }
 
-    public static final class LaserCANConstants {
-        public static final int deviceID = 30;
-        
-        public static double L2L3Range = 1; // change
-
-        public static double L4Range = 1; //change
-
-
-
-    }
-
-    public static final class CANrangeConstants {
-        public static final int deviceID = 4;
-        public static double L2L3Range = 0.070; // change
-        public static double L4Range = 0.060; //change
-    }
+   
 
     public static final class FunnelBeambreakConstants {
         public static final boolean breakAttached = false;
@@ -230,8 +215,8 @@ public class Constants {
     }
 
     public static List<Double> generateReefPose(String pole){
-         final double intakeOffset = 0.06;
-         final double centerTagToPole = (0.3302 / 2);
+         final double intakeOffset = 0.02;
+         final double centerTagToPole = (0.35 / 2);
          List<Double> faceACoords = List.of(3.162, 4.022);
          List<Double> faceBCoords = List.of(3.827, 2.884);
          List<Double> faceCCoords = List.of(5.145, 2.880);
@@ -371,7 +356,9 @@ public class Constants {
             put("reefL", new CommandToPos.Destination("reefL", new Pose2d(generateReefPose("L").get(0), generateReefPose("L").get(1), new Rotation2d(-1.047))));
             put("reefKLDescore", new CommandToPos.Destination("reefKLDescore", new Pose2d(4.107, 5.391, new Rotation2d(-1.047))));
         
-            put("Source", new CommandToPos.Destination("Source", new Pose2d(1.067, 7.1, new Rotation2d(-0.939))));
+            put("SourceLeft", new CommandToPos.Destination("SourceLeft", new Pose2d(1.103, 7.1, new Rotation2d(-0.96))));
+            put("SourceRight", new CommandToPos.Destination("SourceRight", new Pose2d(1.0103, 0.926, new Rotation2d(0.96))));
+
             put("L1Left", new CommandToPos.Destination("L1Left", new Pose2d(3.05, 4.26, new Rotation2d(0.252))));
             put("L1Right", new CommandToPos.Destination("L1Right", new Pose2d(3.48, 2.94, new Rotation2d(1.222))));
 
@@ -388,8 +375,8 @@ public class Constants {
             put("6", List.of("reefK", "reefL", "reefKLDescore")); // red
             put("21", List.of("reefH", "reefG", "reefGHDescore")); // blue
             put("10", List.of("reefH", "reefG", "reefGHDescore")); // red
-            put("20", List.of("reefI", "reefJ", "reefIJDescore")); // blue
-            put("11", List.of("reefI", "reefJ", "reefIJDescore")); // red
+            put("20", List.of("reefJ", "reefI", "reefIJDescore")); // blue
+            put("11", List.of("reefJ", "reefI", "reefIJDescore")); // red
             put("22", List.of("reefF", "reefE", "reefEFDescore")); // blue
             put("9", List.of("reefF", "reefE", "reefEFDescore")); // red
         }};
@@ -428,11 +415,11 @@ public class Constants {
         }
 
         else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L2){
-            return 8;
+            return 6;
         }
 
         else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L3){
-            return 8;
+            return 6;
         }
 
         else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L4){

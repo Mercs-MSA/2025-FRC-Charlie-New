@@ -33,8 +33,6 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants.DriveToPosRuntime;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.LimelightHelpers.RawFiducial;
-import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
-import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
 import edu.wpi.first.util.datalog.BooleanLogEntry;
 import edu.wpi.first.util.datalog.DataLog;
 import edu.wpi.first.util.datalog.DoubleLogEntry;
@@ -43,7 +41,6 @@ import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 
 
-import au.grapplerobotics.CanBridge;
 
 public class Robot extends TimedRobot {
   
@@ -75,7 +72,6 @@ public class Robot extends TimedRobot {
   public Robot() {
 
     DataLogManager.start();
-    CanBridge.runTCP();
 
     DriverStation.startDataLog(DataLogManager.getLog());
 

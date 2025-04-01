@@ -31,7 +31,6 @@ import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.AlgaeCommands.AlgaePivotToPos;
 import frc.robot.commands.AlgaeCommands.AlgaeRollerVoltage;
 // import frc.robot.commands.*;
-import frc.robot.commands.CANdleCommands.CommandCandleSetAnimation;
 import frc.robot.commands.ClimberCommands.CommandClimbToggleDown;
 import frc.robot.commands.ClimberCommands.CommandClimbToggleUp;
 import frc.robot.commands.ClimberCommands.CommandClimberManual;
@@ -48,7 +47,6 @@ import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
 import frc.robot.commands.IntakeCommands.CommandIntakeStop;
-import frc.robot.commands.IntakeCommands.CommandLaserScore;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
 
@@ -62,11 +60,8 @@ import frc.robot.subsystems.Mechanisms.Climber.Climber;
 import frc.robot.subsystems.Mechanisms.Elevator.Elevator;
 import frc.robot.subsystems.Mechanisms.Funnel.FunnelPivot;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
-import frc.robot.subsystems.SensorSubsystems.CANdle_LED;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
-import frc.robot.subsystems.SensorSubsystems.LaserCANSub;
 
-import frc.robot.subsystems.SensorSubsystems.CANdle_LED.AnimationTypes;
 import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
 import frc.robot.generated.TunerConstants;
@@ -114,7 +109,6 @@ public class RobotContainer {
 
     public final FunnelPivot m_FunnelPivot = new FunnelPivot(true);
 
-    public final CANdle_LED m_leds = new CANdle_LED();
 
     public final PowerDistribution m_pdh = new PowerDistribution();
 
@@ -198,9 +192,6 @@ public class RobotContainer {
                 new CommandChangeScoreStage(ScoringStageVal.INTAKEREADY),
                 new CommandFunnelPivotToPos(Constants.FunnelPivotConstants.posUp)
             ));
-
-
-    
     
             
             put("Reset All", new ParallelCommandGroup(
@@ -225,15 +216,14 @@ public class RobotContainer {
         : stream
         );
 
-        autoChooser.setDefaultOption("Do Nothing", AutoBuilder.buildAuto("Do Nothing")); // delete if it doesn't work
+        autoChooser.setDefaultOption("CompDoNothing", AutoBuilder.buildAuto("CompDoNothing")); // delete if it doesn't work
         SmartDashboard.putData("Auto Chooser", autoChooser);
 
         Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
 
 
         intakeBreakTrigger.onTrue(new ParallelCommandGroup(
-            new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak), 
-            new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire)));
+            new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak)));
 
 
 
@@ -291,12 +281,11 @@ public class RobotContainer {
             
 
             driver.rightTrigger(0.5).onTrue(new SequentialCommandGroup(
-                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants.supplyOuttakeSpeed()),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire)));
+                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants::supplyOuttakeSpeed)));
 
-            driver.a().onTrue(new SequentialCommandGroup(
-                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants.supplyOuttakeSpeed()),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeRed)));
+            // driver.a().onTrue(new SequentialCommandGroup(
+            //     new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants.supplyOuttakeSpeed()),
+            //     new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeRed)));
 
             
     
@@ -307,28 +296,22 @@ public class RobotContainer {
 
             driver.y().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldCentric())); //Seed
 
-            driver.back().whileTrue(new CommandSetDriveToPos("Source").andThen(new CommandToPos(drivetrain)));
+            driver.x().whileTrue(new CommandSetDriveToPos("SourceLeft").andThen(new CommandToPos(drivetrain)));
+            driver.b().whileTrue(new CommandSetDriveToPos("SourceRight").andThen(new CommandToPos(drivetrain)));
 
 
-            driver.x().whileTrue(new CommandSetDriveToPos("L1Left").andThen(new CommandToPos(drivetrain)));
-            driver.b().whileTrue(new CommandSetDriveToPos("L1Right").andThen(new CommandToPos(drivetrain)));
-
-
-
-
+            driver.start().whileTrue(new CommandSetDriveToPos("L1Left").andThen(new CommandToPos(drivetrain)));
+            driver.a().whileTrue(new CommandSetDriveToPos("L1Right").andThen(new CommandToPos(drivetrain)));
 
 
             driver.leftBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(0))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.RgbFade))));
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+                )));
 
 
-            driver.leftBumper().onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire));
 
-            driver.rightBumper().onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire));
 
-            driver.leftTrigger().onFalse(new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.Fire));
 
 
 
@@ -336,23 +319,22 @@ public class RobotContainer {
 
             driver.rightBumper().whileTrue((new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(1))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.RgbFade)
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
+
                 )));
 
             driver.leftTrigger().whileTrue((
                 new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(2))).andThen(new ParallelCommandGroup (
-                new CommandToPos(drivetrain),
-                new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.RgbFade)
+                new CommandToPos(drivetrain)
                 )));
 
-            driver.rightStick().onTrue(new SequentialCommandGroup(
-                    new CommandChangeScoreStage(ScoringStageVal.L1),
-                    new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                    new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
-                    new WaitCommand(.05),
-                    new CommandL1ScorePos(m_Elevator)
-                ));
+            // driver.rightStick().onTrue(new SequentialCommandGroup(
+            //         new CommandChangeScoreStage(ScoringStageVal.L1),
+            //         new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+            //         new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, ),
+            //         new WaitCommand(.05),
+            //         new CommandL1ScorePos(m_Elevator)
+            //     ));
 
 
           
@@ -369,13 +351,19 @@ public class RobotContainer {
             //     new CommandL1ScorePos(m_Elevator)
             // ));
 
+            // operator.pov(180).onTrue(new SequentialCommandGroup(
+            //     new CommandChangeScoreStage(ScoringStageVal.L1),
+            //     new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+            //     new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
+            //     new WaitCommand(.05),
+            //     new CommandL1ScorePos(m_Elevator)
+            // ));
+
             operator.pov(180).onTrue(new SequentialCommandGroup(
-                new CommandChangeScoreStage(ScoringStageVal.L1),
-                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-                new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
-                new WaitCommand(.05),
-                new CommandL1ScorePos(m_Elevator)
-            ));
+                new AlgaePivotToPos(m_AlgaePivot, 17), 
+                new WaitCommand(2),
+                new AlgaeRollerVoltage(m_AlgaeRoller, -1))
+            );
 
             operator.pov(270).onTrue(new SequentialCommandGroup(
                 new CommandChangeScoreStage(ScoringStageVal.L2)
@@ -410,7 +398,8 @@ public class RobotContainer {
             //     new CommandClimberManual(m_Climber, m_FunnelPivot, operator.getLeftX()
             //     )));
                 
-    
+            operator.leftStick().onTrue(new AlgaeRollerVoltage(m_AlgaeRoller, 0));
+
 
             operator.rightStick().onTrue(new CommandFunnelToggle(m_FunnelPivot, m_Climber));
 

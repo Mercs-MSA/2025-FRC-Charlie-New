@@ -47,7 +47,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Funnel up",
+      "name": "MoveFunnel",
       "waypointRelativePos": 0.11443494776828118,
       "endWaypointRelativePos": null,
       "command": {
