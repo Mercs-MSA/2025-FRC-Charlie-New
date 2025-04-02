@@ -1,5 +1,7 @@
 package frc.robot.commands.IntakeCommands;
 
+import java.util.function.DoubleSupplier;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Mechanisms.Intake.IntakeFlywheels;
 import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
@@ -7,9 +9,9 @@ public class CommandIntakeOut extends Command {
     private final IntakeFlywheels m_intakeFlywheels;
     private final IntakeBeambreak m_breambreak;
 
-    private double voltage;
+    private DoubleSupplier voltage;
 
-    public CommandIntakeOut(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_beambreak, double voltage) {
+    public CommandIntakeOut(IntakeFlywheels m_intakeFlywheels, IntakeBeambreak m_beambreak, DoubleSupplier voltage) {
         this.voltage = voltage;
         this.m_breambreak = m_beambreak;
         this.m_intakeFlywheels = m_intakeFlywheels;
@@ -19,7 +21,7 @@ public class CommandIntakeOut extends Command {
     @Override 
     public void initialize() {
         // This is where you put stuff that happens right at the start of the command
-        m_intakeFlywheels.applyVoltage(voltage);
+        m_intakeFlywheels.applyVoltage(voltage.getAsDouble());
     }
 
     @Override 
