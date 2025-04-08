@@ -88,6 +88,7 @@ public class CommandToPos extends Command {
       return;
     }
     this.target = Constants.DriveToPoseConstants.positions.get(Constants.DriveToPosRuntime.target);
+    Constants.DriveToPosRuntime.dest = target.destPose;
 
     if (this.target == null) {
       return;

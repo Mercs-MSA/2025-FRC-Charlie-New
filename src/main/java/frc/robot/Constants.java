@@ -417,6 +417,8 @@ public class Constants {
             put("9", List.of("reefF", "reefE", "reefEFDescore")); // red
         }};
 
+        public static final double rumbleTolerance = 0.05;
+
         // public static final TreeMap<String, Integer> leftTagNames = new TreeMap<>() {{
         //     put("reefC", 17);
         //     put("reefA", 18);
@@ -473,6 +475,7 @@ public class Constants {
 
     public class DriveToPosRuntime {
         public static String target = null;
+        public static Pose2d dest = null;
         public static List<String> autoTargets = new ArrayList<String>(3) {{
             add("");
             add("");
