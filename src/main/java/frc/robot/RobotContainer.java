@@ -51,6 +51,7 @@ import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
 
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
+import frc.robot.commands.RumbleCommand.CommandRumble;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
@@ -110,11 +111,6 @@ public class RobotContainer {
 
 
     public final PowerDistribution m_pdh = new PowerDistribution();
-
-    private boolean laserScoreActive = false; 
-
-    private Command laserScoreCommand;
-
 
 
 
@@ -223,6 +219,7 @@ public class RobotContainer {
 
         intakeBreakTrigger.onTrue(new ParallelCommandGroup(
             new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak)));
+        intakeBreakTrigger.onTrue(new SequentialCommandGroup(new CommandRumble(0.6, theRumblerTumbler), new WaitCommand(0.375), new CommandRumble(0.0, theRumblerTumbler)));
 
 
 
