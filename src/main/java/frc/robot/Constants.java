@@ -227,6 +227,8 @@ public class Constants {
          if(pole == "A") {
             List<Double> CenterA = List.of(faceACoords.get(0), faceACoords.get(1) + intakeOffset);
             List<Double> ACoords = List.of(CenterA.get(0), CenterA.get(1)+ centerTagToPole);
+            System.out.println(ACoords.get(0).toString() + " " + ACoords.get(1).toString() + "A");
+
             return new Pose2d(ACoords.get(0), ACoords.get(1), new Rotation2d(faceACoords.get(2)));
          }
 
@@ -286,18 +288,23 @@ public class Constants {
          else if(pole == "J"){
             List<Double> CenterJ = List.of(faceECoords.get(0) + (intakeOffset * Math.sqrt(3)), faceECoords.get(1) - (intakeOffset / 2));
             List<Double> JCoords = List.of(CenterJ.get(0) - ((centerTagToPole / 2) * Math.sqrt(3)), CenterJ.get(1) + (centerTagToPole/ 2));
+            System.out.println(JCoords.get(0).toString() + " " + JCoords.get(1).toString() + "J");
             return new Pose2d(JCoords.get(0), JCoords.get(1), new Rotation2d(faceECoords.get(2)));
          }
 
          else if(pole == "K"){
             List<Double> CenterK = List.of(faceFCoords.get(0) + (intakeOffset * Math.sqrt(3)), faceFCoords.get(1) + (intakeOffset / 2));
             List<Double> KCoords = List.of(CenterK.get(0) + ((centerTagToPole / 2) * Math.sqrt(3)), CenterK.get(1) + (centerTagToPole/ 2));
+            System.out.println(KCoords.get(0).toString() + " " + KCoords.get(1).toString() + "K");
+
             return new Pose2d(KCoords.get(0), KCoords.get(1), new Rotation2d(faceFCoords.get(2)));
          }
 
          else if(pole == "L"){
             List<Double> CenterL = List.of(faceFCoords.get(0) + (intakeOffset * Math.sqrt(3)), faceFCoords.get(1) + (intakeOffset / 2));
             List<Double> LCoords = List.of(CenterL.get(0) - ((centerTagToPole / 2) * Math.sqrt(3)), CenterL.get(1) - (centerTagToPole/ 2));
+            System.out.println(LCoords.get(0).toString() +" " + LCoords.get(1).toString() + "L");
+
             return new Pose2d(LCoords.get(0), LCoords.get(1), new Rotation2d(faceFCoords.get(2)));
          }
 

@@ -27,12 +27,6 @@
           "data": {
             "pathName": "BA-humanPickup2"
           }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "BA-FinalScore"
-          }
         }
       ]
     }

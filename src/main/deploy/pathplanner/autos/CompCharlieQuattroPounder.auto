@@ -67,12 +67,6 @@
         {
           "type": "named",
           "data": {
-            "name": "Score"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
             "name": "ELEVIntakePos"
           }
         },
