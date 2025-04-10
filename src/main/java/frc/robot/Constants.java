@@ -310,7 +310,7 @@ public class Constants {
     public static final class DriveToPoseConstants {
         public static final double angularDegreesTolerance = 0.3;
         public static final double linearMetersTolerance = 0.01;
-        public static final double linearMetersMaxVel = 3.5;
+        public static final double linearMetersMaxVel = 5.5; 
         public static final double linearMetersMaxAccel = 20.0;
 
 
