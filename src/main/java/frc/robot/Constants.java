@@ -456,7 +456,7 @@ public class Constants {
     public static double supplyOuttakeSpeed(){
 
         if(ScoringConstants.ScoringStage == Constants.ScoringStageVal.L1){
-                return 2;
+                return 1.75;
         }
 
         else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L2){

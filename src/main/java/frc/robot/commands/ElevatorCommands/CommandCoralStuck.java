@@ -29,7 +29,7 @@ public class CommandCoralStuck extends Command {
 
         
 
-            m_Elevator.elevatorToPos(1.05);
+            m_Elevator.elevatorToPos(1.5);
 
             
         

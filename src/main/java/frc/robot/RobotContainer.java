@@ -47,6 +47,7 @@ import frc.robot.commands.FunnelCommands.CommandFunnelToggle;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
+import frc.robot.commands.IntakeCommands.CommandIntakeOutCopy;
 import frc.robot.commands.IntakeCommands.CommandIntakeStop;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
@@ -227,7 +228,7 @@ public class RobotContainer {
         : stream
         );
 
-        autoChooser.setDefaultOption("CompDoNothing", AutoBuilder.buildAuto("CompDoNothing")); // delete if it doesn't work
+        autoChooser.setDefaultOption("CompFriesInBag", AutoBuilder.buildAuto("CompFriesInBag")); // delete if it doesn't work
         SmartDashboard.putData("Auto Chooser", autoChooser);
 
         Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
@@ -344,13 +345,7 @@ public class RobotContainer {
                 new CommandToPos(drivetrain)
                 )));
 
-            // driver.rightStick().onTrue(new SequentialCommandGroup(
-            //         new CommandChangeScoreStage(ScoringStageVal.L1),
-            //         new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-            //         new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, ),
-            //         new WaitCommand(.05),
-            //         new CommandL1ScorePos(m_Elevator)
-            //     ));
+        
 
 
           
@@ -376,10 +371,13 @@ public class RobotContainer {
             // ));
 
             operator.pov(180).onTrue(new SequentialCommandGroup(
-                new AlgaePivotToPos(m_AlgaePivot, 17), 
-                new WaitCommand(2),
-                new AlgaeRollerVoltage(m_AlgaeRoller, -1))
-            );
+                new CommandChangeScoreStage(ScoringStageVal.L1),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new WaitCommand(0.5),
+                new CommandIntakeOutCopy(m_IntakeFlywheels, m_intakeBeamBreak, Constants::supplyOuttakeSpeed),
+                new WaitCommand(0.5),
+                new CommandL1ScorePos(m_Elevator)
+            ));
 
             operator.pov(270).onTrue(new SequentialCommandGroup(
                 new CommandChangeScoreStage(ScoringStageVal.L2)

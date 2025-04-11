@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.806,
-        "y": 3.858
+        "x": 2.913,
+        "y": 0.732
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.437397540983607,
-        "y": 7.2197233606557365
+        "x": 2.3016276272893093,
+        "y": 0.8682546431718638
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.913,
-        "y": 7.267674180327869
+        "x": 1.439,
+        "y": 0.668
       },
       "prevControl": {
-        "x": 6.041803278688524,
-        "y": 7.135809426229507
+        "x": 1.9544715931841319,
+        "y": 0.8402143207266847
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,7 +31,19 @@
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Auto Intake Collect",
+      "waypointRelativePos": 0.22079772079771795,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Auto Intake Collect"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.7,
     "maxAcceleration": 3.4,
@@ -42,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": -55.0
+    "rotation": 55.0
   },
   "reversed": false,
   "folder": "BA",
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": 180.0
+    "rotation": 55.0
   },
   "useDefaultConstraints": true
 }

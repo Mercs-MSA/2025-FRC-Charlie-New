@@ -29,7 +29,7 @@ public class CommandL1ScorePos extends Command {
 
         
 
-            m_Elevator.elevatorToPos(1.15);
+            m_Elevator.elevatorToPos(1.5);
 
             
         
