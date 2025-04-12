@@ -87,6 +87,35 @@ public class Constants {
 
     }
 
+    public static final class Elevator1L1Constants{
+        public static final int id = 14;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 10; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 0;
+      
+
+        public static final double tol = 0.4;
+    }
+
+    public static final class Elevator2L1Constants{
+        public static final int id = 19;
+
+
+
+
+    }
+
+    
+
+
+
  
 
     public static final class ClimberConstants{

@@ -53,9 +53,9 @@
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "Auto Intake Collect"
+            "waitTime": 0.1
           }
         },
         {
