@@ -7,67 +7,73 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-Preload"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RightChezRCQP-Reef-i-ToStation"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Auto Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RightChezRCQP-StationToReefK"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-ReefKtoStation"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Auto Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-StationToReefL"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-ReefLtoStation"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Auto Intake Collect"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "RCQP-StationToReefA-2"
+            "pathName": "BA-preloadScore"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ELEVIntakePos"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BA-humanPickup1"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BA-pickupScore1-2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Auto Intake Collect"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BA-pickupScore1"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Score"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
           }
         },
         {
@@ -79,7 +85,7 @@
       ]
     }
   },
-  "resetOdom": false,
-  "folder": "Untested",
+  "resetOdom": true,
+  "folder": "Competition Autos",
   "choreoAuto": false
 }

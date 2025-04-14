@@ -7,13 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-Preload"
+            "pathName": "CQP-Preload"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-Reef-i-ToStation"
+            "pathName": "CQP-Reef-i-ToStation"
           }
         },
         {
@@ -25,13 +25,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-StationToReefK"
+            "pathName": "CQP-StationToReefK"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-ReefKtoStation"
+            "pathName": "CQP-ReefKtoStation"
           }
         },
         {
@@ -43,37 +43,37 @@
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-StationToReefL"
+            "pathName": "CQP-StationToReefL"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-ReefLtoStation"
+            "pathName": "CQP-ReefLtoStation"
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "Auto Intake Collect"
+            "waitTime": 0.1
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "RCQP-StationToReefA-2"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Score"
+            "pathName": "CQP-StationToReefA-2"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "ELEVIntakePos"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         }
       ]

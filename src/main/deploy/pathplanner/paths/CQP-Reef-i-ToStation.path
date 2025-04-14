@@ -3,24 +3,24 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.016,
-        "y": 5.283
+        "x": 5.071,
+        "y": 5.266
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.846806658781066,
-        "y": 5.870106986236047
+        "x": 4.901806658781066,
+        "y": 5.853106986236047
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.067,
+        "x": 1.01,
         "y": 7.1
       },
       "prevControl": {
-        "x": 3.125161369249846,
+        "x": 3.0681613692498457,
         "y": 6.125528974093832
       },
       "nextControl": null,
@@ -63,7 +63,7 @@
       }
     },
     {
-      "name": "Intake Collect",
+      "name": "Auto Intake Collect",
       "waypointRelativePos": 0.6971553156146176,
       "endWaypointRelativePos": null,
       "command": {
@@ -76,10 +76,10 @@
   ],
   "globalConstraints": {
     "maxVelocity": 5.7,
-    "maxAcceleration": 3.4,
+    "maxAcceleration": 3.6,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
-    "nominalVoltage": 12.3,
+    "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
@@ -92,5 +92,5 @@
     "velocity": 0.25,
     "rotation": -120.27845295814578
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

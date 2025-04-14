@@ -14,6 +14,7 @@ import com.ctre.phoenix6.swerve.SwerveRequest;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -46,12 +47,15 @@ import frc.robot.commands.FunnelCommands.CommandFunnelToggle;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollect;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeOut;
+import frc.robot.commands.IntakeCommands.CommandIntakeOutCopy;
 import frc.robot.commands.IntakeCommands.CommandIntakeStop;
 import frc.robot.commands.IntakeCommands.CommandScoreAuto;
 import frc.robot.commands.IntakeCommands.CommandIntakeCollectNoFunnel;
 
 import frc.robot.commands.IntakeCommands.CommandWaitUntilIntakeBreak;
+import frc.robot.commands.RumbleCommand.CommandRumble;
 import frc.robot.commands.ScoringModeCommands.CommandChangeScoreStage;
+import frc.robot.Constants.DriveToPoseConstants;
 import frc.robot.Constants.ScoringStageVal;
 import frc.robot.subsystems.Mechanisms.AlgaePivot.AlgaePivot;
 import frc.robot.subsystems.Mechanisms.AlgaeRoller.AlgaeRoller;
@@ -110,11 +114,6 @@ public class RobotContainer {
 
 
     public final PowerDistribution m_pdh = new PowerDistribution();
-
-    private boolean laserScoreActive = false; 
-
-    private Command laserScoreCommand;
-
 
 
 
@@ -200,6 +199,20 @@ public class RobotContainer {
         }
         
     };
+
+    public double getTargetDist() {
+        Pose2d curr = drivetrain.getState().Pose;
+        Pose2d dest = Constants.DriveToPosRuntime.dest;
+
+        if (curr == null || dest == null) {
+            return 99999;
+        }
+
+        double ac = Math.abs(dest.getY() - curr.getY());
+        double cb = Math.abs(dest.getX() - curr.getX());
+        return Math.hypot(ac, cb);
+    }
+
     public RobotContainer() {
         boolean isCompetition = true; //Change to true at comp
 
@@ -215,17 +228,20 @@ public class RobotContainer {
         : stream
         );
 
-        autoChooser.setDefaultOption("CompDoNothing", AutoBuilder.buildAuto("CompDoNothing")); // delete if it doesn't work
+        autoChooser.setDefaultOption("CompFriesInBag", AutoBuilder.buildAuto("CompFriesInBag")); // delete if it doesn't work
         SmartDashboard.putData("Auto Chooser", autoChooser);
 
         Trigger intakeBreakTrigger = new Trigger(m_intakeBeamBreak::checkBreak);
+        Trigger driveToPosRumblerTumbler = new Trigger(() -> (getTargetDist() < Constants.DriveToPoseConstants.rumbleTolerance));
 
 
         intakeBreakTrigger.onTrue(new ParallelCommandGroup(
             new CommandIntakeStop(m_IntakeFlywheels, m_intakeBeamBreak)));
+        intakeBreakTrigger.onTrue(new SequentialCommandGroup(new CommandRumble(0.6, theRumblerTumbler), new WaitCommand(0.375), new CommandRumble(0.0, theRumblerTumbler)));
 
 
-
+        driveToPosRumblerTumbler.onTrue(new CommandRumble(0.9, theRumblerTumbler));
+        driveToPosRumblerTumbler.onFalse(new CommandRumble(0, theRumblerTumbler));
   
 
 
@@ -307,6 +323,7 @@ public class RobotContainer {
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 )));
+            driver.leftBumper().onFalse(new CommandRumble(0.0, theRumblerTumbler));
 
 
 
@@ -321,19 +338,14 @@ public class RobotContainer {
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
 
                 )));
+            driver.rightBumper().onFalse(new CommandRumble(0.0, theRumblerTumbler)); 
 
             driver.leftTrigger().whileTrue((
                 new CommandLoadDriveToPos(() -> Constants.DriveToPosRuntime.autoTargets.get(2))).andThen(new ParallelCommandGroup (
                 new CommandToPos(drivetrain)
                 )));
 
-            // driver.rightStick().onTrue(new SequentialCommandGroup(
-            //         new CommandChangeScoreStage(ScoringStageVal.L1),
-            //         new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-            //         new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, ),
-            //         new WaitCommand(.05),
-            //         new CommandL1ScorePos(m_Elevator)
-            //     ));
+        
 
 
           
@@ -359,10 +371,13 @@ public class RobotContainer {
             // ));
 
             operator.pov(180).onTrue(new SequentialCommandGroup(
-                new AlgaePivotToPos(m_AlgaePivot, 17), 
-                new WaitCommand(2),
-                new AlgaeRollerVoltage(m_AlgaeRoller, -1))
-            );
+                new CommandChangeScoreStage(ScoringStageVal.L1),
+                new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
+                new WaitCommand(0.5),
+                new CommandIntakeOutCopy(m_IntakeFlywheels, m_intakeBeamBreak, Constants::supplyOuttakeSpeed),
+                new WaitCommand(0.5),
+                new CommandL1ScorePos(m_Elevator)
+            ));
 
             operator.pov(270).onTrue(new SequentialCommandGroup(
                 new CommandChangeScoreStage(ScoringStageVal.L2)

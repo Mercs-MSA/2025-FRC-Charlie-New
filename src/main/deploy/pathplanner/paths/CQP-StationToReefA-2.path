@@ -3,12 +3,12 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.067,
+        "x": 1.01,
         "y": 7.1
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.073872950819672,
+        "x": 2.016872950819672,
         "y": 5.613370901639343
       },
       "isLocked": false,
@@ -16,41 +16,47 @@
     },
     {
       "anchor": {
-        "x": 3.198,
-        "y": 4.207
+        "x": 3.178,
+        "y": 4.2
       },
       "prevControl": {
-        "x": 2.505430327868852,
-        "y": 5.013985655737705
+        "x": 2.3892708475562903,
+        "y": 4.2
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.6302220394736844,
-      "rotationDegrees": 0.0
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.803893637226971,
+      "minWaypointRelativePos": 0.8494776828110178,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 2.0,
-        "maxAcceleration": 2.25,
+        "maxVelocity": 5.7,
+        "maxAcceleration": 2.5,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
+        "nominalVoltage": 13.0,
         "unlimited": false
       }
     }
   ],
   "pointTowardsZones": [],
   "eventMarkers": [
+    {
+      "name": "Intake Collect",
+      "waypointRelativePos": 0.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Intake Collect"
+        }
+      }
+    },
     {
       "name": "L2",
       "waypointRelativePos": 0.5322886989553651,
@@ -61,6 +67,17 @@
           "name": "L2"
         }
       }
+    },
+    {
+      "name": "Score",
+      "waypointRelativePos": 0.9216524216524186,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "Score"
+        }
+      }
     }
   ],
   "globalConstraints": {
@@ -68,7 +85,7 @@
     "maxAcceleration": 3.4,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
-    "nominalVoltage": 12.3,
+    "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
@@ -78,8 +95,8 @@
   "reversed": false,
   "folder": "CQP",
   "idealStartingState": {
-    "velocity": 0.0,
+    "velocity": 0.25,
     "rotation": -53.966
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

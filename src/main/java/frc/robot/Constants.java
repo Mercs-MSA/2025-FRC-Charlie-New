@@ -87,6 +87,35 @@ public class Constants {
 
     }
 
+    public static final class Elevator1L1Constants{
+        public static final int id = 14;
+
+        public static final boolean attached = true;
+
+        public static final double kP = 10; 
+        public static final double kS = 0; 
+        public static final double kV = 0; 
+
+
+
+        public static final double voltageOut = 0;
+      
+
+        public static final double tol = 0.4;
+    }
+
+    public static final class Elevator2L1Constants{
+        public static final int id = 19;
+
+
+
+
+    }
+
+    
+
+
+
  
 
     public static final class ClimberConstants{
@@ -227,6 +256,8 @@ public class Constants {
          if(pole == "A") {
             List<Double> CenterA = List.of(faceACoords.get(0), faceACoords.get(1) + intakeOffset);
             List<Double> ACoords = List.of(CenterA.get(0), CenterA.get(1)+ centerTagToPole);
+            System.out.println(ACoords.get(0).toString() + " " + ACoords.get(1).toString() + "A");
+
             return new Pose2d(ACoords.get(0), ACoords.get(1), new Rotation2d(faceACoords.get(2)));
          }
 
@@ -286,18 +317,23 @@ public class Constants {
          else if(pole == "J"){
             List<Double> CenterJ = List.of(faceECoords.get(0) + (intakeOffset * Math.sqrt(3)), faceECoords.get(1) - (intakeOffset / 2));
             List<Double> JCoords = List.of(CenterJ.get(0) - ((centerTagToPole / 2) * Math.sqrt(3)), CenterJ.get(1) + (centerTagToPole/ 2));
+            System.out.println(JCoords.get(0).toString() + " " + JCoords.get(1).toString() + "J");
             return new Pose2d(JCoords.get(0), JCoords.get(1), new Rotation2d(faceECoords.get(2)));
          }
 
          else if(pole == "K"){
             List<Double> CenterK = List.of(faceFCoords.get(0) + (intakeOffset * Math.sqrt(3)), faceFCoords.get(1) + (intakeOffset / 2));
             List<Double> KCoords = List.of(CenterK.get(0) + ((centerTagToPole / 2) * Math.sqrt(3)), CenterK.get(1) + (centerTagToPole/ 2));
+            System.out.println(KCoords.get(0).toString() + " " + KCoords.get(1).toString() + "K");
+
             return new Pose2d(KCoords.get(0), KCoords.get(1), new Rotation2d(faceFCoords.get(2)));
          }
 
          else if(pole == "L"){
             List<Double> CenterL = List.of(faceFCoords.get(0) + (intakeOffset * Math.sqrt(3)), faceFCoords.get(1) + (intakeOffset / 2));
             List<Double> LCoords = List.of(CenterL.get(0) - ((centerTagToPole / 2) * Math.sqrt(3)), CenterL.get(1) - (centerTagToPole/ 2));
+            System.out.println(LCoords.get(0).toString() +" " + LCoords.get(1).toString() + "L");
+
             return new Pose2d(LCoords.get(0), LCoords.get(1), new Rotation2d(faceFCoords.get(2)));
          }
 
@@ -310,7 +346,7 @@ public class Constants {
     public static final class DriveToPoseConstants {
         public static final double angularDegreesTolerance = 0.3;
         public static final double linearMetersTolerance = 0.01;
-        public static final double linearMetersMaxVel = 3.5;
+        public static final double linearMetersMaxVel = 5.5; 
         public static final double linearMetersMaxAccel = 20.0;
 
 
@@ -417,6 +453,8 @@ public class Constants {
             put("9", List.of("reefF", "reefE", "reefEFDescore")); // red
         }};
 
+        public static final double rumbleTolerance = 0.05;
+
         // public static final TreeMap<String, Integer> leftTagNames = new TreeMap<>() {{
         //     put("reefC", 17);
         //     put("reefA", 18);
@@ -447,7 +485,7 @@ public class Constants {
     public static double supplyOuttakeSpeed(){
 
         if(ScoringConstants.ScoringStage == Constants.ScoringStageVal.L1){
-                return 2;
+                return 1.75;
         }
 
         else if (ScoringConstants.ScoringStage == Constants.ScoringStageVal.L2){
@@ -473,6 +511,7 @@ public class Constants {
 
     public class DriveToPosRuntime {
         public static String target = null;
+        public static Pose2d dest = null;
         public static List<String> autoTargets = new ArrayList<String>(3) {{
             add("");
             add("");

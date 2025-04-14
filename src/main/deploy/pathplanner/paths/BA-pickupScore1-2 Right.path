@@ -3,62 +3,43 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.439,
-        "y": 7.332
+        "x": 3.728,
+        "y": 0.684
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.58125,
-        "y": 7.4594774590163935
+        "x": 3.1166276272893096,
+        "y": 0.8202546431718639
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.75,
-        "y": 4.16
+        "x": 1.439,
+        "y": 0.668
       },
       "prevControl": {
-        "x": 7.4084016393442615,
-        "y": 4.475288513326534
+        "x": 1.9544715931841319,
+        "y": 0.8402143207266847
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.4210315873650535,
-      "rotationDegrees": 180.0
-    }
-  ],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5664767331434019,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 2.5,
-        "maxAcceleration": 2.4,
-        "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 720.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "rotationTargets": [],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "L4",
-      "waypointRelativePos": 0.5360873694207026,
+      "name": "Auto Intake Collect",
+      "waypointRelativePos": 0.22079772079771795,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "L4"
+          "name": "Auto Intake Collect"
         }
       }
     }
@@ -73,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0.0,
-    "rotation": 180.0
+    "rotation": 55.0
   },
   "reversed": false,
   "folder": "BA",
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": -53.966
+    "rotation": 55.0
   },
   "useDefaultConstraints": true
 }
