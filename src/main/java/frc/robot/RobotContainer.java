@@ -38,6 +38,7 @@ import frc.robot.commands.ClimberCommands.CommandClimberManual;
 import frc.robot.commands.DriveToPosCommands.AutoSeed;
 import frc.robot.commands.DriveToPosCommands.CommandLoadDriveToPos;
 import frc.robot.commands.DriveToPosCommands.CommandSetDriveToPos;
+import frc.robot.commands.DriveToPosCommands.CommandTagAlign;
 import frc.robot.commands.DriveToPosCommands.CommandToPos;
 import frc.robot.commands.ElevatorCommands.CommandCoralStuck;
 import frc.robot.commands.ElevatorCommands.CommandElevatorToStage;
@@ -67,6 +68,7 @@ import frc.robot.subsystems.SensorSubsystems.IntakeBeambreak;
 
 import frc.robot.subsystems.SensorSubsystems.FunnelBeambreak;
 import frc.robot.subsystems.Swerve.CommandSwerveDrivetrain;
+import frc.robot.subsystems.Vision.ApriltagLimelightVision;
 import frc.robot.generated.TunerConstants;
 
 public class RobotContainer {
@@ -114,6 +116,9 @@ public class RobotContainer {
 
 
     public final PowerDistribution m_pdh = new PowerDistribution();
+
+    public ApriltagLimelightVision apriltagVision = new ApriltagLimelightVision(this);
+
 
 
 
@@ -298,10 +303,7 @@ public class RobotContainer {
             driver.rightTrigger(0.5).onTrue(new SequentialCommandGroup(
                 new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants::supplyOuttakeSpeed)));
 
-            // driver.a().onTrue(new SequentialCommandGroup(
-            //     new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, Constants.supplyOuttakeSpeed()),
-            //     new CommandCandleSetAnimation(m_leds, CANdle_LED.AnimationTypes.StrobeRed)));
-
+         
             
     
       
@@ -323,12 +325,13 @@ public class RobotContainer {
                 new CommandToPos(drivetrain),
                 new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator)
                 )));
+                
             driver.leftBumper().onFalse(new CommandRumble(0.0, theRumblerTumbler));
 
 
 
 
-
+            driver.leftStick().onTrue(new CommandTagAlign(drivetrain, MaxAngularRate,() -> driver.getLeftX(),() -> driver.getLeftY(), m_Elevator, driver.rightStick())); // Align to AprilTag
 
 
 
@@ -354,21 +357,6 @@ public class RobotContainer {
         public void operatorControls(){
 
 
-            // operator.pov(180).onTrue(new SequentialCommandGroup(
-            //     new CommandChangeScoreStage(ScoringStageVal.L1),
-            //     new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-            //     new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
-            //     new WaitCommand(.05),
-            //     new CommandL1ScorePos(m_Elevator)
-            // ));
-
-            // operator.pov(180).onTrue(new SequentialCommandGroup(
-            //     new CommandChangeScoreStage(ScoringStageVal.L1),
-            //     new CommandElevatorToStage(m_intakeBeamBreak, m_Elevator),
-            //     new CommandIntakeOut(m_IntakeFlywheels, m_intakeBeamBreak, 6),
-            //     new WaitCommand(.05),
-            //     new CommandL1ScorePos(m_Elevator)
-            // ));
 
             operator.pov(180).onTrue(new SequentialCommandGroup(
                 new CommandChangeScoreStage(ScoringStageVal.L1),
