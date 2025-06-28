@@ -67,7 +67,7 @@ public class Constants {
 
         public static final boolean attached = true;
 
-        public static final double kP = 15; 
+        public static final double kP = 3; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
@@ -146,8 +146,8 @@ public class Constants {
 
 
     public static final class elevatorMMConstants{
-        public static final double acceleration = 100;
-        public static final double speed = 150;
+        public static final double acceleration = 50;
+        public static final double speed = 50;
         public static final double jerk = 0;
 
     }
@@ -161,7 +161,7 @@ public class Constants {
         public static final boolean attached = true;
 
 
-        public static final double kP = 100; 
+        public static final double kP = 10; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 
@@ -175,7 +175,7 @@ public class Constants {
         public static final boolean attached = true;
 
 
-        public static final double kP = 1; 
+        public static final double kP = 0.1; 
         public static final double kS = 0; 
         public static final double kV = 0; 
 

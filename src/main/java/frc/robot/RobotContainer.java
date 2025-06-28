@@ -262,9 +262,9 @@ public class RobotContainer {
         drivetrain.setDefaultCommand(
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
-            drive.withDeadband(MaxSpeed * ((0.1   /  (m_Elevator.GetPosition() + 1)))).withVelocityX(-driver.getLeftY() * (MaxSpeed - Constants.slowDownWithElevator(m_Elevator.GetPosition()))) // Drive forward with negative Y (forward)
-                    .withVelocityY(-driver.getLeftX() * (MaxSpeed - Constants.slowDownWithElevator(m_Elevator.GetPosition()))) // Drive left with negative X (left)
-                    .withRotationalRate(-driver.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
+            drive.withDeadband(MaxSpeed * ((0.1   /  (m_Elevator.GetPosition() + 1)))).withVelocityX((-driver.getLeftY() * (MaxSpeed - Constants.slowDownWithElevator(m_Elevator.GetPosition()))) /3
+).withVelocityY((-driver.getLeftX() * (MaxSpeed - Constants.slowDownWithElevator(m_Elevator.GetPosition())))/3) 
+                    .withRotationalRate(-driver.getRightX() * MaxAngularRate) 
             )
         );
 
@@ -387,9 +387,9 @@ public class RobotContainer {
                 new CommandIntakeCollect(m_IntakeFlywheels, m_intakeBeamBreak, m_funnelBeamBreak, 5)));
 
 
-            operator.start().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));
+            // operator.start().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleDown(m_Climber, m_FunnelPivot)));
 
-            operator.back().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleUp(m_Climber, m_FunnelPivot)));
+            // operator.back().whileTrue(new CommandChangeScoreStage(ScoringStageVal.CLIMBING).andThen(new CommandClimbToggleUp(m_Climber, m_FunnelPivot)));
 
             // This is a bandaid solution to manually run the intake, incase the normal command gets stuck. -Brady
             operator.leftBumper().onTrue(new SequentialCommandGroup(

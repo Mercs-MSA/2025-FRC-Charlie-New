@@ -92,10 +92,7 @@ public class Elevator extends SubsystemLib {
 
       
 
-        // if (isPositioning)
-        // {
-        //     if (Constants.isWithinTol(positionTo, elev1MotorGetPosition(), 0.5)) {isPositioning = false;}
-        // }
+      
 
         SmartDashboard.putNumber("elevator Pos", motor.getPosition().getValueAsDouble());
 
